@@ -1,7 +1,7 @@
 Halogenium [![npm version](https://badge.fury.io/js/halogenium.svg)](http://badge.fury.io/js/halogenium)
 =======
 
-A collection of loading spinners with React.js based on [halogen](https://github.com/yuanyan/halogen]. Now supports React.js 15.0+ and Safari.
+A collection of loading spinners with React.js based on [halogen](https://github.com/yuanyan/halogen). Now supports React.js 15.0+ and Safari.
 
 ## Demo & Examples
 
