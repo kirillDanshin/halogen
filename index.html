@@ -9,16 +9,14 @@
 <body>
 
 <script type="text" id="code1">
-import React, { Component } from 'react';
-import Loader from 'halogenium/PulseLoader';
-
-export default class Example extends Component {
-    render() {
-
+var React = require('react');
+var Loaders = require('react-loaders');
+var Example = React.createClass({
+    render: function() {
         // try change me to a custom color like "red" or "#000000"
-        const color = '#4DAF7C';
+        var color = '#4DAF7C';
 
-        const style = {
+        var style = {
             display: '-webkit-flex',
             display: 'flex',
             WebkitFlex: '0 1 auto',
@@ -71,6 +69,7 @@ export default class Example extends Component {
         );
     }
 }
+return <Example/>
 </script>
 
 
