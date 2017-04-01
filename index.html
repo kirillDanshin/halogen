@@ -9,15 +9,16 @@
 <body>
 
 <script type="text" id="code1">
-var React = require('react');
-var Halogen = require('halogen');
-var Example = React.createClass({
-    render: function() {
+import React, { Component } from 'react';
+import Loader from 'halogenium/PulseLoader';
+
+export default class Example extends Component {
+    render() {
 
         // try change me to a custom color like "red" or "#000000"
-        var color = '#4DAF7C';
+        const color = '#4DAF7C';
 
-        var style = {
+        const style = {
             display: '-webkit-flex',
             display: 'flex',
             WebkitFlex: '0 1 auto',
@@ -50,35 +51,33 @@ var Example = React.createClass({
                 WebkitFlexWrap: 'wrap',
                 flexWrap: 'wrap'
             }}>
-                <div style={style}><Halogen.PulseLoader color={color}/></div>
-                <div style={style}><Halogen.GridLoader color={color}/></div>
-                <div style={style}><Halogen.ClipLoader color={color}/></div>
-                <div style={style}><Halogen.RiseLoader color={color}/></div>
-                <div style={style}><Halogen.BeatLoader color={color}/></div>
-                <div style={style}><Halogen.SyncLoader color={color}/></div>
-                <div style={style}><Halogen.RotateLoader color={color}/></div>
-                <div style={style}><Halogen.FadeLoader color={color}/></div>
-                <div style={style}><Halogen.PacmanLoader color={color}/></div>
-                <div style={style}><Halogen.SquareLoader color={color}/></div>
-                <div style={style}><Halogen.ScaleLoader color={color}/></div>
-                <div style={style}><Halogen.SkewLoader color={color}/></div>
-                <div style={style}><Halogen.MoonLoader color={color}/></div>
-                <div style={style}><Halogen.RingLoader color={color}/></div>
-                <div style={style}><Halogen.BounceLoader color={color}/></div>
-                <div style={style}><Halogen.DotLoader color={color}/></div>
+                <div style={style}>PulseLoader<Halogen.PulseLoader color={color}/></div>
+                <div style={style}>GridLoader<Halogen.GridLoader color={color}/></div>
+                <div style={style}>ClipLoader<Halogen.ClipLoader color={color}/></div>
+                <div style={style}>RiseLoader<Halogen.RiseLoader color={color}/></div>
+                <div style={style}>BeatLoader<Halogen.BeatLoader color={color}/></div>
+                <div style={style}>SyncLoader<Halogen.SyncLoader color={color}/></div>
+                <div style={style}>RotateLoader<Halogen.RotateLoader color={color}/></div>
+                <div style={style}>FadeLoader<Halogen.FadeLoader color={color}/></div>
+                <div style={style}>PacmanLoader<Halogen.PacmanLoader color={color}/></div>
+                <div style={style}>SquareLoader<Halogen.SquareLoader color={color}/></div>
+                <div style={style}>ScaleLoader<Halogen.ScaleLoader color={color}/></div>
+                <div style={style}>SkewLoader<Halogen.SkewLoader color={color}/></div>
+                <div style={style}>MoonLoader<Halogen.MoonLoader color={color}/></div>
+                <div style={style}>RingLoader<Halogen.RingLoader color={color}/></div>
+                <div style={style}>BounceLoader<Halogen.BounceLoader color={color}/></div>
+                <div style={style}>DotLoader<Halogen.DotLoader color={color}/></div>
             </div>
         );
     }
-});
-return <Example/>
-
+}
 </script>
 
 
 <header class="row">
     <div class="container">
         <h1 class="logo">
-            Halogen
+            Halogenium
         </h1>
     </div>
 </header>
@@ -86,7 +85,7 @@ return <Example/>
 <main class="container">
     <div class="row">
         <div class="center">
-            <code class="installer">npm install halogen</code>
+            <code class="installer">npm install halogenium</code>
         </div>
     </div>
 
@@ -100,19 +99,19 @@ return <Example/>
 <footer class="row">
     <div class="container">
         <p class="center">
-            <a href="https://github.com/yuanyan/halogen">Github</a>
+            <a href="https://github.com/kirillDanshin/halogenium">Github</a>
         </p>
     </div>
 </footer>
 
-<a href="https://github.com/yuanyan/halogen"><img style="position: absolute; top: 0; right: 0; border: 0;"
+<a href="https://github.com/kirillDanshin/halogenium"><img style="position: absolute; top: 0; right: 0; border: 0;"
                                                   src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67"
                                                   alt="Fork me on GitHub"
                                                   data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
 
 <script src="codemirror.js"></script>
 <script src="javascript.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
 
 <script src="common.js"></script>
 <script src="bundle.js"></script>
