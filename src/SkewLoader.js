@@ -83,7 +83,8 @@ var Loader = React.createClass({
             this.getSharpStyle(i),
             this.getAnimationStyle(i),
             {
-                display: 'inline-block'
+                display: 'inline-block',
+				border: '0px solid transparent' // fix firefox/chrome/opera rendering
             }
         );
     },

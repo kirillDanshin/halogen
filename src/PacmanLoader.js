@@ -89,7 +89,8 @@ var Loader = React.createClass({
                 borderTop: s2,
                 borderLeft: s2,
                 borderBottom: s2,
-                borderRadius: this.props.size
+                borderRadius: this.props.size,
+				border: '0px solid transparent' // fix firefox/chrome/opera rendering
             };
         }
 
@@ -102,7 +103,8 @@ var Loader = React.createClass({
                 transform: 'translate(0, '+ -this.props.size / 4 + 'px)',
                 position: 'absolute',
                 top: 25,
-                left: 100
+                left: 100,
+				border: '0px solid transparent' // fix firefox/chrome/opera rendering
             }
         );
     },

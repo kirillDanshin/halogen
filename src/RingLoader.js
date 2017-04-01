@@ -104,7 +104,8 @@ var Loader = React.createClass({
                 {
                     position: 'absolute',
                     top: 0,
-                    left: 0
+                    left: 0,
+					border: '0px solid transparent' // fix firefox/chrome/opera rendering
                 }
             );
         }
@@ -112,7 +113,8 @@ var Loader = React.createClass({
         return {
             width: size,
             height: size,
-            position: 'relative'
+            position: 'relative',
+			border: '0px solid transparent' // fix firefox/chrome/opera rendering
         };
     },
 

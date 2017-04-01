@@ -85,7 +85,8 @@ var Loader = React.createClass({
                     opacity: '0.8',
                     position: 'absolute',
                     top: 0,
-                    left: i%2 ? -28 : 25
+                    left: i%2 ? -28 : 25,
+					border: '0px solid transparent' // fix firefox/chrome/opera rendering
                 }
             );
         }
@@ -95,7 +96,8 @@ var Loader = React.createClass({
             this.getAnimationStyle(i),
             {
                 display: 'inline-block',
-                position: 'relative'
+                position: 'relative',
+				border: '0px solid transparent' // fix firefox/chrome/opera rendering
             }
         );
     },

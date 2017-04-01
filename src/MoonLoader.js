@@ -81,24 +81,25 @@ var Loader = React.createClass({
                     backgroundColor: this.props.color,
                     opacity: '0.8',
                     position: 'absolute',
-                    top: size/2 - moonSize/2
+                    top: size/2 - moonSize/2,
+					border: '0px solid transparent' // fix firefox/chrome/opera rendering
                 }
             );
-        }
-        else if (i == 2) {
+        } else if (i == 2) {
             return assign(
                 this.getBallStyle(size),
                 {
                     border: moonSize +'px solid ' + this.props.color,
-                    opacity: 0.1
+                    opacity: 0.1,
+					border: '0px solid transparent' // fix firefox/chrome/opera rendering
                 }
             );
-        }
-        else {
+        } else {
             return assign(
                 this.getAnimationStyle(i),
                 {
-                    position: 'relative'
+                    position: 'relative',
+					border: '0px solid transparent' // fix firefox/chrome/opera rendering
                 }
             );
         }

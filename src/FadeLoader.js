@@ -137,7 +137,8 @@ var Loader = React.createClass({
             this.getPosStyle(i),
             this.getAnimationStyle(i),
             {
-                position: 'absolute'
+                position: 'absolute',
+				border: '0px solid transparent' // fix firefox/chrome/opera rendering
             }
         );
     },

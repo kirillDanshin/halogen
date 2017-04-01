@@ -79,7 +79,10 @@ var Loader = React.createClass({
         if (i) {
             return assign(
                 this.getBallStyle(i),
-                this.getAnimationStyle(i)
+                this.getAnimationStyle(i),
+				{
+					border: '0px solid transparent' // fix firefox/chrome/opera rendering
+				}
             );
         }
 
@@ -87,7 +90,8 @@ var Loader = React.createClass({
             {
                 width: this.props.size,
                 height: this.props.size,
-                position: 'relative'
+                position: 'relative',
+				border: '0px solid transparent' // fix firefox/chrome/opera rendering
             }
         );
     },
