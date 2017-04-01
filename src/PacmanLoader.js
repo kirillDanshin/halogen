@@ -7,16 +7,20 @@ var insertKeyframesRule = require('domkit/insertKeyframesRule');
  */
 var animations = {};
 
-var Loader = React.createClass({
+var propTypes = {
+	loading: React.PropTypes.bool,
+	color: React.PropTypes.string,
+	size: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
+	margin: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
+};
+
+var ptKeys = Object.keys(propTypes);
+
+var PacmanLoader = React.createClass({
     /**
      * @type {Object}
      */
-    propTypes: {
-        loading: React.PropTypes.bool,
-        color: React.PropTypes.string,
-        size: React.PropTypes.number,
-        margin: React.PropTypes.number
-    },
+    propTypes: propTypes,
 
     /**
      * @return {Object}
@@ -40,7 +44,8 @@ var Loader = React.createClass({
             height: this.props.size,
             margin: this.props.margin,
             borderRadius: '100%',
-            verticalAlign: this.props.verticalAlign
+            verticalAlign: this.props.verticalAlign,
+			border: '0px solid transparent' // fix firefox/chrome/opera rendering
         };
     },
 
@@ -90,7 +95,6 @@ var Loader = React.createClass({
                 borderLeft: s2,
                 borderBottom: s2,
                 borderRadius: this.props.size,
-				border: '0px solid transparent' // fix firefox/chrome/opera rendering
             };
         }
 
@@ -104,7 +108,6 @@ var Loader = React.createClass({
                 position: 'absolute',
                 top: 25,
                 left: 100,
-				border: '0px solid transparent' // fix firefox/chrome/opera rendering
             }
         );
     },
@@ -119,9 +122,17 @@ var Loader = React.createClass({
                 position: 'relative',
                 fontSize: 0
             };
+			var props = Object.assign({}, this.props);
+
+			if (propTypes && ptKeys) {
+				var klen = ptKeys.length;
+				for (var i = 0; i < klen; i++) {
+					delete props[ptKeys[i]];
+				}
+			}
 
             return (
-                <div id={this.props.id} className={this.props.className}>
+				<div {...props}>
                     <div style={style}>
                         <div style={this.getStyle(1)}/>
                         <div style={this.getStyle(2)}/>
@@ -141,4 +152,4 @@ var Loader = React.createClass({
     }
 });
 
-module.exports = Loader;
+module.exports = PacmanLoader;

@@ -59,16 +59,20 @@ var animationNameEven = insertKeyframesRule(keyframesEven);
  */
 var animationNameOdd = insertKeyframesRule(keyframesOdd);
 
-var Loader = React.createClass({
+var propTypes = {
+	loading: React.PropTypes.bool,
+	color: React.PropTypes.string,
+	size: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
+	margin: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
+};
+
+var ptKeys = Object.keys(propTypes);
+
+var RiseLoader = React.createClass({
     /**
      * @type {Object}
      */
-    propTypes: {
-        loading: React.PropTypes.bool,
-        color: React.PropTypes.string,
-        size: React.PropTypes.string,
-        margin: React.PropTypes.string
-    },
+    propTypes: propTypes,
 
     /**
      * @return {Object}
@@ -131,8 +135,17 @@ var Loader = React.createClass({
      */
     renderLoader: function(loading) {
         if (loading) {
+			var props = Object.assign({}, this.props);
+
+			if (propTypes && ptKeys) {
+				var klen = ptKeys.length;
+				for (var i = 0; i < klen; i++) {
+					delete props[ptKeys[i]];
+				}
+			}
+
             return (
-                <div id={this.props.id} className={this.props.className}>
+				<div {...props}>
                     <div style={this.getStyle(1)}></div>
                     <div style={this.getStyle(2)}></div>
                     <div style={this.getStyle(3)}></div>
@@ -150,4 +163,4 @@ var Loader = React.createClass({
     }
 });
 
-module.exports = Loader;
+module.exports = RiseLoader;

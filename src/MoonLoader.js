@@ -16,16 +16,20 @@ var keyframes = {
  */
 var animationName = insertKeyframesRule(keyframes);
 
-var Loader = React.createClass({
+var propTypes = {
+	loading: React.PropTypes.bool,
+	color: React.PropTypes.string,
+	size: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
+	margin: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
+};
+
+var ptKeys = Object.keys(propTypes);
+
+var MoonLoader = React.createClass({
     /**
      * @type {Object}
      */
-    propTypes: {
-        loading: React.PropTypes.bool,
-        color: React.PropTypes.string,
-        size: React.PropTypes.string,
-        margin: React.PropTypes.string
-    },
+    propTypes: propTypes,
 
     /**
      * @return {Object}
@@ -75,6 +79,9 @@ var Loader = React.createClass({
 
         if (i == 1) {
             return assign(
+				{
+					border: '0px solid transparent' // fix firefox/chrome/opera rendering
+				},
                 this.getBallStyle(moonSize),
                 this.getAnimationStyle(i),
                 {
@@ -82,24 +89,27 @@ var Loader = React.createClass({
                     opacity: '0.8',
                     position: 'absolute',
                     top: size/2 - moonSize/2,
-					border: '0px solid transparent' // fix firefox/chrome/opera rendering
                 }
             );
         } else if (i == 2) {
             return assign(
+				{
+					border: '0px solid transparent' // fix firefox/chrome/opera rendering
+				},
                 this.getBallStyle(size),
                 {
                     border: moonSize +'px solid ' + this.props.color,
                     opacity: 0.1,
-					border: '0px solid transparent' // fix firefox/chrome/opera rendering
                 }
             );
         } else {
             return assign(
+				{
+					border: '0px solid transparent' // fix firefox/chrome/opera rendering
+				},
                 this.getAnimationStyle(i),
                 {
                     position: 'relative',
-					border: '0px solid transparent' // fix firefox/chrome/opera rendering
                 }
             );
         }
@@ -111,8 +121,17 @@ var Loader = React.createClass({
      */
     renderLoader: function(loading) {
         if (loading) {
+			var props = Object.assign({}, this.props);
+
+			if (propTypes && ptKeys) {
+				var klen = ptKeys.length;
+				for (var i = 0; i < klen; i++) {
+					delete props[ptKeys[i]];
+				}
+			}
+
             return (
-                <div id={this.props.id} className={this.props.className}>
+				<div {...props}>
                     <div style={this.getStyle(0)}>
                         <div style={this.getStyle(1)}></div>
                         <div style={this.getStyle(2)}></div>
@@ -129,4 +148,4 @@ var Loader = React.createClass({
     }
 });
 
-module.exports = Loader;
+module.exports = MoonLoader;

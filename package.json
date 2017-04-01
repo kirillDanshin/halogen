@@ -1,6 +1,6 @@
 {
   "name": "halogenium",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "A collection of loading spinners with React.js based on halogen",
   "main": "Halogenium.js",
   "contributors": [
