@@ -4,8 +4,8 @@
   "description": "A collection of loading spinners with React.js based on halogen",
   "main": "Halogenium.js",
   "contributors": [
-	  "Kirill Danshin <k@guava.by>",
-	  "Yuanyan Cao"
+    "Kirill Danshin <k@guava.by>",
+    "Yuanyan Cao"
   ],
   "license": "MIT",
   "repository": {
