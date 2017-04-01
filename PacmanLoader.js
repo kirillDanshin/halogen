@@ -7,22 +7,7 @@ var insertKeyframesRule = require('domkit/insertKeyframesRule');
 /**
  * @type {Object}
  */
-var keyframes = {
-    '33%': {
-        transform: 'translateY(10px)'
-    },
-    '66%': {
-        transform: 'translateY(-10px)'
-    },
-    '100%': {
-        transform: 'translateY(0)'
-    }
-};
-
-/**
- * @type {String}
- */
-var animationName = insertKeyframesRule(keyframes);
+var animations = {};
 
 var propTypes = {
     loading: React.PropTypes.bool,
@@ -33,8 +18,8 @@ var propTypes = {
 
 var ptKeys = Object.keys(propTypes);
 
-var SyncLoader = React.createClass({
-    displayName: 'SyncLoader',
+var PacmanLoader = React.createClass({
+    displayName: 'PacmanLoader',
 
     /**
      * @type {Object}
@@ -48,8 +33,8 @@ var SyncLoader = React.createClass({
         return {
             loading: true,
             color: '#ffffff',
-            size: '15px',
-            margin: '2px'
+            size: 25,
+            margin: 2
         };
     },
 
@@ -63,7 +48,8 @@ var SyncLoader = React.createClass({
             height: this.props.size,
             margin: this.props.margin,
             borderRadius: '100%',
-            verticalAlign: this.props.verticalAlign
+            verticalAlign: this.props.verticalAlign,
+            border: '0px solid transparent' // fix firefox/chrome/opera rendering
         };
     },
 
@@ -72,7 +58,22 @@ var SyncLoader = React.createClass({
      * @return {Object}
      */
     getAnimationStyle: function getAnimationStyle(i) {
-        var animation = [animationName, '0.6s', i * 0.07 + 's', 'infinite', 'ease-in-out'].join(' ');
+        var size = this.props.size;
+        var animationName = animations[size];
+
+        if (!animationName) {
+            var keyframes = {
+                '75%': {
+                    opacity: 0.7
+                },
+                '100%': {
+                    transform: 'translate(' + -4 * size + 'px,' + -size / 4 + 'px)'
+                }
+            };
+            animationName = animations[size] = insertKeyframesRule(keyframes);
+        }
+
+        var animation = [animationName, '1s', i * 0.25 + 's', 'infinite', 'linear'].join(' ');
         var animationFillMode = 'both';
 
         return {
@@ -86,9 +87,28 @@ var SyncLoader = React.createClass({
      * @return {Object}
      */
     getStyle: function getStyle(i) {
+        if (i == 1) {
+            var s1 = this.props.size + 'px solid transparent';
+            var s2 = this.props.size + 'px solid ' + this.props.color;
+
+            return {
+                width: 0,
+                height: 0,
+                borderRight: s1,
+                borderTop: s2,
+                borderLeft: s2,
+                borderBottom: s2,
+                borderRadius: this.props.size
+            };
+        }
+
         return assign(this.getBallStyle(i), this.getAnimationStyle(i), {
-            display: 'inline-block',
-            border: '0px solid transparent' // fix firefox/chrome/opera rendering
+            width: 10,
+            height: 10,
+            transform: 'translate(0, ' + -this.props.size / 4 + 'px)',
+            position: 'absolute',
+            top: 25,
+            left: 100
         });
     },
 
@@ -98,6 +118,10 @@ var SyncLoader = React.createClass({
      */
     renderLoader: function renderLoader(loading) {
         if (loading) {
+            var style = {
+                position: 'relative',
+                fontSize: 0
+            };
             var props = Object.assign({}, this.props);
 
             if (propTypes && ptKeys) {
@@ -110,11 +134,17 @@ var SyncLoader = React.createClass({
             return React.createElement(
                 'div',
                 props,
-                React.createElement('div', { style: this.getStyle(1) }),
-                React.createElement('div', { style: this.getStyle(2) }),
-                React.createElement('div', { style: this.getStyle(3) })
+                React.createElement(
+                    'div',
+                    { style: style },
+                    React.createElement('div', { style: this.getStyle(1) }),
+                    React.createElement('div', { style: this.getStyle(2) }),
+                    React.createElement('div', { style: this.getStyle(3) }),
+                    React.createElement('div', { style: this.getStyle(4) }),
+                    React.createElement('div', { style: this.getStyle(5) })
+                )
             );
-        };
+        }
 
         return null;
     },
@@ -124,4 +154,4 @@ var SyncLoader = React.createClass({
     }
 });
 
-module.exports = SyncLoader;
+module.exports = PacmanLoader;

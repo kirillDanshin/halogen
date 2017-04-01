@@ -8,14 +8,17 @@ var insertKeyframesRule = require('domkit/insertKeyframesRule');
  * @type {Object}
  */
 var keyframes = {
-    '33%': {
-        transform: 'translateY(10px)'
+    '25%': {
+        transform: 'rotateX(180deg) rotateY(0)'
     },
-    '66%': {
-        transform: 'translateY(-10px)'
+    '50%': {
+        transform: 'rotateX(180deg) rotateY(180deg)'
+    },
+    '75%': {
+        transform: 'rotateX(0) rotateY(180deg)'
     },
     '100%': {
-        transform: 'translateY(0)'
+        transform: 'rotateX(0) rotateY(0)'
     }
 };
 
@@ -33,8 +36,8 @@ var propTypes = {
 
 var ptKeys = Object.keys(propTypes);
 
-var SyncLoader = React.createClass({
-    displayName: 'SyncLoader',
+var SquareLoader = React.createClass({
+    displayName: 'SquareLoader',
 
     /**
      * @type {Object}
@@ -48,21 +51,18 @@ var SyncLoader = React.createClass({
         return {
             loading: true,
             color: '#ffffff',
-            size: '15px',
-            margin: '2px'
+            size: '50px'
         };
     },
 
     /**
      * @return {Object}
      */
-    getBallStyle: function getBallStyle() {
+    getSquareStyle: function getSquareStyle() {
         return {
             backgroundColor: this.props.color,
             width: this.props.size,
             height: this.props.size,
-            margin: this.props.margin,
-            borderRadius: '100%',
             verticalAlign: this.props.verticalAlign
         };
     },
@@ -72,10 +72,12 @@ var SyncLoader = React.createClass({
      * @return {Object}
      */
     getAnimationStyle: function getAnimationStyle(i) {
-        var animation = [animationName, '0.6s', i * 0.07 + 's', 'infinite', 'ease-in-out'].join(' ');
+        var animation = [animationName, '3s', '0s', 'infinite', 'cubic-bezier(.09,.57,.49,.9)'].join(' ');
         var animationFillMode = 'both';
+        var perspective = '100px';
 
         return {
+            perspective: perspective,
             animation: animation,
             animationFillMode: animationFillMode
         };
@@ -86,7 +88,7 @@ var SyncLoader = React.createClass({
      * @return {Object}
      */
     getStyle: function getStyle(i) {
-        return assign(this.getBallStyle(i), this.getAnimationStyle(i), {
+        return assign(this.getSquareStyle(i), this.getAnimationStyle(i), {
             display: 'inline-block',
             border: '0px solid transparent' // fix firefox/chrome/opera rendering
         });
@@ -110,11 +112,9 @@ var SyncLoader = React.createClass({
             return React.createElement(
                 'div',
                 props,
-                React.createElement('div', { style: this.getStyle(1) }),
-                React.createElement('div', { style: this.getStyle(2) }),
-                React.createElement('div', { style: this.getStyle(3) })
+                React.createElement('div', { style: this.getStyle() })
             );
-        };
+        }
 
         return null;
     },
@@ -124,4 +124,4 @@ var SyncLoader = React.createClass({
     }
 });
 
-module.exports = SyncLoader;
+module.exports = SquareLoader;

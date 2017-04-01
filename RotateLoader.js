@@ -8,14 +8,14 @@ var insertKeyframesRule = require('domkit/insertKeyframesRule');
  * @type {Object}
  */
 var keyframes = {
-    '33%': {
-        transform: 'translateY(10px)'
+    '0%': {
+        transform: 'rotate(0deg)'
     },
-    '66%': {
-        transform: 'translateY(-10px)'
+    '50%': {
+        transform: 'rotate(180deg)'
     },
     '100%': {
-        transform: 'translateY(0)'
+        transform: 'rotate(360deg)'
     }
 };
 
@@ -33,8 +33,8 @@ var propTypes = {
 
 var ptKeys = Object.keys(propTypes);
 
-var SyncLoader = React.createClass({
-    displayName: 'SyncLoader',
+var RotateLoader = React.createClass({
+    displayName: 'RotateLoader',
 
     /**
      * @type {Object}
@@ -72,7 +72,7 @@ var SyncLoader = React.createClass({
      * @return {Object}
      */
     getAnimationStyle: function getAnimationStyle(i) {
-        var animation = [animationName, '0.6s', i * 0.07 + 's', 'infinite', 'ease-in-out'].join(' ');
+        var animation = [animationName, '1s', '0s', 'infinite', 'cubic-bezier(.7,-.13,.22,.86)'].join(' ');
         var animationFillMode = 'both';
 
         return {
@@ -86,8 +86,19 @@ var SyncLoader = React.createClass({
      * @return {Object}
      */
     getStyle: function getStyle(i) {
+        if (i) {
+            return assign(this.getBallStyle(i), {
+                opacity: '0.8',
+                position: 'absolute',
+                top: 0,
+                left: i % 2 ? -28 : 25,
+                border: '0px solid transparent' // fix firefox/chrome/opera rendering
+            });
+        }
+
         return assign(this.getBallStyle(i), this.getAnimationStyle(i), {
             display: 'inline-block',
+            position: 'relative',
             border: '0px solid transparent' // fix firefox/chrome/opera rendering
         });
     },
@@ -110,11 +121,14 @@ var SyncLoader = React.createClass({
             return React.createElement(
                 'div',
                 props,
-                React.createElement('div', { style: this.getStyle(1) }),
-                React.createElement('div', { style: this.getStyle(2) }),
-                React.createElement('div', { style: this.getStyle(3) })
+                React.createElement(
+                    'div',
+                    { style: this.getStyle() },
+                    React.createElement('div', { style: this.getStyle(1) }),
+                    React.createElement('div', { style: this.getStyle(2) })
+                )
             );
-        };
+        }
 
         return null;
     },
@@ -124,4 +138,4 @@ var SyncLoader = React.createClass({
     }
 });
 
-module.exports = SyncLoader;
+module.exports = RotateLoader;

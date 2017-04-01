@@ -8,14 +8,16 @@ var insertKeyframesRule = require('domkit/insertKeyframesRule');
  * @type {Object}
  */
 var keyframes = {
-    '33%': {
-        transform: 'translateY(10px)'
+    '0%': {
+        transform: 'scale(1)'
     },
-    '66%': {
-        transform: 'translateY(-10px)'
+    '50%': {
+        transform: 'scale(0.5)',
+        opacity: 0.7
     },
     '100%': {
-        transform: 'translateY(0)'
+        transform: 'scale(1)',
+        opacity: 1
     }
 };
 
@@ -23,6 +25,14 @@ var keyframes = {
  * @type {String}
  */
 var animationName = insertKeyframesRule(keyframes);
+
+/**
+ * @param  {Number} top
+ * @return {Number}
+ */
+function random(top) {
+    return Math.random() * top;
+}
 
 var propTypes = {
     loading: React.PropTypes.bool,
@@ -33,8 +43,8 @@ var propTypes = {
 
 var ptKeys = Object.keys(propTypes);
 
-var SyncLoader = React.createClass({
-    displayName: 'SyncLoader',
+var GridLoader = React.createClass({
+    displayName: 'GridLoader',
 
     /**
      * @type {Object}
@@ -72,7 +82,10 @@ var SyncLoader = React.createClass({
      * @return {Object}
      */
     getAnimationStyle: function getAnimationStyle(i) {
-        var animation = [animationName, '0.6s', i * 0.07 + 's', 'infinite', 'ease-in-out'].join(' ');
+        var animationDuration = random(100) / 100 + 0.6 + 's';
+        var animationDelay = random(100) / 100 - 0.2 + 's';
+
+        var animation = [animationName, animationDuration, animationDelay, 'infinite', 'ease'].join(' ');
         var animationFillMode = 'both';
 
         return {
@@ -98,6 +111,11 @@ var SyncLoader = React.createClass({
      */
     renderLoader: function renderLoader(loading) {
         if (loading) {
+            var style = {
+                width: parseFloat(this.props.size) * 3 + parseFloat(this.props.margin) * 6,
+                fontSize: 0
+            };
+
             var props = Object.assign({}, this.props);
 
             if (propTypes && ptKeys) {
@@ -110,11 +128,21 @@ var SyncLoader = React.createClass({
             return React.createElement(
                 'div',
                 props,
-                React.createElement('div', { style: this.getStyle(1) }),
-                React.createElement('div', { style: this.getStyle(2) }),
-                React.createElement('div', { style: this.getStyle(3) })
+                React.createElement(
+                    'div',
+                    { style: style },
+                    React.createElement('div', { style: this.getStyle(1) }),
+                    React.createElement('div', { style: this.getStyle(2) }),
+                    React.createElement('div', { style: this.getStyle(3) }),
+                    React.createElement('div', { style: this.getStyle(4) }),
+                    React.createElement('div', { style: this.getStyle(5) }),
+                    React.createElement('div', { style: this.getStyle(6) }),
+                    React.createElement('div', { style: this.getStyle(7) }),
+                    React.createElement('div', { style: this.getStyle(8) }),
+                    React.createElement('div', { style: this.getStyle(9) })
+                )
             );
-        };
+        }
 
         return null;
     },
@@ -124,4 +152,4 @@ var SyncLoader = React.createClass({
     }
 });
 
-module.exports = SyncLoader;
+module.exports = GridLoader;

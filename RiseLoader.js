@@ -5,24 +5,61 @@ var assign = require('domkit/appendVendorPrefix');
 var insertKeyframesRule = require('domkit/insertKeyframesRule');
 
 /**
+ * @type {Number}
+ */
+var riseAmount = 30;
+
+/**
  * @type {Object}
  */
-var keyframes = {
-    '33%': {
-        transform: 'translateY(10px)'
+var keyframesEven = {
+    '0%': {
+        transform: 'scale(1.1)'
     },
-    '66%': {
-        transform: 'translateY(-10px)'
+    '25%': {
+        transform: 'translateY(-' + riseAmount + 'px)'
+    },
+    '50%': {
+        transform: 'scale(0.4)'
+    },
+    '75%': {
+        transform: 'translateY(' + riseAmount + 'px)'
     },
     '100%': {
-        transform: 'translateY(0)'
+        transform: 'translateY(0) scale(1.0)'
+    }
+};
+
+/**
+ * @type {Object}
+ */
+var keyframesOdd = {
+    '0%': {
+        transform: 'scale(0.4)'
+    },
+    '25': {
+        transform: 'translateY(' + riseAmount + 'px)'
+    },
+    '50%': {
+        transform: 'scale(1.1)'
+    },
+    '75%': {
+        transform: 'translateY(-' + riseAmount + 'px)'
+    },
+    '100%': {
+        transform: 'translateY(0) scale(0.75)'
     }
 };
 
 /**
  * @type {String}
  */
-var animationName = insertKeyframesRule(keyframes);
+var animationNameEven = insertKeyframesRule(keyframesEven);
+
+/**
+ * @type {String}
+ */
+var animationNameOdd = insertKeyframesRule(keyframesOdd);
 
 var propTypes = {
     loading: React.PropTypes.bool,
@@ -33,8 +70,8 @@ var propTypes = {
 
 var ptKeys = Object.keys(propTypes);
 
-var SyncLoader = React.createClass({
-    displayName: 'SyncLoader',
+var RiseLoader = React.createClass({
+    displayName: 'RiseLoader',
 
     /**
      * @type {Object}
@@ -72,7 +109,7 @@ var SyncLoader = React.createClass({
      * @return {Object}
      */
     getAnimationStyle: function getAnimationStyle(i) {
-        var animation = [animationName, '0.6s', i * 0.07 + 's', 'infinite', 'ease-in-out'].join(' ');
+        var animation = [i % 2 == 0 ? animationNameEven : animationNameOdd, '1s', '0s', 'infinite', 'cubic-bezier(.15,.46,.9,.6)'].join(' ');
         var animationFillMode = 'both';
 
         return {
@@ -112,9 +149,11 @@ var SyncLoader = React.createClass({
                 props,
                 React.createElement('div', { style: this.getStyle(1) }),
                 React.createElement('div', { style: this.getStyle(2) }),
-                React.createElement('div', { style: this.getStyle(3) })
+                React.createElement('div', { style: this.getStyle(3) }),
+                React.createElement('div', { style: this.getStyle(4) }),
+                React.createElement('div', { style: this.getStyle(5) })
             );
-        };
+        }
 
         return null;
     },
@@ -124,4 +163,4 @@ var SyncLoader = React.createClass({
     }
 });
 
-module.exports = SyncLoader;
+module.exports = RiseLoader;

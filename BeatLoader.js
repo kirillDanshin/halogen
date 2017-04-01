@@ -8,20 +8,16 @@ var insertKeyframesRule = require('domkit/insertKeyframesRule');
  * @type {Object}
  */
 var keyframes = {
-    '33%': {
-        transform: 'translateY(10px)'
-    },
-    '66%': {
-        transform: 'translateY(-10px)'
+    '50%': {
+        transform: 'scale(0.75)',
+        opacity: 0.2
     },
     '100%': {
-        transform: 'translateY(0)'
+        transform: 'scale(1)',
+        opacity: 1
     }
 };
 
-/**
- * @type {String}
- */
 var animationName = insertKeyframesRule(keyframes);
 
 var propTypes = {
@@ -33,8 +29,8 @@ var propTypes = {
 
 var ptKeys = Object.keys(propTypes);
 
-var SyncLoader = React.createClass({
-    displayName: 'SyncLoader',
+var BeatLoader = React.createClass({
+    displayName: 'BeatLoader',
 
     /**
      * @type {Object}
@@ -72,7 +68,7 @@ var SyncLoader = React.createClass({
      * @return {Object}
      */
     getAnimationStyle: function getAnimationStyle(i) {
-        var animation = [animationName, '0.6s', i * 0.07 + 's', 'infinite', 'ease-in-out'].join(' ');
+        var animation = [animationName, '0.7s', i % 2 ? '0s' : '0.35s', 'infinite', 'linear'].join(' ');
         var animationFillMode = 'both';
 
         return {
@@ -114,7 +110,7 @@ var SyncLoader = React.createClass({
                 React.createElement('div', { style: this.getStyle(2) }),
                 React.createElement('div', { style: this.getStyle(3) })
             );
-        };
+        }
 
         return null;
     },
@@ -124,4 +120,4 @@ var SyncLoader = React.createClass({
     }
 });
 
-module.exports = SyncLoader;
+module.exports = BeatLoader;

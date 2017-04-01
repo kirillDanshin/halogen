@@ -7,22 +7,33 @@ var insertKeyframesRule = require('domkit/insertKeyframesRule');
 /**
  * @type {Object}
  */
-var keyframes = {
-    '33%': {
-        transform: 'translateY(10px)'
-    },
-    '66%': {
-        transform: 'translateY(-10px)'
-    },
+var rotateKeyframes = {
     '100%': {
-        transform: 'translateY(0)'
+        transform: 'rotate(360deg)'
+    }
+};
+
+/**
+ * @type {Object}
+ */
+var bounceKeyframes = {
+    '0%, 100%': {
+        transform: 'scale(0)'
+    },
+    '50%': {
+        transform: 'scale(1.0)'
     }
 };
 
 /**
  * @type {String}
  */
-var animationName = insertKeyframesRule(keyframes);
+var rotateAnimationName = insertKeyframesRule(rotateKeyframes);
+
+/**
+ * @type {String}
+ */
+var bounceAnimationName = insertKeyframesRule(bounceKeyframes);
 
 var propTypes = {
     loading: React.PropTypes.bool,
@@ -33,8 +44,8 @@ var propTypes = {
 
 var ptKeys = Object.keys(propTypes);
 
-var SyncLoader = React.createClass({
-    displayName: 'SyncLoader',
+var DotLoader = React.createClass({
+    displayName: 'DotLoader',
 
     /**
      * @type {Object}
@@ -48,20 +59,19 @@ var SyncLoader = React.createClass({
         return {
             loading: true,
             color: '#ffffff',
-            size: '15px',
-            margin: '2px'
+            size: '60px'
         };
     },
 
     /**
+     * @param  {String} size
      * @return {Object}
      */
-    getBallStyle: function getBallStyle() {
+    getBallStyle: function getBallStyle(size) {
         return {
             backgroundColor: this.props.color,
-            width: this.props.size,
-            height: this.props.size,
-            margin: this.props.margin,
+            width: size,
+            height: size,
             borderRadius: '100%',
             verticalAlign: this.props.verticalAlign
         };
@@ -72,8 +82,8 @@ var SyncLoader = React.createClass({
      * @return {Object}
      */
     getAnimationStyle: function getAnimationStyle(i) {
-        var animation = [animationName, '0.6s', i * 0.07 + 's', 'infinite', 'ease-in-out'].join(' ');
-        var animationFillMode = 'both';
+        var animation = [i == 0 ? rotateAnimationName : bounceAnimationName, '2s', i == 2 ? '-1s' : '0s', 'infinite', 'linear'].join(' ');
+        var animationFillMode = 'forwards';
 
         return {
             animation: animation,
@@ -86,8 +96,22 @@ var SyncLoader = React.createClass({
      * @return {Object}
      */
     getStyle: function getStyle(i) {
-        return assign(this.getBallStyle(i), this.getAnimationStyle(i), {
-            display: 'inline-block',
+        var size = parseInt(this.props.size);
+        var ballSize = size / 2;
+
+        if (i) {
+            return assign(this.getBallStyle(ballSize), this.getAnimationStyle(i), {
+                position: 'absolute',
+                top: i % 2 ? 0 : 'auto',
+                bottom: i % 2 ? 'auto' : 0,
+                border: '0px solid transparent' // fix firefox/chrome/opera rendering
+            });
+        }
+
+        return assign(this.getAnimationStyle(i), {
+            width: size,
+            height: size,
+            position: 'relative',
             border: '0px solid transparent' // fix firefox/chrome/opera rendering
         });
     },
@@ -110,11 +134,14 @@ var SyncLoader = React.createClass({
             return React.createElement(
                 'div',
                 props,
-                React.createElement('div', { style: this.getStyle(1) }),
-                React.createElement('div', { style: this.getStyle(2) }),
-                React.createElement('div', { style: this.getStyle(3) })
+                React.createElement(
+                    'div',
+                    { style: this.getStyle(0) },
+                    React.createElement('div', { style: this.getStyle(1) }),
+                    React.createElement('div', { style: this.getStyle(2) })
+                )
             );
-        };
+        }
 
         return null;
     },
@@ -124,4 +151,4 @@ var SyncLoader = React.createClass({
     }
 });
 
-module.exports = SyncLoader;
+module.exports = DotLoader;

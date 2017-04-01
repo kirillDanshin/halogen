@@ -8,14 +8,17 @@ var insertKeyframesRule = require('domkit/insertKeyframesRule');
  * @type {Object}
  */
 var keyframes = {
-    '33%': {
-        transform: 'translateY(10px)'
+    '0%': {
+        transform: 'scale(1)',
+        opacity: 1
     },
-    '66%': {
-        transform: 'translateY(-10px)'
+    '45%': {
+        transform: 'scale(0.1)',
+        opacity: 0.7
     },
-    '100%': {
-        transform: 'translateY(0)'
+    '80%': {
+        transform: 'scale(1)',
+        opacity: 1
     }
 };
 
@@ -33,8 +36,8 @@ var propTypes = {
 
 var ptKeys = Object.keys(propTypes);
 
-var SyncLoader = React.createClass({
-    displayName: 'SyncLoader',
+var PulseLoader = React.createClass({
+    displayName: 'PulseLoader',
 
     /**
      * @type {Object}
@@ -72,7 +75,7 @@ var SyncLoader = React.createClass({
      * @return {Object}
      */
     getAnimationStyle: function getAnimationStyle(i) {
-        var animation = [animationName, '0.6s', i * 0.07 + 's', 'infinite', 'ease-in-out'].join(' ');
+        var animation = [animationName, '0.75s', i * 0.12 + 's', 'infinite', 'cubic-bezier(.2,.68,.18,1.08)'].join(' ');
         var animationFillMode = 'both';
 
         return {
@@ -114,7 +117,7 @@ var SyncLoader = React.createClass({
                 React.createElement('div', { style: this.getStyle(2) }),
                 React.createElement('div', { style: this.getStyle(3) })
             );
-        };
+        }
 
         return null;
     },
@@ -124,4 +127,4 @@ var SyncLoader = React.createClass({
     }
 });
 
-module.exports = SyncLoader;
+module.exports = PulseLoader;

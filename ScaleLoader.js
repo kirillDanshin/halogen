@@ -8,14 +8,14 @@ var insertKeyframesRule = require('domkit/insertKeyframesRule');
  * @type {Object}
  */
 var keyframes = {
-    '33%': {
-        transform: 'translateY(10px)'
+    '0%': {
+        transform: 'scaley(1.0)'
     },
-    '66%': {
-        transform: 'translateY(-10px)'
+    '50%': {
+        transform: 'scaley(0.4)'
     },
     '100%': {
-        transform: 'translateY(0)'
+        transform: 'scaley(1.0)'
     }
 };
 
@@ -27,14 +27,16 @@ var animationName = insertKeyframesRule(keyframes);
 var propTypes = {
     loading: React.PropTypes.bool,
     color: React.PropTypes.string,
-    size: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
-    margin: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string])
+    height: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
+    width: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
+    margin: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
+    radius: React.PropTypes.string
 };
 
 var ptKeys = Object.keys(propTypes);
 
-var SyncLoader = React.createClass({
-    displayName: 'SyncLoader',
+var ScaleLoader = React.createClass({
+    displayName: 'ScaleLoader',
 
     /**
      * @type {Object}
@@ -48,21 +50,23 @@ var SyncLoader = React.createClass({
         return {
             loading: true,
             color: '#ffffff',
-            size: '15px',
-            margin: '2px'
+            height: '35px',
+            width: '4px',
+            margin: '2px',
+            radius: '2px'
         };
     },
 
     /**
      * @return {Object}
      */
-    getBallStyle: function getBallStyle() {
+    getLineStyle: function getLineStyle() {
         return {
             backgroundColor: this.props.color,
-            width: this.props.size,
-            height: this.props.size,
+            height: this.props.height,
+            width: this.props.width,
             margin: this.props.margin,
-            borderRadius: '100%',
+            borderRadius: this.props.radius,
             verticalAlign: this.props.verticalAlign
         };
     },
@@ -72,7 +76,7 @@ var SyncLoader = React.createClass({
      * @return {Object}
      */
     getAnimationStyle: function getAnimationStyle(i) {
-        var animation = [animationName, '0.6s', i * 0.07 + 's', 'infinite', 'ease-in-out'].join(' ');
+        var animation = [animationName, '1s', i * 0.1 + 's', 'infinite', 'cubic-bezier(.2,.68,.18,1.08)'].join(' ');
         var animationFillMode = 'both';
 
         return {
@@ -86,7 +90,7 @@ var SyncLoader = React.createClass({
      * @return {Object}
      */
     getStyle: function getStyle(i) {
-        return assign(this.getBallStyle(i), this.getAnimationStyle(i), {
+        return assign(this.getLineStyle(i), this.getAnimationStyle(i), {
             display: 'inline-block',
             border: '0px solid transparent' // fix firefox/chrome/opera rendering
         });
@@ -112,9 +116,11 @@ var SyncLoader = React.createClass({
                 props,
                 React.createElement('div', { style: this.getStyle(1) }),
                 React.createElement('div', { style: this.getStyle(2) }),
-                React.createElement('div', { style: this.getStyle(3) })
+                React.createElement('div', { style: this.getStyle(3) }),
+                React.createElement('div', { style: this.getStyle(4) }),
+                React.createElement('div', { style: this.getStyle(5) })
             );
-        };
+        }
 
         return null;
     },
@@ -124,4 +130,4 @@ var SyncLoader = React.createClass({
     }
 });
 
-module.exports = SyncLoader;
+module.exports = ScaleLoader;

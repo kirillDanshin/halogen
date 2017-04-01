@@ -8,14 +8,8 @@ var insertKeyframesRule = require('domkit/insertKeyframesRule');
  * @type {Object}
  */
 var keyframes = {
-    '33%': {
-        transform: 'translateY(10px)'
-    },
-    '66%': {
-        transform: 'translateY(-10px)'
-    },
     '100%': {
-        transform: 'translateY(0)'
+        transform: 'rotate(360deg)'
     }
 };
 
@@ -33,8 +27,8 @@ var propTypes = {
 
 var ptKeys = Object.keys(propTypes);
 
-var SyncLoader = React.createClass({
-    displayName: 'SyncLoader',
+var MoonLoader = React.createClass({
+    displayName: 'MoonLoader',
 
     /**
      * @type {Object}
@@ -48,20 +42,18 @@ var SyncLoader = React.createClass({
         return {
             loading: true,
             color: '#ffffff',
-            size: '15px',
-            margin: '2px'
+            size: '60px'
         };
     },
 
     /**
+     * @param  {String} size
      * @return {Object}
      */
-    getBallStyle: function getBallStyle() {
+    getBallStyle: function getBallStyle(size) {
         return {
-            backgroundColor: this.props.color,
-            width: this.props.size,
-            height: this.props.size,
-            margin: this.props.margin,
+            width: size,
+            height: size,
             borderRadius: '100%',
             verticalAlign: this.props.verticalAlign
         };
@@ -72,8 +64,8 @@ var SyncLoader = React.createClass({
      * @return {Object}
      */
     getAnimationStyle: function getAnimationStyle(i) {
-        var animation = [animationName, '0.6s', i * 0.07 + 's', 'infinite', 'ease-in-out'].join(' ');
-        var animationFillMode = 'both';
+        var animation = [animationName, '0.6s', '0s', 'infinite', 'linear'].join(' ');
+        var animationFillMode = 'forwards';
 
         return {
             animation: animation,
@@ -86,10 +78,32 @@ var SyncLoader = React.createClass({
      * @return {Object}
      */
     getStyle: function getStyle(i) {
-        return assign(this.getBallStyle(i), this.getAnimationStyle(i), {
-            display: 'inline-block',
-            border: '0px solid transparent' // fix firefox/chrome/opera rendering
-        });
+        var size = parseInt(this.props.size);
+        var moonSize = size / 7;
+
+        if (i == 1) {
+            return assign({
+                border: '0px solid transparent' // fix firefox/chrome/opera rendering
+            }, this.getBallStyle(moonSize), this.getAnimationStyle(i), {
+                backgroundColor: this.props.color,
+                opacity: '0.8',
+                position: 'absolute',
+                top: size / 2 - moonSize / 2
+            });
+        } else if (i == 2) {
+            return assign({
+                border: '0px solid transparent' // fix firefox/chrome/opera rendering
+            }, this.getBallStyle(size), {
+                border: moonSize + 'px solid ' + this.props.color,
+                opacity: 0.1
+            });
+        } else {
+            return assign({
+                border: '0px solid transparent' // fix firefox/chrome/opera rendering
+            }, this.getAnimationStyle(i), {
+                position: 'relative'
+            });
+        }
     },
 
     /**
@@ -110,11 +124,14 @@ var SyncLoader = React.createClass({
             return React.createElement(
                 'div',
                 props,
-                React.createElement('div', { style: this.getStyle(1) }),
-                React.createElement('div', { style: this.getStyle(2) }),
-                React.createElement('div', { style: this.getStyle(3) })
+                React.createElement(
+                    'div',
+                    { style: this.getStyle(0) },
+                    React.createElement('div', { style: this.getStyle(1) }),
+                    React.createElement('div', { style: this.getStyle(2) })
+                )
             );
-        };
+        }
 
         return null;
     },
@@ -124,4 +141,4 @@ var SyncLoader = React.createClass({
     }
 });
 
-module.exports = SyncLoader;
+module.exports = MoonLoader;

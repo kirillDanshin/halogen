@@ -8,14 +8,11 @@ var insertKeyframesRule = require('domkit/insertKeyframesRule');
  * @type {Object}
  */
 var keyframes = {
-    '33%': {
-        transform: 'translateY(10px)'
+    '0%, 100%': {
+        transform: 'scale(0)'
     },
-    '66%': {
-        transform: 'translateY(-10px)'
-    },
-    '100%': {
-        transform: 'translateY(0)'
+    '50%': {
+        transform: 'scale(1.0)'
     }
 };
 
@@ -27,14 +24,13 @@ var animationName = insertKeyframesRule(keyframes);
 var propTypes = {
     loading: React.PropTypes.bool,
     color: React.PropTypes.string,
-    size: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
-    margin: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string])
+    size: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string])
 };
 
 var ptKeys = Object.keys(propTypes);
 
-var SyncLoader = React.createClass({
-    displayName: 'SyncLoader',
+var BounceLoader = React.createClass({
+    displayName: 'BounceLoader',
 
     /**
      * @type {Object}
@@ -48,8 +44,7 @@ var SyncLoader = React.createClass({
         return {
             loading: true,
             color: '#ffffff',
-            size: '15px',
-            margin: '2px'
+            size: '60px'
         };
     },
 
@@ -61,8 +56,11 @@ var SyncLoader = React.createClass({
             backgroundColor: this.props.color,
             width: this.props.size,
             height: this.props.size,
-            margin: this.props.margin,
             borderRadius: '100%',
+            opacity: 0.6,
+            position: 'absolute',
+            top: 0,
+            left: 0,
             verticalAlign: this.props.verticalAlign
         };
     },
@@ -72,7 +70,7 @@ var SyncLoader = React.createClass({
      * @return {Object}
      */
     getAnimationStyle: function getAnimationStyle(i) {
-        var animation = [animationName, '0.6s', i * 0.07 + 's', 'infinite', 'ease-in-out'].join(' ');
+        var animation = [animationName, '2s', i == 1 ? '1s' : '0s', 'infinite', 'ease-in-out'].join(' ');
         var animationFillMode = 'both';
 
         return {
@@ -86,8 +84,16 @@ var SyncLoader = React.createClass({
      * @return {Object}
      */
     getStyle: function getStyle(i) {
-        return assign(this.getBallStyle(i), this.getAnimationStyle(i), {
-            display: 'inline-block',
+        if (i) {
+            return assign(this.getBallStyle(i), this.getAnimationStyle(i), {
+                border: '0px solid transparent' // fix firefox/chrome/opera rendering
+            });
+        }
+
+        return assign({
+            width: this.props.size,
+            height: this.props.size,
+            position: 'relative',
             border: '0px solid transparent' // fix firefox/chrome/opera rendering
         });
     },
@@ -110,11 +116,14 @@ var SyncLoader = React.createClass({
             return React.createElement(
                 'div',
                 props,
-                React.createElement('div', { style: this.getStyle(1) }),
-                React.createElement('div', { style: this.getStyle(2) }),
-                React.createElement('div', { style: this.getStyle(3) })
+                React.createElement(
+                    'div',
+                    { style: this.getStyle() },
+                    React.createElement('div', { style: this.getStyle(1) }),
+                    React.createElement('div', { style: this.getStyle(2) })
+                )
             );
-        };
+        }
 
         return null;
     },
@@ -124,4 +133,4 @@ var SyncLoader = React.createClass({
     }
 });
 
-module.exports = SyncLoader;
+module.exports = BounceLoader;
