@@ -1,10 +1,10 @@
 {
   "name": "halogenium",
-  "version": "2.0.0-rc1",
+  "version": "2.0.0-rc2",
   "description": "A collection of loading spinners with React.js based on halogen",
   "main": "lib/Halogenium.js",
   "contributors": [
-    "Kirill Danshin <k@guava.by>",
+    "Kirill Danshin <kirill@danshin.pro>",
     "Yuanyan Cao"
   ],
   "license": "MIT",
@@ -13,7 +13,8 @@
     "url": "https://github.com/kirillDanshin/halogenium.git"
   },
   "dependencies": {
-    "domkit": "0.0.1"
+    "domkit": "0.0.1",
+    "prop-types": "^15.6.0"
   },
   "peerDependencies": {
     "react": "^15.0",

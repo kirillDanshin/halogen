@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import assign from 'domkit/appendVendorPrefix';
 import insertKeyframesRule from 'domkit/insertKeyframesRule';
 
@@ -23,9 +24,9 @@ const keyframes = {
 const animationName = insertKeyframesRule(keyframes);
 
 const propTypes = {
-	loading: React.PropTypes.bool,
-	color: React.PropTypes.string,
-	size: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
+	loading: PropTypes.bool,
+	color: PropTypes.string,
+	size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 const ptKeys = Object.keys(propTypes);
