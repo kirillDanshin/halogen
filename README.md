@@ -32,12 +32,12 @@ npm install halogenium --save
 
 ```javascript
 import React, { Component } from 'react';
-import Loader from 'halogenium/PulseLoader';
+import { PulseLoader } from 'halogenium';
 
 export default class Example extends Component {
 	render() {
 		return (
-			<Loader color="#26A65B" size="16px" margin="4px"/>
+			<PulseLoader color="#26A65B" size="16px" margin="4px"/>
 		);
 	}
 }
