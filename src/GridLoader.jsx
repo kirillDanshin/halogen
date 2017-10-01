@@ -45,12 +45,12 @@ const ptKeys = Object.keys(propTypes);
 export default class GridLoader extends Component {
 	static propTypes: propTypes;
 
-	getDefaultProps = () => ({
+	static defaultProps = {
 		loading: true,
 		color: '#ffffff',
 		size: '15px',
 		margin: '2px',
-	})
+	}
 
 	getBallStyle = () => ({
 		backgroundColor: this.props.color,

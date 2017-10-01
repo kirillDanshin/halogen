@@ -38,15 +38,12 @@ export default class RotateLoader extends Component {
      */
     propTypes = propTypes;
 
-    /**
-     * @return {Object}
-     */
-    getDefaultProps = () => ({
+    static defaultProps = {
         loading: true,
         color: '#ffffff',
         size: '15px',
         margin: '2px'
-    })
+    }
 
     /**
      * @return {Object}

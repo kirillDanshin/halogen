@@ -23,12 +23,12 @@ export default class PacmanLoader extends Component {
     /**
      * @return {Object}
      */
-    getDefaultProps = () => ({
+    static defaultProps = {
         loading: true,
         color: '#ffffff',
         size: 25,
         margin: 2,
-    })
+    }
 
     /**
      * @return {Object}

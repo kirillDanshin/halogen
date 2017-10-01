@@ -72,14 +72,7 @@ var BeatLoader = function (_Component) {
 			args[_key] = arguments[_key];
 		}
 
-		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = BeatLoader.__proto__ || Object.getPrototypeOf(BeatLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getDefaultProps = function () {
-			return {
-				loading: true,
-				color: '#ffffff',
-				size: '15px',
-				margin: '2px'
-			};
-		}, _this.getBallStyle = function () {
+		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = BeatLoader.__proto__ || Object.getPrototypeOf(BeatLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getBallStyle = function () {
 			return {
 				backgroundColor: _this.props.color,
 				width: _this.props.size,
@@ -103,11 +96,6 @@ var BeatLoader = function (_Component) {
 			});
 		}, _temp), _possibleConstructorReturn(_this, _ret);
 	}
-
-	/**
-  * @return {Object}
-  */
-
 
 	/**
   * @return {Object}
@@ -159,6 +147,11 @@ var BeatLoader = function (_Component) {
 }(_react.Component);
 
 BeatLoader.propTypes = propTypes;
+BeatLoader.defaultProps = {
+	loading: true,
+	color: '#ffffff',
+	size: '15px',
+	margin: '2px' };
 exports.default = BeatLoader;
 module.exports = exports['default'];
 
@@ -230,13 +223,7 @@ var BounceLoader = function (_Component) {
 			args[_key] = arguments[_key];
 		}
 
-		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = BounceLoader.__proto__ || Object.getPrototypeOf(BounceLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getDefaultProps = function () {
-			return {
-				loading: true,
-				color: '#ffffff',
-				size: '60px'
-			};
-		}, _this.getBallStyle = function () {
+		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = BounceLoader.__proto__ || Object.getPrototypeOf(BounceLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getBallStyle = function () {
 			return {
 				backgroundColor: _this.props.color,
 				width: _this.props.size,
@@ -319,6 +306,11 @@ var BounceLoader = function (_Component) {
 }(_react.Component);
 
 BounceLoader.propTypes = propTypes;
+BounceLoader.defaultProps = {
+	loading: true,
+	color: '#ffffff',
+	size: '60px'
+};
 exports.default = BounceLoader;
 module.exports = exports['default'];
 
@@ -399,13 +391,7 @@ var ClipLoader = function (_Component) {
 			args[_key] = arguments[_key];
 		}
 
-		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ClipLoader.__proto__ || Object.getPrototypeOf(ClipLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getDefaultProps = function () {
-			return {
-				loading: true,
-				color: '#ffffff',
-				size: '35px'
-			};
-		}, _this.getBallStyle = function () {
+		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ClipLoader.__proto__ || Object.getPrototypeOf(ClipLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getBallStyle = function () {
 			return {
 				width: _this.props.size,
 				height: _this.props.size,
@@ -469,6 +455,11 @@ var ClipLoader = function (_Component) {
 	return ClipLoader;
 }(_react.Component);
 
+ClipLoader.defaultProps = {
+	loading: true,
+	color: '#ffffff',
+	size: '35px'
+};
 exports.default = ClipLoader;
 module.exports = exports['default'];
 
@@ -561,13 +552,7 @@ var DotLoader = function (_Component) {
 			args[_key] = arguments[_key];
 		}
 
-		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = DotLoader.__proto__ || Object.getPrototypeOf(DotLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getDefaultProps = function () {
-			return {
-				loading: true,
-				color: '#ffffff',
-				size: '60px'
-			};
-		}, _this.getBallStyle = function (size) {
+		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = DotLoader.__proto__ || Object.getPrototypeOf(DotLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getBallStyle = function (size) {
 			return {
 				backgroundColor: _this.props.color,
 				width: size,
@@ -658,6 +643,10 @@ var DotLoader = function (_Component) {
 	return DotLoader;
 }(_react.Component);
 
+DotLoader.defaultProps = {
+	loading: true,
+	color: '#ffffff',
+	size: '60px' };
 exports.default = DotLoader;
 module.exports = exports['default'];
 
@@ -738,16 +727,7 @@ var FadeLoader = function (_Component) {
 			args[_key] = arguments[_key];
 		}
 
-		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = FadeLoader.__proto__ || Object.getPrototypeOf(FadeLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getDefaultProps = function () {
-			return {
-				loading: true,
-				color: '#ffffff',
-				height: '15px',
-				width: '5px',
-				margin: '2px',
-				radius: '2px'
-			};
-		}, _this.getLineStyle = function () {
+		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = FadeLoader.__proto__ || Object.getPrototypeOf(FadeLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getLineStyle = function () {
 			return {
 				backgroundColor: _this.props.color,
 				height: _this.props.height,
@@ -882,6 +862,14 @@ var FadeLoader = function (_Component) {
 	return FadeLoader;
 }(_react.Component);
 
+FadeLoader.defaultProps = {
+	loading: true,
+	color: '#ffffff',
+	height: '15px',
+	width: '5px',
+	margin: '2px',
+	radius: '2px'
+};
 exports.default = FadeLoader;
 module.exports = exports['default'];
 
@@ -973,14 +961,7 @@ var GridLoader = function (_Component) {
 			args[_key] = arguments[_key];
 		}
 
-		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = GridLoader.__proto__ || Object.getPrototypeOf(GridLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getDefaultProps = function () {
-			return {
-				loading: true,
-				color: '#ffffff',
-				size: '15px',
-				margin: '2px'
-			};
-		}, _this.getBallStyle = function () {
+		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = GridLoader.__proto__ || Object.getPrototypeOf(GridLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getBallStyle = function () {
 			return {
 				backgroundColor: _this.props.color,
 				width: _this.props.size,
@@ -1061,6 +1042,12 @@ var GridLoader = function (_Component) {
 	return GridLoader;
 }(_react.Component);
 
+GridLoader.defaultProps = {
+	loading: true,
+	color: '#ffffff',
+	size: '15px',
+	margin: '2px'
+};
 exports.default = GridLoader;
 module.exports = exports['default'];
 
@@ -1227,13 +1214,7 @@ var MoonLoader = function (_Component) {
 			args[_key] = arguments[_key];
 		}
 
-		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = MoonLoader.__proto__ || Object.getPrototypeOf(MoonLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getDefaultProps = function () {
-			return {
-				loading: true,
-				color: '#ffffff',
-				size: '60px'
-			};
-		}, _this.getBallStyle = function (size) {
+		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = MoonLoader.__proto__ || Object.getPrototypeOf(MoonLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getBallStyle = function (size) {
 			return {
 				width: size,
 				height: size,
@@ -1325,6 +1306,10 @@ var MoonLoader = function (_Component) {
 }(_react.Component);
 
 MoonLoader.propTypes = propTypes;
+MoonLoader.defaultProps = {
+	loading: true,
+	color: '#ffffff',
+	size: '60px' };
 exports.default = MoonLoader;
 module.exports = exports['default'];
 
@@ -1389,14 +1374,7 @@ var PacmanLoader = function (_Component) {
             args[_key] = arguments[_key];
         }
 
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PacmanLoader.__proto__ || Object.getPrototypeOf(PacmanLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getDefaultProps = function () {
-            return {
-                loading: true,
-                color: '#ffffff',
-                size: 25,
-                margin: 2
-            };
-        }, _this.getBallStyle = function () {
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PacmanLoader.__proto__ || Object.getPrototypeOf(PacmanLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getBallStyle = function () {
             return {
                 backgroundColor: _this.props.color,
                 width: _this.props.size,
@@ -1514,6 +1492,11 @@ var PacmanLoader = function (_Component) {
 }(_react.Component);
 
 PacmanLoader.propTypes = propTypes;
+PacmanLoader.defaultProps = {
+    loading: true,
+    color: '#ffffff',
+    size: 25,
+    margin: 2 };
 exports.default = PacmanLoader;
 module.exports = exports['default'];
 
@@ -1596,14 +1579,7 @@ var PulseLoader = function (_Component) {
             args[_key] = arguments[_key];
         }
 
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PulseLoader.__proto__ || Object.getPrototypeOf(PulseLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getDefaultProps = function () {
-            return {
-                loading: true,
-                color: '#ffffff',
-                size: '15px',
-                margin: '2px'
-            };
-        }, _this.getBallStyle = function () {
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PulseLoader.__proto__ || Object.getPrototypeOf(PulseLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getBallStyle = function () {
             return {
                 backgroundColor: _this.props.color,
                 width: _this.props.size,
@@ -1659,11 +1635,6 @@ var PulseLoader = function (_Component) {
 
 
     /**
-     * @return {Object}
-     */
-
-
-    /**
      * @param  {Number} i
      * @return {Object}
      */
@@ -1692,6 +1663,11 @@ var PulseLoader = function (_Component) {
 }(_react.Component);
 
 PulseLoader.propTypes = propTypes;
+PulseLoader.defaultProps = {
+    loading: true,
+    color: '#ffffff',
+    size: '15px',
+    margin: '2px' };
 exports.default = PulseLoader;
 module.exports = exports['default'];
 
@@ -1786,13 +1762,7 @@ var RingLoader = function (_Component) {
             args[_key] = arguments[_key];
         }
 
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RingLoader.__proto__ || Object.getPrototypeOf(RingLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getDefaultProps = function () {
-            return {
-                loading: true,
-                color: '#ffffff',
-                size: '60px'
-            };
-        }, _this.getCircleStyle = function (size) {
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RingLoader.__proto__ || Object.getPrototypeOf(RingLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getCircleStyle = function (size) {
             return {
                 width: size,
                 height: size,
@@ -1862,11 +1832,6 @@ var RingLoader = function (_Component) {
 
 
     /**
-     * @return {Object}
-     */
-
-
-    /**
      * @param {String} size
      * @return {Object}
      */
@@ -1901,6 +1866,10 @@ var RingLoader = function (_Component) {
 }(_react.Component);
 
 RingLoader.propTypes = propTypes;
+RingLoader.defaultProps = {
+    loading: true,
+    color: '#ffffff',
+    size: '60px' };
 exports.default = RingLoader;
 module.exports = exports['default'];
 
@@ -2017,14 +1986,7 @@ var RiseLoader = function (_Component) {
             args[_key] = arguments[_key];
         }
 
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RiseLoader.__proto__ || Object.getPrototypeOf(RiseLoader)).call.apply(_ref, [this].concat(args))), _this), _this.propTypes = propTypes, _this.getDefaultProps = function () {
-            return {
-                loading: true,
-                color: '#ffffff',
-                size: '15px',
-                margin: '2px'
-            };
-        }, _this.getBallStyle = function () {
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RiseLoader.__proto__ || Object.getPrototypeOf(RiseLoader)).call.apply(_ref, [this].concat(args))), _this), _this.propTypes = propTypes, _this.getBallStyle = function () {
             return {
                 backgroundColor: _this.props.color,
                 width: _this.props.size,
@@ -2082,11 +2044,6 @@ var RiseLoader = function (_Component) {
 
 
     /**
-     * @return {Object}
-     */
-
-
-    /**
      * @param  {Number} i
      * @return {Object}
      */
@@ -2114,6 +2071,11 @@ var RiseLoader = function (_Component) {
     return RiseLoader;
 }(_react.Component);
 
+RiseLoader.defaultProps = {
+    loading: true,
+    color: '#ffffff',
+    size: '15px',
+    margin: '2px' };
 exports.default = RiseLoader;
 module.exports = exports['default'];
 
@@ -2193,14 +2155,7 @@ var RotateLoader = function (_Component) {
             args[_key] = arguments[_key];
         }
 
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RotateLoader.__proto__ || Object.getPrototypeOf(RotateLoader)).call.apply(_ref, [this].concat(args))), _this), _this.propTypes = propTypes, _this.getDefaultProps = function () {
-            return {
-                loading: true,
-                color: '#ffffff',
-                size: '15px',
-                margin: '2px'
-            };
-        }, _this.getBallStyle = function () {
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RotateLoader.__proto__ || Object.getPrototypeOf(RotateLoader)).call.apply(_ref, [this].concat(args))), _this), _this.propTypes = propTypes, _this.getBallStyle = function () {
             return {
                 backgroundColor: _this.props.color,
                 width: _this.props.size,
@@ -2270,11 +2225,6 @@ var RotateLoader = function (_Component) {
 
 
     /**
-     * @return {Object}
-     */
-
-
-    /**
      * @param  {Number} i
      * @return {Object}
      */
@@ -2302,6 +2252,11 @@ var RotateLoader = function (_Component) {
     return RotateLoader;
 }(_react.Component);
 
+RotateLoader.defaultProps = {
+    loading: true,
+    color: '#ffffff',
+    size: '15px',
+    margin: '2px' };
 exports.default = RotateLoader;
 module.exports = exports['default'];
 
@@ -2383,16 +2338,7 @@ var ScaleLoader = function (_Component) {
             args[_key] = arguments[_key];
         }
 
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ScaleLoader.__proto__ || Object.getPrototypeOf(ScaleLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getDefaultProps = function () {
-            return {
-                loading: true,
-                color: '#ffffff',
-                height: '35px',
-                width: '4px',
-                margin: '2px',
-                radius: '2px'
-            };
-        }, _this.getLineStyle = function () {
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ScaleLoader.__proto__ || Object.getPrototypeOf(ScaleLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getLineStyle = function () {
             return {
                 backgroundColor: _this.props.color,
                 height: _this.props.height,
@@ -2450,11 +2396,6 @@ var ScaleLoader = function (_Component) {
 
 
     /**
-     * @return {Object}
-     */
-
-
-    /**
      * @param  {Number} i
      * @return {Object}
      */
@@ -2483,6 +2424,13 @@ var ScaleLoader = function (_Component) {
 }(_react.Component);
 
 ScaleLoader.propTypes = propTypes;
+ScaleLoader.defaultProps = {
+    loading: true,
+    color: '#ffffff',
+    height: '35px',
+    width: '4px',
+    margin: '2px',
+    radius: '2px' };
 exports.default = ScaleLoader;
 module.exports = exports['default'];
 
@@ -2564,13 +2512,7 @@ var SkewLoader = function (_Component) {
             args[_key] = arguments[_key];
         }
 
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SkewLoader.__proto__ || Object.getPrototypeOf(SkewLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getDefaultProps = function () {
-            return {
-                loading: true,
-                color: '#ffffff',
-                size: '20px'
-            };
-        }, _this.getSharpStyle = function () {
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SkewLoader.__proto__ || Object.getPrototypeOf(SkewLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getSharpStyle = function () {
             return {
                 width: 0,
                 height: 0,
@@ -2625,11 +2567,6 @@ var SkewLoader = function (_Component) {
 
 
     /**
-     * @return {Object}
-     */
-
-
-    /**
      * @param  {Number} i
      * @return {Object}
      */
@@ -2658,6 +2595,10 @@ var SkewLoader = function (_Component) {
 }(_react.Component);
 
 SkewLoader.propTypes = propTypes;
+SkewLoader.defaultProps = {
+    loading: true,
+    color: '#ffffff',
+    size: '20px' };
 exports.default = SkewLoader;
 module.exports = exports['default'];
 
@@ -2740,13 +2681,7 @@ var SquareLoader = function (_Component) {
             args[_key] = arguments[_key];
         }
 
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SquareLoader.__proto__ || Object.getPrototypeOf(SquareLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getDefaultProps = function () {
-            return {
-                loading: true,
-                color: '#ffffff',
-                size: '50px'
-            };
-        }, _this.getSquareStyle = function () {
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SquareLoader.__proto__ || Object.getPrototypeOf(SquareLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getSquareStyle = function () {
             return {
                 backgroundColor: _this.props.color,
                 width: _this.props.size,
@@ -2800,11 +2735,6 @@ var SquareLoader = function (_Component) {
 
 
     /**
-     * @return {Object}
-     */
-
-
-    /**
      * @param  {Number} i
      * @return {Object}
      */
@@ -2833,6 +2763,10 @@ var SquareLoader = function (_Component) {
 }(_react.Component);
 
 SquareLoader.propTypes = propTypes;
+SquareLoader.defaultProps = {
+    loading: true,
+    color: '#ffffff',
+    size: '50px' };
 exports.default = SquareLoader;
 module.exports = exports['default'];
 
@@ -2912,14 +2846,7 @@ var SyncLoader = function (_Component) {
             args[_key] = arguments[_key];
         }
 
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SyncLoader.__proto__ || Object.getPrototypeOf(SyncLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getDefaultProps = function () {
-            return {
-                loading: true,
-                color: '#ffffff',
-                size: '15px',
-                margin: '2px'
-            };
-        }, _this.getBallStyle = function () {
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SyncLoader.__proto__ || Object.getPrototypeOf(SyncLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getBallStyle = function () {
             return {
                 backgroundColor: _this.props.color,
                 width: _this.props.size,
@@ -2975,11 +2902,6 @@ var SyncLoader = function (_Component) {
 
 
     /**
-     * @return {Object}
-     */
-
-
-    /**
      * @param  {Number} i
      * @return {Object}
      */
@@ -3008,6 +2930,11 @@ var SyncLoader = function (_Component) {
 }(_react.Component);
 
 SyncLoader.propTypes = propTypes;
+SyncLoader.defaultProps = {
+    loading: true,
+    color: '#ffffff',
+    size: '15px',
+    margin: '2px' };
 exports.default = SyncLoader;
 module.exports = exports['default'];
 

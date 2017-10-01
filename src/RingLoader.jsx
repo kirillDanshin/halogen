@@ -53,14 +53,11 @@ export default class RingLoader extends Component {
      */
     static propTypes = propTypes;
 
-    /**
-     * @return {Object}
-     */
-    getDefaultProps = () => ({
+    static defaultProps = {
         loading: true,
         color: '#ffffff',
         size: '60px'
-    })
+    }
 
     /**
      * @param {String} size

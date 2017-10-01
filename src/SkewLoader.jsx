@@ -40,14 +40,11 @@ export default class SkewLoader extends Component {
      */
     static propTypes = propTypes;
 
-    /**
-     * @return {Object}
-     */
-    getDefaultProps = () => ({
+    static defaultProps = {
         loading: true,
         color: '#ffffff',
         size: '20px'
-    })
+    }
 
     /**
      * @return {Object}

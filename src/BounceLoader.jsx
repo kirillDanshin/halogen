@@ -25,11 +25,11 @@ const ptKeys = Object.keys(propTypes);
 export default class BounceLoader extends Component {
 	static propTypes = propTypes;
 
-	getDefaultProps = () => ({
+	static defaultProps = {
 		loading: true,
 		color: '#ffffff',
 		size: '60px',
-	})
+	}
 
 	getBallStyle = () => ({
 		backgroundColor: this.props.color,

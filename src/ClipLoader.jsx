@@ -34,11 +34,11 @@ const ptKeys = Object.keys(propTypes);
 export default class ClipLoader extends Component {
 	static propTypes: propTypes;
 
-	getDefaultProps = () => ({
+	static defaultProps = {
 		loading: true,
 		color: '#ffffff',
 		size: '35px',
-	})
+	}
 
 	getBallStyle = () => (
 		{

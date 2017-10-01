@@ -40,17 +40,14 @@ export default class ScaleLoader extends Component {
      */
     static propTypes = propTypes;
 
-    /**
-     * @return {Object}
-     */
-    getDefaultProps = () => ({
+    static defaultProps = {
         loading: true,
         color: '#ffffff',
         height: '35px',
         width: '4px',
         margin: '2px',
         radius: '2px'
-    })
+    }
 
     /**
      * @return {Object}

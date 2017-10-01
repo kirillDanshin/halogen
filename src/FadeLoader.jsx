@@ -34,14 +34,14 @@ const ptKeys = Object.keys(propTypes);
 export default class FadeLoader extends Component {
 	static propTypes: propTypes;
 
-	getDefaultProps = () => ({
+	static defaultProps = {
 		loading: true,
 		color: '#ffffff',
 		height: '15px',
 		width: '5px',
 		margin: '2px',
 		radius: '2px',
-	})
+	}
 
 	getLineStyle = () => ({
 		backgroundColor: this.props.color,
