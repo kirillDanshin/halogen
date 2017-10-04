@@ -137,7 +137,7 @@ export default class RiseLoader extends Component {
 			}
 
             return (
-				<div {...props}>
+		<div {...props}>
                     <div style={this.getStyle(1)}></div>
                     <div style={this.getStyle(2)}></div>
                     <div style={this.getStyle(3)}></div>
