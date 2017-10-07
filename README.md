@@ -69,5 +69,5 @@ export default class Example extends Component {
 ## Browser Support
 
 ![IE](https://cdn.rawgit.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_48x48.png) | ![Chrome](https://cdn.rawgit.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://cdn.rawgit.com/alrra/browser-logos/master/src/archive/firefox_23-56/firefox_23-56_48x48.png) | ![Opera](https://cdn.rawgit.com/alrra/browser-logos/master/src/opera/opera_48x48.png) | ![Safari](https://cdn.rawgit.com/alrra/browser-logos/master/src/safari/safari_48x48.png) | ![Edge](https://cdn.rawgit.com/alrra/browser-logos/master/src/edge/edge_48x48.png)
---- | --- | --- | --- | --- |
+--- | --- | --- | --- | --- | --- |
 IE 10+ ✔ | Chrome 4.0+ ✔ | Firefox 16.0+ ✔ | Opera 15.0+ ✔ | Safari 4.0+ ✔ | Edge 12+ |
