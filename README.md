@@ -1,13 +1,19 @@
 Halogenium [![npm version](https://badge.fury.io/js/halogenium.svg)](http://badge.fury.io/js/halogenium)
 =======
 
-[![NPM](https://nodei.co/npm/halogenium.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/halogenium/)
-
-A collection of loading spinners with React.js based on [halogen](https://github.com/yuanyan/halogen). Now supports React.js 15.0+ (16.0+ too!) and Safari.
-
 <a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/ZYz58qDkCKxfZe5cxRvFSjf9/kirillDanshin/halogenium'>
 	<img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/ZYz58qDkCKxfZe5cxRvFSjf9/kirillDanshin/halogenium.svg' />
 </a>
+
+A collection of loading spinners with React.js based on [halogen](https://github.com/yuanyan/halogen). Now supports React.js 15.0+ (16.0+ too!) and Safari.
+
+[![NPM](https://nodei.co/npm/halogenium.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/halogenium/)
+
+## Browser Support
+
+![IE](https://cdn.rawgit.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_48x48.png) | ![Chrome](https://cdn.rawgit.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://cdn.rawgit.com/alrra/browser-logos/master/src/archive/firefox_23-56/firefox_23-56_48x48.png) | ![Opera](https://cdn.rawgit.com/alrra/browser-logos/master/src/opera/opera_48x48.png) | ![Safari](https://cdn.rawgit.com/alrra/browser-logos/master/src/safari/safari_48x48.png) | ![Edge](https://cdn.rawgit.com/alrra/browser-logos/master/src/edge/edge_48x48.png)
+--- | --- | --- | --- | --- | --- |
+IE 10+ ✔ | Chrome 4.0+ ✔ | Firefox 16.0+ ✔ | Opera 15.0+ ✔ | Safari 4.0+ ✔ | Edge 12+ |
 
 ## Demo & Examples
 
@@ -65,9 +71,3 @@ export default class Example extends Component {
 * MoonLoader
 * DotLoader
 * BounceLoader
-
-## Browser Support
-
-![IE](https://cdn.rawgit.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_48x48.png) | ![Chrome](https://cdn.rawgit.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://cdn.rawgit.com/alrra/browser-logos/master/src/archive/firefox_23-56/firefox_23-56_48x48.png) | ![Opera](https://cdn.rawgit.com/alrra/browser-logos/master/src/opera/opera_48x48.png) | ![Safari](https://cdn.rawgit.com/alrra/browser-logos/master/src/safari/safari_48x48.png) | ![Edge](https://cdn.rawgit.com/alrra/browser-logos/master/src/edge/edge_48x48.png)
---- | --- | --- | --- | --- | --- |
-IE 10+ ✔ | Chrome 4.0+ ✔ | Firefox 16.0+ ✔ | Opera 15.0+ ✔ | Safari 4.0+ ✔ | Edge 12+ |
