@@ -39,13 +39,12 @@ import React, { Component } from 'react';
 import { PulseLoader } from 'halogenium';
 
 export default class Example extends Component {
-	render() {
-		return (
-			<PulseLoader color="#26A65B" size="16px" margin="4px"/>
-		);
-	}
+  render() {
+    return (
+      <PulseLoader color="#26A65B" size="16px" margin="4px"/>
+    );
+  }
 }
-
 ```
 
 ## Loaders
@@ -69,6 +68,6 @@ export default class Example extends Component {
 
 ## Browser Support
 
-![IE](https://raw.github.com/alrra/browser-logos/master/internet-explorer/internet-explorer_48x48.png) | ![Chrome](https://raw.github.com/alrra/browser-logos/master/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/firefox/firefox_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/opera/opera_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/safari/safari_48x48.png)
+![IE](https://cdn.rawgit.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_48x48.png) | ![Chrome](https://cdn.rawgit.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://cdn.rawgit.com/alrra/browser-logos/master/src/archive/firefox_23-56/firefox_23-56_48x48.png) | ![Opera](https://cdn.rawgit.com/alrra/browser-logos/master/src/opera/opera_48x48.png) | ![Safari](https://cdn.rawgit.com/alrra/browser-logos/master/src/safari/safari_48x48.png) | ![Edge](https://cdn.rawgit.com/alrra/browser-logos/master/src/edge/edge_48x48.png) |
 --- | --- | --- | --- | --- |
-IE 10+ ✔ | Chrome 4.0+ ✔ | Firefox 16.0+ ✔ | Opera 15.0+ ✔ | Safari 4.0+ ✔ |
+IE 10+ ✔ | Chrome 4.0+ ✔ | Firefox 16.0+ ✔ | Opera 15.0+ ✔ | Safari 4.0+ ✔ | Edge 12+ |
