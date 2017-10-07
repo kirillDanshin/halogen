@@ -2,7 +2,7 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -37,121 +37,122 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @type {Object}
  */
 var keyframes = {
-	'50%': {
-		transform: 'scale(0.75)',
-		opacity: 0.2
-	},
-	'100%': {
-		transform: 'scale(1)',
-		opacity: 1
-	}
+  '50%': {
+    transform: 'scale(0.75)',
+    opacity: 0.2
+  },
+  '100%': {
+    transform: 'scale(1)',
+    opacity: 1
+  }
 };
 
 var animationName = (0, _insertKeyframesRule2.default)(keyframes);
 
 var propTypes = {
-	loading: _propTypes2.default.bool,
-	color: _propTypes2.default.string,
-	size: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
-	margin: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string])
+  loading: _propTypes2.default.bool,
+  color: _propTypes2.default.string,
+  size: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  margin: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  verticalAlign: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string])
 };
 
 var ptKeys = Object.keys(propTypes);
 
 var BeatLoader = function (_Component) {
-	_inherits(BeatLoader, _Component);
+  _inherits(BeatLoader, _Component);
 
-	function BeatLoader() {
-		var _ref;
+  function BeatLoader() {
+    var _ref;
 
-		var _temp, _this, _ret;
+    var _temp, _this, _ret;
 
-		_classCallCheck(this, BeatLoader);
+    _classCallCheck(this, BeatLoader);
 
-		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-			args[_key] = arguments[_key];
-		}
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
 
-		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = BeatLoader.__proto__ || Object.getPrototypeOf(BeatLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getBallStyle = function () {
-			return {
-				backgroundColor: _this.props.color,
-				width: _this.props.size,
-				height: _this.props.size,
-				margin: _this.props.margin,
-				borderRadius: '100%',
-				verticalAlign: _this.props.verticalAlign
-			};
-		}, _this.getAnimationStyle = function (i) {
-			var animation = [animationName, '0.7s', (i % 2 ? 0 : 0.35) + 's', 'infinite', 'linear'].join(' ');
-			var animationFillMode = 'both';
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = BeatLoader.__proto__ || Object.getPrototypeOf(BeatLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getBallStyle = function () {
+      return {
+        backgroundColor: _this.props.color,
+        width: _this.props.size,
+        height: _this.props.size,
+        margin: _this.props.margin,
+        borderRadius: '100%',
+        verticalAlign: _this.props.verticalAlign
+      };
+    }, _this.getAnimationStyle = function (i) {
+      var animation = [animationName, '0.7s', (i % 2 ? 0 : 0.35) + 's', 'infinite', 'linear'].join(' ');
+      var animationFillMode = 'both';
 
-			return {
-				animation: animation,
-				animationFillMode: animationFillMode
-			};
-		}, _this.getStyle = function (i) {
-			return (0, _appendVendorPrefix2.default)(_this.getBallStyle(i), _this.getAnimationStyle(i), {
-				display: 'inline-block',
-				border: '0px solid transparent' // fix firefox/chrome/opera rendering
-			});
-		}, _temp), _possibleConstructorReturn(_this, _ret);
-	}
+      return {
+        animation: animation,
+        animationFillMode: animationFillMode
+      };
+    }, _this.getStyle = function (i) {
+      return (0, _appendVendorPrefix2.default)(_this.getBallStyle(i), _this.getAnimationStyle(i), {
+        display: 'inline-block',
+        border: '0px solid transparent' // fix firefox/chrome/opera rendering
+      });
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
 
-	/**
-  * @return {Object}
-  */
-
-
-	/**
-  * @param  {Number} i
-  * @return {Object}
-  */
+  /**
+   * @return {Object}
+   */
 
 
-	/**
-  * @param  {Number} i
-  * @return {Object}
-  */
+  /**
+   * @param  {Number} i
+   * @return {Object}
+   */
 
 
-	_createClass(BeatLoader, [{
-		key: 'render',
-		value: function render() {
-			var loading = this.props.loading;
+  /**
+   * @param  {Number} i
+   * @return {Object}
+   */
 
 
-			if (loading) {
-				var props = _extends({}, this.props);
+  _createClass(BeatLoader, [{
+    key: 'render',
+    value: function render() {
+      var loading = this.props.loading;
 
-				if (propTypes && ptKeys) {
-					var klen = ptKeys.length;
-					for (var i = 0; i < klen; i++) {
-						delete props[ptKeys[i]];
-					}
-				}
 
-				return _react2.default.createElement(
-					'div',
-					props,
-					_react2.default.createElement('div', { style: this.getStyle(1) }),
-					_react2.default.createElement('div', { style: this.getStyle(2) }),
-					_react2.default.createElement('div', { style: this.getStyle(3) })
-				);
-			}
+      if (loading) {
+        var props = _extends({}, this.props);
 
-			return null;
-		}
-	}]);
+        if (propTypes && ptKeys) {
+          var klen = ptKeys.length;
+          for (var i = 0; i < klen; i++) {
+            delete props[ptKeys[i]];
+          }
+        }
 
-	return BeatLoader;
+        return _react2.default.createElement(
+          'div',
+          props,
+          _react2.default.createElement('div', { style: this.getStyle(1) }),
+          _react2.default.createElement('div', { style: this.getStyle(2) }),
+          _react2.default.createElement('div', { style: this.getStyle(3) })
+        );
+      }
+
+      return null;
+    }
+  }]);
+
+  return BeatLoader;
 }(_react.Component);
 
 BeatLoader.propTypes = propTypes;
 BeatLoader.defaultProps = {
-	loading: true,
-	color: '#ffffff',
-	size: '15px',
-	margin: '2px' };
+  loading: true,
+  color: '#ffffff',
+  size: '15px',
+  margin: '2px' };
 exports.default = BeatLoader;
 module.exports = exports['default'];
 
@@ -159,7 +160,7 @@ module.exports = exports['default'];
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -191,125 +192,126 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var keyframes = {
-	'0%, 100%': {
-		transform: 'scale(0)'
-	},
-	'50%': {
-		transform: 'scale(1.0)'
-	}
+  '0%, 100%': {
+    transform: 'scale(0)'
+  },
+  '50%': {
+    transform: 'scale(1.0)'
+  }
 };
 
 var animationName = (0, _insertKeyframesRule2.default)(keyframes);
 
 var propTypes = {
-	loading: _propTypes2.default.bool,
-	color: _propTypes2.default.string,
-	size: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string])
+  loading: _propTypes2.default.bool,
+  color: _propTypes2.default.string,
+  size: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  verticalAlign: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string])
 };
 
 var ptKeys = Object.keys(propTypes);
 
 var BounceLoader = function (_Component) {
-	_inherits(BounceLoader, _Component);
+  _inherits(BounceLoader, _Component);
 
-	function BounceLoader() {
-		var _ref;
+  function BounceLoader() {
+    var _ref;
 
-		var _temp, _this, _ret;
+    var _temp, _this, _ret;
 
-		_classCallCheck(this, BounceLoader);
+    _classCallCheck(this, BounceLoader);
 
-		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-			args[_key] = arguments[_key];
-		}
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
 
-		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = BounceLoader.__proto__ || Object.getPrototypeOf(BounceLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getBallStyle = function () {
-			return {
-				backgroundColor: _this.props.color,
-				width: _this.props.size,
-				height: _this.props.size,
-				borderRadius: '100%',
-				opacity: 0.6,
-				position: 'absolute',
-				top: 0,
-				left: 0,
-				verticalAlign: _this.props.verticalAlign
-			};
-		}, _this.getAnimationStyle = function (i) {
-			var animation = [animationName, '2s', i === 1 ? '1s' : '0s', 'infinite', 'ease-in-out'].join(' ');
-			var animationFillMode = 'both';
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = BounceLoader.__proto__ || Object.getPrototypeOf(BounceLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getBallStyle = function () {
+      return {
+        backgroundColor: _this.props.color,
+        width: _this.props.size,
+        height: _this.props.size,
+        borderRadius: '100%',
+        opacity: 0.6,
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        verticalAlign: _this.props.verticalAlign
+      };
+    }, _this.getAnimationStyle = function (i) {
+      var animation = [animationName, '2s', i === 1 ? '1s' : '0s', 'infinite', 'ease-in-out'].join(' ');
+      var animationFillMode = 'both';
 
-			return {
-				animation: animation,
-				animationFillMode: animationFillMode
-			};
-		}, _this.getStyle = function (i) {
-			if (i) {
-				return (0, _appendVendorPrefix2.default)(_this.getBallStyle(i), _this.getAnimationStyle(i), {
-					border: '0px solid transparent' // fix firefox/chrome/opera rendering
-				});
-			}
+      return {
+        animation: animation,
+        animationFillMode: animationFillMode
+      };
+    }, _this.getStyle = function (i) {
+      if (i) {
+        return (0, _appendVendorPrefix2.default)(_this.getBallStyle(i), _this.getAnimationStyle(i), {
+          border: '0px solid transparent' // fix firefox/chrome/opera rendering
+        });
+      }
 
-			return (0, _appendVendorPrefix2.default)({
-				width: _this.props.size,
-				height: _this.props.size,
-				position: 'relative',
-				border: '0px solid transparent' // fix firefox/chrome/opera rendering
-			});
-		}, _temp), _possibleConstructorReturn(_this, _ret);
-	}
+      return (0, _appendVendorPrefix2.default)({
+        width: _this.props.size,
+        height: _this.props.size,
+        position: 'relative',
+        border: '0px solid transparent' // fix firefox/chrome/opera rendering
+      });
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
 
-	/**
-  * @param  {Number} i
-  * @return {Object}
-  */
-
-
-	/**
-  * @param  {Number} i
-  * @return {Object}
-  */
+  /**
+   * @param  {Number} i
+   * @return {Object}
+   */
 
 
-	_createClass(BounceLoader, [{
-		key: 'render',
-		value: function render() {
-			var loading = this.props.loading;
+  /**
+   * @param  {Number} i
+   * @return {Object}
+   */
 
-			if (loading) {
-				var props = _extends({}, this.props);
 
-				if (propTypes && ptKeys) {
-					var klen = ptKeys.length;
-					for (var i = 0; i < klen; i++) {
-						delete props[ptKeys[i]];
-					}
-				}
+  _createClass(BounceLoader, [{
+    key: 'render',
+    value: function render() {
+      var loading = this.props.loading;
 
-				return _react2.default.createElement(
-					'div',
-					props,
-					_react2.default.createElement(
-						'div',
-						{ style: this.getStyle() },
-						_react2.default.createElement('div', { style: this.getStyle(1) }),
-						_react2.default.createElement('div', { style: this.getStyle(2) })
-					)
-				);
-			}
+      if (loading) {
+        var props = _extends({}, this.props);
 
-			return null;
-		}
-	}]);
+        if (propTypes && ptKeys) {
+          var klen = ptKeys.length;
+          for (var i = 0; i < klen; i++) {
+            delete props[ptKeys[i]];
+          }
+        }
 
-	return BounceLoader;
+        return _react2.default.createElement(
+          'div',
+          props,
+          _react2.default.createElement(
+            'div',
+            { style: this.getStyle() },
+            _react2.default.createElement('div', { style: this.getStyle(1) }),
+            _react2.default.createElement('div', { style: this.getStyle(2) })
+          )
+        );
+      }
+
+      return null;
+    }
+  }]);
+
+  return BounceLoader;
 }(_react.Component);
 
 BounceLoader.propTypes = propTypes;
 BounceLoader.defaultProps = {
-	loading: true,
-	color: '#ffffff',
-	size: '60px'
+  loading: true,
+  color: '#ffffff',
+  size: '60px'
 };
 exports.default = BounceLoader;
 module.exports = exports['default'];
@@ -318,7 +320,7 @@ module.exports = exports['default'];
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -353,112 +355,113 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @type {Object}
  */
 var keyframes = {
-	'0%': {
-		transform: 'rotate(0deg) scale(1)'
-	},
-	'50%': {
-		transform: 'rotate(180deg) scale(0.8)'
-	},
-	'100%': {
-		transform: 'rotate(360deg) scale(1)'
-	}
-};
+  '0%': {
+    transform: 'rotate(0deg) scale(1)'
+  },
+  '50%': {
+    transform: 'rotate(180deg) scale(0.8)'
+  },
+  '100%': {
+    transform: 'rotate(360deg) scale(1)'
+  }
 
-/**
- * @type {String}
- */
-var animationName = (0, _insertKeyframesRule2.default)(keyframes);
+  /**
+   * @type {String}
+   */
+};var animationName = (0, _insertKeyframesRule2.default)(keyframes);
 
 var propTypes = {
-	loading: _propTypes2.default.bool,
-	color: _propTypes2.default.string,
-	size: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string])
+  loading: _propTypes2.default.bool,
+  color: _propTypes2.default.string,
+  size: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  verticalAlign: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string])
 };
 
 var ptKeys = Object.keys(propTypes);
 
 var ClipLoader = function (_Component) {
-	_inherits(ClipLoader, _Component);
+  _inherits(ClipLoader, _Component);
 
-	function ClipLoader() {
-		var _ref;
+  function ClipLoader() {
+    var _ref;
 
-		var _temp, _this, _ret;
+    var _temp, _this, _ret;
 
-		_classCallCheck(this, ClipLoader);
+    _classCallCheck(this, ClipLoader);
 
-		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-			args[_key] = arguments[_key];
-		}
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
 
-		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ClipLoader.__proto__ || Object.getPrototypeOf(ClipLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getBallStyle = function () {
-			return {
-				width: _this.props.size,
-				height: _this.props.size,
-				border: '2px solid',
-				borderColor: _this.props.color,
-				borderBottomColor: 'transparent',
-				borderRadius: '100%',
-				background: 'transparent !important',
-				verticalAlign: _this.props.verticalAlign
-			};
-		}, _this.getAnimationStyle = function () {
-			var animation = [animationName, '0.75s', '0s', 'infinite', 'linear'].join(' ');
-			var animationFillMode = 'both';
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ClipLoader.__proto__ || Object.getPrototypeOf(ClipLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getBallStyle = function () {
+      return {
+        width: _this.props.size,
+        height: _this.props.size,
+        border: '2px solid',
+        borderColor: _this.props.color,
+        borderBottomColor: 'transparent',
+        borderRadius: '100%',
+        background: 'transparent !important',
+        verticalAlign: _this.props.verticalAlign
+      };
+    }, _this.getAnimationStyle = function () {
+      var animation = [animationName, '0.75s', '0s', 'infinite', 'linear'].join(' ');
+      var animationFillMode = 'both';
 
-			return {
-				animation: animation,
-				animationFillMode: animationFillMode
-			};
-		}, _this.getStyle = function (i) {
-			return (0, _appendVendorPrefix2.default)({
-				border: '0px solid transparent' // fix firefox/chrome/opera rendering
-			}, _this.getBallStyle(i), _this.getAnimationStyle(), {
-				display: 'inline-block'
-			});
-		}, _temp), _possibleConstructorReturn(_this, _ret);
-	}
+      return {
+        animation: animation,
+        animationFillMode: animationFillMode
+      };
+    }, _this.getStyle = function (i) {
+      return (0, _appendVendorPrefix2.default)({
+        border: '0px solid transparent' // fix firefox/chrome/opera rendering
+      }, _this.getBallStyle(i), _this.getAnimationStyle(), {
+        display: 'inline-block'
+      });
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
 
-	/**
-  * @param  {Number} i
-  * @return {Object}
-  */
-
-
-	_createClass(ClipLoader, [{
-		key: 'render',
-		value: function render() {
-			var loading = this.props.loading;
+  /**
+   * @param  {Number} i
+   * @return {Object}
+   */
 
 
-			if (loading) {
-				var props = _extends({}, this.props);
+  _createClass(ClipLoader, [{
+    key: 'render',
+    value: function render() {
+      var loading = this.props.loading;
 
-				if (propTypes && ptKeys) {
-					var klen = ptKeys.length;
-					for (var i = 0; i < klen; i++) {
-						delete props[ptKeys[i]];
-					}
-				}
 
-				return _react2.default.createElement(
-					'div',
-					props,
-					_react2.default.createElement('div', { style: this.getStyle() })
-				);
-			}
+      if (loading) {
+        var props = _extends({}, this.props);
 
-			return null;
-		}
-	}]);
+        if (propTypes && ptKeys) {
+          var klen = ptKeys.length;
+          for (var i = 0; i < klen; i++) {
+            delete props[ptKeys[i]];
+          }
+        }
 
-	return ClipLoader;
+        return _react2.default.createElement(
+          'div',
+          props,
+          _react2.default.createElement('div', { style: this.getStyle() })
+        );
+      }
+
+      return null;
+    }
+  }]);
+
+  return ClipLoader;
 }(_react.Component);
 
+ClipLoader.propTypes = propTypes;
 ClipLoader.defaultProps = {
-	loading: true,
-	color: '#ffffff',
-	size: '35px'
+  loading: true,
+  color: '#ffffff',
+  size: '35px'
 };
 exports.default = ClipLoader;
 module.exports = exports['default'];
@@ -467,7 +470,7 @@ module.exports = exports['default'];
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -502,27 +505,25 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @type {Object}
  */
 var rotateKeyframes = {
-	'100%': {
-		transform: 'rotate(360deg)'
-	}
-};
+  '100%': {
+    transform: 'rotate(360deg)'
+  }
 
-/**
- * @type {Object}
- */
-var bounceKeyframes = {
-	'0%, 100%': {
-		transform: 'scale(0)'
-	},
-	'50%': {
-		transform: 'scale(1.0)'
-	}
-};
+  /**
+   * @type {Object}
+   */
+};var bounceKeyframes = {
+  '0%, 100%': {
+    transform: 'scale(0)'
+  },
+  '50%': {
+    transform: 'scale(1.0)'
+  }
 
-/**
- * @type {String}
- */
-var rotateAnimationName = (0, _insertKeyframesRule2.default)(rotateKeyframes);
+  /**
+   * @type {String}
+   */
+};var rotateAnimationName = (0, _insertKeyframesRule2.default)(rotateKeyframes);
 
 /**
  * @type {String}
@@ -530,123 +531,125 @@ var rotateAnimationName = (0, _insertKeyframesRule2.default)(rotateKeyframes);
 var bounceAnimationName = (0, _insertKeyframesRule2.default)(bounceKeyframes);
 
 var propTypes = {
-	loading: _propTypes2.default.bool,
-	color: _propTypes2.default.string,
-	size: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
-	margin: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string])
+  loading: _propTypes2.default.bool,
+  color: _propTypes2.default.string,
+  size: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  margin: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  verticalAlign: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string])
 };
 
 var ptKeys = Object.keys(propTypes);
 
 var DotLoader = function (_Component) {
-	_inherits(DotLoader, _Component);
+  _inherits(DotLoader, _Component);
 
-	function DotLoader() {
-		var _ref;
+  function DotLoader() {
+    var _ref;
 
-		var _temp, _this, _ret;
+    var _temp, _this, _ret;
 
-		_classCallCheck(this, DotLoader);
+    _classCallCheck(this, DotLoader);
 
-		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-			args[_key] = arguments[_key];
-		}
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
 
-		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = DotLoader.__proto__ || Object.getPrototypeOf(DotLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getBallStyle = function (size) {
-			return {
-				backgroundColor: _this.props.color,
-				width: size,
-				height: size,
-				borderRadius: '100%',
-				verticalAlign: _this.props.verticalAlign
-			};
-		}, _this.getAnimationStyle = function (i) {
-			var animation = [i === 0 ? rotateAnimationName : bounceAnimationName, '2s', i === 2 ? '-1s' : '0s', 'infinite', 'linear'].join(' ');
-			var animationFillMode = 'forwards';
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = DotLoader.__proto__ || Object.getPrototypeOf(DotLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getBallStyle = function (size) {
+      return {
+        backgroundColor: _this.props.color,
+        width: size,
+        height: size,
+        borderRadius: '100%',
+        verticalAlign: _this.props.verticalAlign
+      };
+    }, _this.getAnimationStyle = function (i) {
+      var animation = [i === 0 ? rotateAnimationName : bounceAnimationName, '2s', i === 2 ? '-1s' : '0s', 'infinite', 'linear'].join(' ');
+      var animationFillMode = 'forwards';
 
-			return {
-				animation: animation,
-				animationFillMode: animationFillMode
-			};
-		}, _this.getStyle = function (i) {
-			var size = _this.props.size | 0;
-			var ballSize = size / 2;
+      return {
+        animation: animation,
+        animationFillMode: animationFillMode
+      };
+    }, _this.getStyle = function (i) {
+      var size = _this.props.size | 0;
+      var ballSize = size / 2;
 
-			if (i) {
-				return (0, _appendVendorPrefix2.default)(_this.getBallStyle(ballSize), _this.getAnimationStyle(i), {
-					position: 'absolute',
-					top: i % 2 ? 0 : 'auto',
-					bottom: i % 2 ? 'auto' : 0,
-					border: '0px solid transparent' // fix firefox/chrome/opera rendering
-				});
-			}
+      if (i) {
+        return (0, _appendVendorPrefix2.default)(_this.getBallStyle(ballSize), _this.getAnimationStyle(i), {
+          position: 'absolute',
+          top: i % 2 ? 0 : 'auto',
+          bottom: i % 2 ? 'auto' : 0,
+          border: '0px solid transparent' // fix firefox/chrome/opera rendering
+        });
+      }
 
-			return (0, _appendVendorPrefix2.default)(_this.getAnimationStyle(i), {
-				width: size,
-				height: size,
-				position: 'relative',
-				border: '0px solid transparent' // fix firefox/chrome/opera rendering
-			});
-		}, _temp), _possibleConstructorReturn(_this, _ret);
-	}
+      return (0, _appendVendorPrefix2.default)(_this.getAnimationStyle(i), {
+        width: size,
+        height: size,
+        position: 'relative',
+        border: '0px solid transparent' // fix firefox/chrome/opera rendering
+      });
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
 
-	/**
-  * @param  {String} size
-  * @return {Object}
-  */
-
-
-	/**
-  * @param  {Number} i
-  * @return {Object}
-  */
+  /**
+   * @param  {String} size
+   * @return {Object}
+   */
 
 
-	/**
-  * @param  {Number} i
-  * @return {Object}
-  */
+  /**
+   * @param  {Number} i
+   * @return {Object}
+   */
 
 
-	_createClass(DotLoader, [{
-		key: 'render',
-		value: function render() {
-			var loading = this.props.loading;
+  /**
+   * @param  {Number} i
+   * @return {Object}
+   */
 
 
-			if (loading) {
-				var props = _extends({}, this.props);
+  _createClass(DotLoader, [{
+    key: 'render',
+    value: function render() {
+      var loading = this.props.loading;
 
-				if (propTypes && ptKeys) {
-					var klen = ptKeys.length;
-					for (var i = 0; i < klen; i++) {
-						delete props[ptKeys[i]];
-					}
-				}
 
-				return _react2.default.createElement(
-					'div',
-					props,
-					_react2.default.createElement(
-						'div',
-						{ style: this.getStyle(0) },
-						_react2.default.createElement('div', { style: this.getStyle(1) }),
-						_react2.default.createElement('div', { style: this.getStyle(2) })
-					)
-				);
-			}
+      if (loading) {
+        var props = _extends({}, this.props);
 
-			return null;
-		}
-	}]);
+        if (propTypes && ptKeys) {
+          var klen = ptKeys.length;
+          for (var i = 0; i < klen; i++) {
+            delete props[ptKeys[i]];
+          }
+        }
 
-	return DotLoader;
+        return _react2.default.createElement(
+          'div',
+          props,
+          _react2.default.createElement(
+            'div',
+            { style: this.getStyle(0) },
+            _react2.default.createElement('div', { style: this.getStyle(1) }),
+            _react2.default.createElement('div', { style: this.getStyle(2) })
+          )
+        );
+      }
+
+      return null;
+    }
+  }]);
+
+  return DotLoader;
 }(_react.Component);
 
+DotLoader.propTypes = propTypes;
 DotLoader.defaultProps = {
-	loading: true,
-	color: '#ffffff',
-	size: '60px' };
+  loading: true,
+  color: '#ffffff',
+  size: '60px' };
 exports.default = DotLoader;
 module.exports = exports['default'];
 
@@ -654,7 +657,7 @@ module.exports = exports['default'];
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -689,186 +692,187 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @type {Object}
  */
 var keyframes = {
-	'50%': {
-		opacity: 0.3
-	},
-	'100%': {
-		opacity: 1
-	}
-};
+  '50%': {
+    opacity: 0.3
+  },
+  '100%': {
+    opacity: 1
+  }
 
-/**
- * @type {String}
- */
-var animationName = (0, _insertKeyframesRule2.default)(keyframes);
+  /**
+   * @type {String}
+   */
+};var animationName = (0, _insertKeyframesRule2.default)(keyframes);
 
 var propTypes = {
-	loading: _propTypes2.default.bool,
-	color: _propTypes2.default.string,
-	height: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
-	width: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
-	margin: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
-	radius: _propTypes2.default.string
+  loading: _propTypes2.default.bool,
+  color: _propTypes2.default.string,
+  height: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  width: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  margin: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  radius: _propTypes2.default.string,
+  verticalAlign: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string])
 };
 
 var ptKeys = Object.keys(propTypes);
 
 var FadeLoader = function (_Component) {
-	_inherits(FadeLoader, _Component);
+  _inherits(FadeLoader, _Component);
 
-	function FadeLoader() {
-		var _ref;
+  function FadeLoader() {
+    var _ref;
 
-		var _temp, _this, _ret;
+    var _temp, _this, _ret;
 
-		_classCallCheck(this, FadeLoader);
+    _classCallCheck(this, FadeLoader);
 
-		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-			args[_key] = arguments[_key];
-		}
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
 
-		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = FadeLoader.__proto__ || Object.getPrototypeOf(FadeLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getLineStyle = function () {
-			return {
-				backgroundColor: _this.props.color,
-				height: _this.props.height,
-				width: _this.props.width,
-				margin: _this.props.margin,
-				borderRadius: _this.props.radius,
-				verticalAlign: _this.props.verticalAlign
-			};
-		}, _this.getAnimationStyle = function (i) {
-			var animation = [animationName, '1.2s', i * 0.12 + 's', 'infinite', 'ease-in-out'].join(' ');
-			var animationFillMode = 'both';
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = FadeLoader.__proto__ || Object.getPrototypeOf(FadeLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getLineStyle = function () {
+      return {
+        backgroundColor: _this.props.color,
+        height: _this.props.height,
+        width: _this.props.width,
+        margin: _this.props.margin,
+        borderRadius: _this.props.radius,
+        verticalAlign: _this.props.verticalAlign
+      };
+    }, _this.getAnimationStyle = function (i) {
+      var animation = [animationName, '1.2s', i * 0.12 + 's', 'infinite', 'ease-in-out'].join(' ');
+      var animationFillMode = 'both';
 
-			return {
-				animation: animation,
-				animationFillMode: animationFillMode
-			};
-		}, _this.getPosStyle = function (i) {
-			var radius = 20;
-			var quarter = radius / 2 + radius / 5.5;
+      return {
+        animation: animation,
+        animationFillMode: animationFillMode
+      };
+    }, _this.getPosStyle = function (i) {
+      var radius = 20;
+      var quarter = radius / 2 + radius / 5.5;
 
-			var lines = {
-				l1: {
-					top: radius,
-					left: 0
-				},
-				l2: {
-					top: quarter,
-					left: quarter,
-					transform: 'rotate(-45deg)'
-				},
-				l3: {
-					top: 0,
-					left: radius,
-					transform: 'rotate(90deg)'
-				},
-				l4: {
-					top: -quarter,
-					left: quarter,
-					transform: 'rotate(45deg)'
-				},
-				l5: {
-					top: -radius,
-					left: 0
-				},
-				l6: {
-					top: -quarter,
-					left: -quarter,
-					transform: 'rotate(-45deg)'
-				},
-				l7: {
-					top: 0,
-					left: -radius,
-					transform: 'rotate(90deg)'
-				},
-				l8: {
-					top: quarter,
-					left: -quarter,
-					transform: 'rotate(45deg)'
-				}
-			};
+      var lines = {
+        l1: {
+          top: radius,
+          left: 0
+        },
+        l2: {
+          top: quarter,
+          left: quarter,
+          transform: 'rotate(-45deg)'
+        },
+        l3: {
+          top: 0,
+          left: radius,
+          transform: 'rotate(90deg)'
+        },
+        l4: {
+          top: -quarter,
+          left: quarter,
+          transform: 'rotate(45deg)'
+        },
+        l5: {
+          top: -radius,
+          left: 0
+        },
+        l6: {
+          top: -quarter,
+          left: -quarter,
+          transform: 'rotate(-45deg)'
+        },
+        l7: {
+          top: 0,
+          left: -radius,
+          transform: 'rotate(90deg)'
+        },
+        l8: {
+          top: quarter,
+          left: -quarter,
+          transform: 'rotate(45deg)'
+        }
+      };
 
-			return lines['l' + i];
-		}, _this.getStyle = function (i) {
-			return (0, _appendVendorPrefix2.default)(_this.getLineStyle(i), _this.getPosStyle(i), _this.getAnimationStyle(i), {
-				position: 'absolute',
-				border: '0px solid transparent' // fix firefox/chrome/opera rendering
-			});
-		}, _temp), _possibleConstructorReturn(_this, _ret);
-	}
+      return lines['l' + i];
+    }, _this.getStyle = function (i) {
+      return (0, _appendVendorPrefix2.default)(_this.getLineStyle(i), _this.getPosStyle(i), _this.getAnimationStyle(i), {
+        position: 'absolute',
+        border: '0px solid transparent' // fix firefox/chrome/opera rendering
+      });
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
 
-	/**
-  * @param  {Number} i
-  * @return {Object}
-  */
-
-
-	/**
-  * @param  {Number} i
-  * @return {Object}
-  */
+  /**
+   * @param  {Number} i
+   * @return {Object}
+   */
 
 
-	/**
-  * @param  {Number} i
-  * @return {Object}
-  */
+  /**
+   * @param  {Number} i
+   * @return {Object}
+   */
 
 
-	_createClass(FadeLoader, [{
-		key: 'render',
-		value: function render() {
-			var loading = this.props.loading;
+  /**
+   * @param  {Number} i
+   * @return {Object}
+   */
 
 
-			if (loading) {
-				var style = {
-					position: 'relative',
-					fontSize: 0
-				};
+  _createClass(FadeLoader, [{
+    key: 'render',
+    value: function render() {
+      var loading = this.props.loading;
 
-				var props = _extends({}, this.props);
 
-				if (propTypes && ptKeys) {
-					var klen = ptKeys.length;
-					for (var i = 0; i < klen; i++) {
-						delete props[ptKeys[i]];
-					}
-				}
+      if (loading) {
+        var style = {
+          position: 'relative',
+          fontSize: 0
+        };
 
-				return _react2.default.createElement(
-					'div',
-					props,
-					_react2.default.createElement(
-						'div',
-						{ style: style },
-						_react2.default.createElement('div', { style: this.getStyle(1) }),
-						_react2.default.createElement('div', { style: this.getStyle(2) }),
-						_react2.default.createElement('div', { style: this.getStyle(3) }),
-						_react2.default.createElement('div', { style: this.getStyle(4) }),
-						_react2.default.createElement('div', { style: this.getStyle(5) }),
-						_react2.default.createElement('div', { style: this.getStyle(6) }),
-						_react2.default.createElement('div', { style: this.getStyle(7) }),
-						_react2.default.createElement('div', { style: this.getStyle(8) })
-					)
-				);
-			}
+        var props = _extends({}, this.props);
 
-			return null;
-		}
-	}]);
+        if (propTypes && ptKeys) {
+          var klen = ptKeys.length;
+          for (var i = 0; i < klen; i++) {
+            delete props[ptKeys[i]];
+          }
+        }
 
-	return FadeLoader;
+        return _react2.default.createElement(
+          'div',
+          props,
+          _react2.default.createElement(
+            'div',
+            { style: style },
+            _react2.default.createElement('div', { style: this.getStyle(1) }),
+            _react2.default.createElement('div', { style: this.getStyle(2) }),
+            _react2.default.createElement('div', { style: this.getStyle(3) }),
+            _react2.default.createElement('div', { style: this.getStyle(4) }),
+            _react2.default.createElement('div', { style: this.getStyle(5) }),
+            _react2.default.createElement('div', { style: this.getStyle(6) }),
+            _react2.default.createElement('div', { style: this.getStyle(7) }),
+            _react2.default.createElement('div', { style: this.getStyle(8) })
+          )
+        );
+      }
+
+      return null;
+    }
+  }]);
+
+  return FadeLoader;
 }(_react.Component);
 
+FadeLoader.propTypes = propTypes;
 FadeLoader.defaultProps = {
-	loading: true,
-	color: '#ffffff',
-	height: '15px',
-	width: '5px',
-	margin: '2px',
-	radius: '2px'
+  loading: true,
+  color: '#ffffff',
+  height: '15px',
+  width: '5px',
+  margin: '2px',
+  radius: '2px'
 };
 exports.default = FadeLoader;
 module.exports = exports['default'];
@@ -877,7 +881,7 @@ module.exports = exports['default'];
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -912,141 +916,142 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @type {Object}
  */
 var keyframes = {
-	'0%': {
-		transform: 'scale(1)'
-	},
-	'50%': {
-		transform: 'scale(0.5)',
-		opacity: 0.7
-	},
-	'100%': {
-		transform: 'scale(1)',
-		opacity: 1
-	}
-};
+  '0%': {
+    transform: 'scale(1)'
+  },
+  '50%': {
+    transform: 'scale(0.5)',
+    opacity: 0.7
+  },
+  '100%': {
+    transform: 'scale(1)',
+    opacity: 1
+  }
 
-/**
- * @type {String}
- */
-var animationName = (0, _insertKeyframesRule2.default)(keyframes);
+  /**
+   * @type {String}
+   */
+};var animationName = (0, _insertKeyframesRule2.default)(keyframes);
 
 /**
  * @param  {Number} top
  * @return {Number}
  */
 function random(top) {
-	return Math.random() * top;
+  return Math.random() * top;
 }
 
 var propTypes = {
-	loading: _propTypes2.default.bool,
-	color: _propTypes2.default.string,
-	size: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
-	margin: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string])
+  loading: _propTypes2.default.bool,
+  color: _propTypes2.default.string,
+  size: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  margin: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  verticalAlign: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string])
 };
 
 var ptKeys = Object.keys(propTypes);
 
 var GridLoader = function (_Component) {
-	_inherits(GridLoader, _Component);
+  _inherits(GridLoader, _Component);
 
-	function GridLoader() {
-		var _ref;
+  function GridLoader() {
+    var _ref;
 
-		var _temp, _this, _ret;
+    var _temp, _this, _ret;
 
-		_classCallCheck(this, GridLoader);
+    _classCallCheck(this, GridLoader);
 
-		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-			args[_key] = arguments[_key];
-		}
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
 
-		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = GridLoader.__proto__ || Object.getPrototypeOf(GridLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getBallStyle = function () {
-			return {
-				backgroundColor: _this.props.color,
-				width: _this.props.size,
-				height: _this.props.size,
-				margin: _this.props.margin,
-				borderRadius: '100%',
-				verticalAlign: _this.props.verticalAlign
-			};
-		}, _this.getAnimationStyle = function () {
-			var animationDuration = random(100) / 100 + 0.6 + 's';
-			var animationDelay = random(100) / 100 - 0.2 + 's';
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = GridLoader.__proto__ || Object.getPrototypeOf(GridLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getBallStyle = function () {
+      return {
+        backgroundColor: _this.props.color,
+        width: _this.props.size,
+        height: _this.props.size,
+        margin: _this.props.margin,
+        borderRadius: '100%',
+        verticalAlign: _this.props.verticalAlign
+      };
+    }, _this.getAnimationStyle = function () {
+      var animationDuration = random(100) / 100 + 0.6 + 's';
+      var animationDelay = random(100) / 100 - 0.2 + 's';
 
-			var animation = [animationName, animationDuration, animationDelay, 'infinite', 'ease'].join(' ');
-			var animationFillMode = 'both';
+      var animation = [animationName, animationDuration, animationDelay, 'infinite', 'ease'].join(' ');
+      var animationFillMode = 'both';
 
-			return {
-				animation: animation,
-				animationFillMode: animationFillMode
-			};
-		}, _this.getStyle = function (i) {
-			return (0, _appendVendorPrefix2.default)(_this.getBallStyle(i), _this.getAnimationStyle(i), {
-				display: 'inline-block',
-				border: '0px solid transparent' // fix firefox/chrome/opera rendering
-			});
-		}, _temp), _possibleConstructorReturn(_this, _ret);
-	}
+      return {
+        animation: animation,
+        animationFillMode: animationFillMode
+      };
+    }, _this.getStyle = function (i) {
+      return (0, _appendVendorPrefix2.default)(_this.getBallStyle(i), _this.getAnimationStyle(i), {
+        display: 'inline-block',
+        border: '0px solid transparent' // fix firefox/chrome/opera rendering
+      });
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
 
-	/**
-  * @param  {Number} i
-  * @return {Object}
-  */
-
-
-	_createClass(GridLoader, [{
-		key: 'render',
-		value: function render() {
-			var loading = this.props.loading;
+  /**
+   * @param  {Number} i
+   * @return {Object}
+   */
 
 
-			if (loading) {
-				var style = {
-					width: parseFloat(this.props.size) * 3 + parseFloat(this.props.margin) * 6,
-					fontSize: 0
-				};
+  _createClass(GridLoader, [{
+    key: 'render',
+    value: function render() {
+      var loading = this.props.loading;
 
-				var props = _extends({}, this.props);
 
-				if (propTypes && ptKeys) {
-					var klen = ptKeys.length;
-					for (var i = 0; i < klen; i++) {
-						delete props[ptKeys[i]];
-					}
-				}
+      if (loading) {
+        var style = {
+          width: parseFloat(this.props.size) * 3 + parseFloat(this.props.margin) * 6,
+          fontSize: 0
+        };
 
-				return _react2.default.createElement(
-					'div',
-					props,
-					_react2.default.createElement(
-						'div',
-						{ style: style },
-						_react2.default.createElement('div', { style: this.getStyle(1) }),
-						_react2.default.createElement('div', { style: this.getStyle(2) }),
-						_react2.default.createElement('div', { style: this.getStyle(3) }),
-						_react2.default.createElement('div', { style: this.getStyle(4) }),
-						_react2.default.createElement('div', { style: this.getStyle(5) }),
-						_react2.default.createElement('div', { style: this.getStyle(6) }),
-						_react2.default.createElement('div', { style: this.getStyle(7) }),
-						_react2.default.createElement('div', { style: this.getStyle(8) }),
-						_react2.default.createElement('div', { style: this.getStyle(9) })
-					)
-				);
-			}
+        var props = _extends({}, this.props);
 
-			return null;
-		}
-	}]);
+        if (propTypes && ptKeys) {
+          var klen = ptKeys.length;
+          for (var i = 0; i < klen; i++) {
+            delete props[ptKeys[i]];
+          }
+        }
 
-	return GridLoader;
+        return _react2.default.createElement(
+          'div',
+          props,
+          _react2.default.createElement(
+            'div',
+            { style: style },
+            _react2.default.createElement('div', { style: this.getStyle(1) }),
+            _react2.default.createElement('div', { style: this.getStyle(2) }),
+            _react2.default.createElement('div', { style: this.getStyle(3) }),
+            _react2.default.createElement('div', { style: this.getStyle(4) }),
+            _react2.default.createElement('div', { style: this.getStyle(5) }),
+            _react2.default.createElement('div', { style: this.getStyle(6) }),
+            _react2.default.createElement('div', { style: this.getStyle(7) }),
+            _react2.default.createElement('div', { style: this.getStyle(8) }),
+            _react2.default.createElement('div', { style: this.getStyle(9) })
+          )
+        );
+      }
+
+      return null;
+    }
+  }]);
+
+  return GridLoader;
 }(_react.Component);
 
+GridLoader.propTypes = propTypes;
 GridLoader.defaultProps = {
-	loading: true,
-	color: '#ffffff',
-	size: '15px',
-	margin: '2px'
+  loading: true,
+  color: '#ffffff',
+  size: '15px',
+  margin: '2px'
 };
 exports.default = GridLoader;
 module.exports = exports['default'];
@@ -1146,7 +1151,7 @@ exports.SyncLoader = _SyncLoader3.default;
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -1181,135 +1186,135 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @type {Object}
  */
 var keyframes = {
-	'100%': {
-		transform: 'rotate(360deg)'
-	}
-};
+  '100%': {
+    transform: 'rotate(360deg)'
+  }
 
-/**
- * @type {String}
- */
-var animationName = (0, _insertKeyframesRule2.default)(keyframes);
+  /**
+   * @type {String}
+   */
+};var animationName = (0, _insertKeyframesRule2.default)(keyframes);
 
 var propTypes = {
-	loading: _propTypes2.default.bool,
-	color: _propTypes2.default.string,
-	size: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
-	margin: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string])
+  loading: _propTypes2.default.bool,
+  color: _propTypes2.default.string,
+  size: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  margin: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  verticalAlign: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string])
 };
 
 var ptKeys = Object.keys(propTypes);
 
 var MoonLoader = function (_Component) {
-	_inherits(MoonLoader, _Component);
+  _inherits(MoonLoader, _Component);
 
-	function MoonLoader() {
-		var _ref;
+  function MoonLoader() {
+    var _ref;
 
-		var _temp, _this, _ret;
+    var _temp, _this, _ret;
 
-		_classCallCheck(this, MoonLoader);
+    _classCallCheck(this, MoonLoader);
 
-		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-			args[_key] = arguments[_key];
-		}
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
 
-		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = MoonLoader.__proto__ || Object.getPrototypeOf(MoonLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getBallStyle = function (size) {
-			return {
-				width: size,
-				height: size,
-				borderRadius: '100%',
-				verticalAlign: _this.props.verticalAlign
-			};
-		}, _this.getAnimationStyle = function () {
-			var animation = [animationName, '0.6s', '0s', 'infinite', 'linear'].join(' ');
-			var animationFillMode = 'forwards';
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = MoonLoader.__proto__ || Object.getPrototypeOf(MoonLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getBallStyle = function (size) {
+      return {
+        width: size,
+        height: size,
+        borderRadius: '100%',
+        verticalAlign: _this.props.verticalAlign
+      };
+    }, _this.getAnimationStyle = function () {
+      var animation = [animationName, '0.6s', '0s', 'infinite', 'linear'].join(' ');
+      var animationFillMode = 'forwards';
 
-			return {
-				animation: animation,
-				animationFillMode: animationFillMode
-			};
-		}, _this.getStyle = function (i) {
-			var size = _this.props.size | 0;
-			var moonSize = size / 7;
+      return {
+        animation: animation,
+        animationFillMode: animationFillMode
+      };
+    }, _this.getStyle = function (i) {
+      var size = _this.props.size | 0;
+      var moonSize = size / 7;
 
-			if (i === 1) {
-				return (0, _appendVendorPrefix2.default)({
-					border: '0px solid transparent' // fix firefox/chrome/opera rendering
-				}, _this.getBallStyle(moonSize), _this.getAnimationStyle(i), {
-					backgroundColor: _this.props.color,
-					opacity: '0.8',
-					position: 'absolute',
-					top: size / 2 - moonSize / 2
-				});
-			} else if (i === 2) {
-				return (0, _appendVendorPrefix2.default)({
-					border: '0px solid transparent' // fix firefox/chrome/opera rendering
-				}, _this.getBallStyle(size), {
-					border: moonSize + 'px solid ' + _this.props.color,
-					opacity: 0.1
-				});
-			}
-			return (0, _appendVendorPrefix2.default)({
-				border: '0px solid transparent' // fix firefox/chrome/opera rendering
-			}, _this.getAnimationStyle(i), {
-				position: 'relative'
-			});
-		}, _temp), _possibleConstructorReturn(_this, _ret);
-	}
+      if (i === 1) {
+        return (0, _appendVendorPrefix2.default)({
+          border: '0px solid transparent' // fix firefox/chrome/opera rendering
+        }, _this.getBallStyle(moonSize), _this.getAnimationStyle(i), {
+          backgroundColor: _this.props.color,
+          opacity: '0.8',
+          position: 'absolute',
+          top: size / 2 - moonSize / 2
+        });
+      } else if (i === 2) {
+        return (0, _appendVendorPrefix2.default)({
+          border: '0px solid transparent' // fix firefox/chrome/opera rendering
+        }, _this.getBallStyle(size), {
+          border: moonSize + 'px solid ' + _this.props.color,
+          opacity: 0.1
+        });
+      }
+      return (0, _appendVendorPrefix2.default)({
+        border: '0px solid transparent' // fix firefox/chrome/opera rendering
+      }, _this.getAnimationStyle(i), {
+        position: 'relative'
+      });
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
 
-	/**
-  * @param  {String} size
-  * @return {Object}
-  */
-
-
-	/**
-  * @param  {Number} i
-  * @return {Object}
-  */
+  /**
+   * @param  {String} size
+   * @return {Object}
+   */
 
 
-	_createClass(MoonLoader, [{
-		key: 'render',
-		value: function render() {
-			var loading = this.props.loading;
+  /**
+   * @param  {Number} i
+   * @return {Object}
+   */
 
 
-			if (loading) {
-				var props = _extends({}, this.props);
+  _createClass(MoonLoader, [{
+    key: 'render',
+    value: function render() {
+      var loading = this.props.loading;
 
-				if (propTypes && ptKeys) {
-					var klen = ptKeys.length;
-					for (var i = 0; i < klen; i++) {
-						delete props[ptKeys[i]];
-					}
-				}
 
-				return _react2.default.createElement(
-					'div',
-					props,
-					_react2.default.createElement(
-						'div',
-						{ style: this.getStyle(0) },
-						_react2.default.createElement('div', { style: this.getStyle(1) }),
-						_react2.default.createElement('div', { style: this.getStyle(2) })
-					)
-				);
-			}
+      if (loading) {
+        var props = _extends({}, this.props);
 
-			return null;
-		}
-	}]);
+        if (propTypes && ptKeys) {
+          var klen = ptKeys.length;
+          for (var i = 0; i < klen; i++) {
+            delete props[ptKeys[i]];
+          }
+        }
 
-	return MoonLoader;
+        return _react2.default.createElement(
+          'div',
+          props,
+          _react2.default.createElement(
+            'div',
+            { style: this.getStyle(0) },
+            _react2.default.createElement('div', { style: this.getStyle(1) }),
+            _react2.default.createElement('div', { style: this.getStyle(2) })
+          )
+        );
+      }
+
+      return null;
+    }
+  }]);
+
+  return MoonLoader;
 }(_react.Component);
 
 MoonLoader.propTypes = propTypes;
 MoonLoader.defaultProps = {
-	loading: true,
-	color: '#ffffff',
-	size: '60px' };
+  loading: true,
+  color: '#ffffff',
+  size: '60px' };
 exports.default = MoonLoader;
 module.exports = exports['default'];
 
@@ -1317,7 +1322,7 @@ module.exports = exports['default'];
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -1352,151 +1357,152 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var animations = {};
 
 var propTypes = {
-    loading: _propTypes2.default.bool,
-    color: _propTypes2.default.string,
-    size: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
-    margin: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string])
+  loading: _propTypes2.default.bool,
+  color: _propTypes2.default.string,
+  size: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  margin: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  verticalAlign: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string])
 };
 
 var ptKeys = Object.keys(propTypes);
 
 var PacmanLoader = function (_Component) {
-    _inherits(PacmanLoader, _Component);
+  _inherits(PacmanLoader, _Component);
 
-    function PacmanLoader() {
-        var _ref;
+  function PacmanLoader() {
+    var _ref;
 
-        var _temp, _this, _ret;
+    var _temp, _this, _ret;
 
-        _classCallCheck(this, PacmanLoader);
+    _classCallCheck(this, PacmanLoader);
 
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-        }
-
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PacmanLoader.__proto__ || Object.getPrototypeOf(PacmanLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getBallStyle = function () {
-            return {
-                backgroundColor: _this.props.color,
-                width: _this.props.size,
-                height: _this.props.size,
-                margin: _this.props.margin,
-                borderRadius: '100%',
-                verticalAlign: _this.props.verticalAlign,
-                border: '0px solid transparent' // fix firefox/chrome/opera rendering
-            };
-        }, _this.getAnimationStyle = function (i) {
-            var size = _this.props.size;
-            var animationName = animations[size];
-
-            if (!animationName) {
-                var keyframes = {
-                    '75%': {
-                        opacity: 0.7
-                    },
-                    '100%': {
-                        transform: 'translate(' + -4 * size + 'px, ' + -size / 4 + 'px)'
-                    }
-                };
-                animationName = animations[size] = (0, _insertKeyframesRule2.default)(keyframes);
-            }
-
-            var animation = [animationName, '1s', i * 0.25 + 's', 'infinite', 'linear'].join(' ');
-            var animationFillMode = 'both';
-
-            return {
-                animation: animation,
-                animationFillMode: animationFillMode
-            };
-        }, _this.getStyle = function (i) {
-            if (i == 1) {
-                var s1 = _this.props.size + 'px solid transparent';
-                var s2 = _this.props.size + 'px solid ' + _this.props.color;
-
-                return {
-                    width: 0,
-                    height: 0,
-                    borderRight: s1,
-                    borderTop: s2,
-                    borderLeft: s2,
-                    borderBottom: s2,
-                    borderRadius: _this.props.size
-                };
-            }
-
-            return (0, _appendVendorPrefix2.default)(_this.getBallStyle(i), _this.getAnimationStyle(i), {
-                width: 10,
-                height: 10,
-                transform: 'translate(0, ' + -_this.props.size / 4 + 'px)',
-                position: 'absolute',
-                top: 25,
-                left: 100
-            });
-        }, _this.renderLoader = function (loading) {
-            if (loading) {
-                var style = {
-                    position: 'relative',
-                    fontSize: 0
-                };
-                var props = Object.assign({}, _this.props);
-
-                if (propTypes && ptKeys) {
-                    var klen = ptKeys.length;
-                    for (var i = 0; i < klen; i++) {
-                        delete props[ptKeys[i]];
-                    }
-                }
-
-                return _react2.default.createElement(
-                    'div',
-                    props,
-                    _react2.default.createElement(
-                        'div',
-                        { style: style },
-                        _react2.default.createElement('div', { style: _this.getStyle(1) }),
-                        _react2.default.createElement('div', { style: _this.getStyle(2) }),
-                        _react2.default.createElement('div', { style: _this.getStyle(3) }),
-                        _react2.default.createElement('div', { style: _this.getStyle(4) }),
-                        _react2.default.createElement('div', { style: _this.getStyle(5) })
-                    )
-                );
-            }
-
-            return null;
-        }, _temp), _possibleConstructorReturn(_this, _ret);
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
     }
 
-    /**
-     * @return {Object}
-     */
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PacmanLoader.__proto__ || Object.getPrototypeOf(PacmanLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getBallStyle = function () {
+      return {
+        backgroundColor: _this.props.color,
+        width: _this.props.size,
+        height: _this.props.size,
+        margin: _this.props.margin,
+        borderRadius: '100%',
+        verticalAlign: _this.props.verticalAlign,
+        border: '0px solid transparent' // fix firefox/chrome/opera rendering
+      };
+    }, _this.getAnimationStyle = function (i) {
+      var size = _this.props.size;
+      var animationName = animations[size];
 
+      if (!animationName) {
+        var keyframes = {
+          '75%': {
+            opacity: 0.7
+          },
+          '100%': {
+            transform: 'translate(' + -4 * size + 'px, ' + -size / 4 + 'px)'
+          }
+        };
+        animationName = animations[size] = (0, _insertKeyframesRule2.default)(keyframes);
+      }
 
-    /**
-     * @return {Object}
-     */
+      var animation = [animationName, '1s', i * 0.25 + 's', 'infinite', 'linear'].join(' ');
+      var animationFillMode = 'both';
 
+      return {
+        animation: animation,
+        animationFillMode: animationFillMode
+      };
+    }, _this.getStyle = function (i) {
+      if (i | 0 === 1) {
+        var s1 = _this.props.size + 'px solid transparent';
+        var s2 = _this.props.size + 'px solid ' + _this.props.color;
 
-    /**
-     * @param  {Number} i
-     * @return {Object}
-     */
+        return {
+          width: 0,
+          height: 0,
+          borderRight: s1,
+          borderTop: s2,
+          borderLeft: s2,
+          borderBottom: s2,
+          borderRadius: _this.props.size
+        };
+      }
 
+      return (0, _appendVendorPrefix2.default)(_this.getBallStyle(i), _this.getAnimationStyle(i), {
+        width: 10,
+        height: 10,
+        transform: 'translate(0, ' + -_this.props.size / 4 + 'px)',
+        position: 'absolute',
+        top: 25,
+        left: 100
+      });
+    }, _this.renderLoader = function (loading) {
+      if (loading) {
+        var style = {
+          position: 'relative',
+          fontSize: 0
+        };
+        var props = Object.assign({}, _this.props);
 
-    _createClass(PacmanLoader, [{
-        key: 'render',
-        value: function render() {
-            return this.renderLoader(this.props.loading);
+        if (propTypes && ptKeys) {
+          var klen = ptKeys.length;
+          for (var i = 0; i < klen; i++) {
+            delete props[ptKeys[i]];
+          }
         }
-    }]);
 
-    return PacmanLoader;
+        return _react2.default.createElement(
+          'div',
+          props,
+          _react2.default.createElement(
+            'div',
+            { style: style },
+            _react2.default.createElement('div', { style: _this.getStyle(1) }),
+            _react2.default.createElement('div', { style: _this.getStyle(2) }),
+            _react2.default.createElement('div', { style: _this.getStyle(3) }),
+            _react2.default.createElement('div', { style: _this.getStyle(4) }),
+            _react2.default.createElement('div', { style: _this.getStyle(5) })
+          )
+        );
+      }
+
+      return null;
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  /**
+   * @return {Object}
+   */
+
+
+  /**
+   * @return {Object}
+   */
+
+
+  /**
+   * @param  {Number} i
+   * @return {Object}
+   */
+
+
+  _createClass(PacmanLoader, [{
+    key: 'render',
+    value: function render() {
+      return this.renderLoader(this.props.loading);
+    }
+  }]);
+
+  return PacmanLoader;
 }(_react.Component);
 
 PacmanLoader.propTypes = propTypes;
 PacmanLoader.defaultProps = {
-    loading: true,
-    color: '#ffffff',
-    size: 25,
-    margin: 2 };
+  loading: true,
+  color: '#fff',
+  size: 25,
+  margin: 2 };
 exports.default = PacmanLoader;
 module.exports = exports['default'];
 
@@ -1504,7 +1510,7 @@ module.exports = exports['default'];
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -1537,137 +1543,137 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @type {Object}
  */
 var keyframes = {
-    '0%': {
-        transform: 'scale(1)',
-        opacity: 1
-    },
-    '45%': {
-        transform: 'scale(0.1)',
-        opacity: 0.7
-    },
-    '80%': {
-        transform: 'scale(1)',
-        opacity: 1
-    }
-};
+  '0%': {
+    transform: 'scale(1)',
+    opacity: 1
+  },
+  '45%': {
+    transform: 'scale(0.1)',
+    opacity: 0.7
+  },
+  '80%': {
+    transform: 'scale(1)',
+    opacity: 1
+  }
 
-/**
- * @type {String}
- */
-var animationName = (0, _insertKeyframesRule2.default)(keyframes);
+  /**
+   * @type {String}
+   */
+};var animationName = (0, _insertKeyframesRule2.default)(keyframes);
 
 var propTypes = {
-    loading: _propTypes2.default.bool,
-    color: _propTypes2.default.string,
-    size: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
-    margin: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string])
+  loading: _propTypes2.default.bool,
+  color: _propTypes2.default.string,
+  size: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  margin: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  verticalAlign: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string])
 };
 
 var ptKeys = Object.keys(propTypes);
 
 var PulseLoader = function (_Component) {
-    _inherits(PulseLoader, _Component);
+  _inherits(PulseLoader, _Component);
 
-    function PulseLoader() {
-        var _ref;
+  function PulseLoader() {
+    var _ref;
 
-        var _temp, _this, _ret;
+    var _temp, _this, _ret;
 
-        _classCallCheck(this, PulseLoader);
+    _classCallCheck(this, PulseLoader);
 
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-        }
-
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PulseLoader.__proto__ || Object.getPrototypeOf(PulseLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getBallStyle = function () {
-            return {
-                backgroundColor: _this.props.color,
-                width: _this.props.size,
-                height: _this.props.size,
-                margin: _this.props.margin,
-                borderRadius: '100%',
-                verticalAlign: _this.props.verticalAlign
-            };
-        }, _this.getAnimationStyle = function (i) {
-            var animation = [animationName, '0.75s', i * 0.12 + 's', 'infinite', 'cubic-bezier(.2,.68,.18,1.08)'].join(' ');
-            var animationFillMode = 'both';
-
-            return {
-                animation: animation,
-                animationFillMode: animationFillMode
-            };
-        }, _this.getStyle = function (i) {
-            return (0, _appendVendorPrefix2.default)(_this.getBallStyle(i), _this.getAnimationStyle(i), {
-                display: 'inline-block',
-                border: '0px solid transparent' // fix firefox/chrome/opera rendering
-            });
-        }, _this.renderLoader = function (loading) {
-            if (loading) {
-                var props = Object.assign({}, _this.props);
-
-                if (propTypes && ptKeys) {
-                    var klen = ptKeys.length;
-                    for (var i = 0; i < klen; i++) {
-                        delete props[ptKeys[i]];
-                    }
-                }
-
-                return _react2.default.createElement(
-                    'div',
-                    props,
-                    _react2.default.createElement('div', { style: _this.getStyle(1) }),
-                    _react2.default.createElement('div', { style: _this.getStyle(2) }),
-                    _react2.default.createElement('div', { style: _this.getStyle(3) })
-                );
-            }
-
-            return null;
-        }, _temp), _possibleConstructorReturn(_this, _ret);
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
     }
-    /**
-     * @type {Object}
-     */
 
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PulseLoader.__proto__ || Object.getPrototypeOf(PulseLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getBallStyle = function () {
+      return {
+        backgroundColor: _this.props.color,
+        width: _this.props.size,
+        height: _this.props.size,
+        margin: _this.props.margin,
+        borderRadius: '100%',
+        verticalAlign: _this.props.verticalAlign
+      };
+    }, _this.getAnimationStyle = function (i) {
+      var animation = [animationName, '0.75s', i * 0.12 + 's', 'infinite', 'cubic-bezier(.2,.68,.18,1.08)'].join(' ');
+      var animationFillMode = 'both';
 
-    /**
-     * @return {Object}
-     */
+      return {
+        animation: animation,
+        animationFillMode: animationFillMode
+      };
+    }, _this.getStyle = function (i) {
+      return (0, _appendVendorPrefix2.default)(_this.getBallStyle(i), _this.getAnimationStyle(i), {
+        display: 'inline-block',
+        border: '0px solid transparent' // fix firefox/chrome/opera rendering
+      });
+    }, _this.renderLoader = function (loading) {
+      if (loading) {
+        var props = Object.assign({}, _this.props);
 
-
-    /**
-     * @param  {Number} i
-     * @return {Object}
-     */
-
-
-    /**
-     * @param  {Number} i
-     * @return {Object}
-     */
-
-
-    /**
-     * @param  {Boolean} loading
-     * @return {ReactComponent || null}
-     */
-
-
-    _createClass(PulseLoader, [{
-        key: 'render',
-        value: function render() {
-            return this.renderLoader(this.props.loading);
+        if (propTypes && ptKeys) {
+          var klen = ptKeys.length;
+          for (var i = 0; i < klen; i++) {
+            delete props[ptKeys[i]];
+          }
         }
-    }]);
 
-    return PulseLoader;
+        return _react2.default.createElement(
+          'div',
+          props,
+          _react2.default.createElement('div', { style: _this.getStyle(1) }),
+          _react2.default.createElement('div', { style: _this.getStyle(2) }),
+          _react2.default.createElement('div', { style: _this.getStyle(3) })
+        );
+      }
+
+      return null;
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+  /**
+   * @type {Object}
+   */
+
+
+  /**
+   * @return {Object}
+   */
+
+
+  /**
+   * @param  {Number} i
+   * @return {Object}
+   */
+
+
+  /**
+   * @param  {Number} i
+   * @return {Object}
+   */
+
+
+  /**
+   * @param  {Boolean} loading
+   * @return {ReactComponent || null}
+   */
+
+
+  _createClass(PulseLoader, [{
+    key: 'render',
+    value: function render() {
+      return this.renderLoader(this.props.loading);
+    }
+  }]);
+
+  return PulseLoader;
 }(_react.Component);
 
 PulseLoader.propTypes = propTypes;
 PulseLoader.defaultProps = {
-    loading: true,
-    color: '#ffffff',
-    size: '15px',
-    margin: '2px' };
+  loading: true,
+  color: '#ffffff',
+  size: '15px',
+  margin: '2px' };
 exports.default = PulseLoader;
 module.exports = exports['default'];
 
@@ -1675,7 +1681,7 @@ module.exports = exports['default'];
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -1708,31 +1714,29 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @type {Object}
  */
 var rightRotateKeyframes = {
-    '0%': {
-        transform: 'rotateX(0deg) rotateY(0deg) rotateZ(0deg)'
+  '0%': {
+    transform: 'rotateX(0deg) rotateY(0deg) rotateZ(0deg)'
 
-    },
-    '100%': {
-        transform: 'rotateX(180deg) rotateY(360deg) rotateZ(360deg)'
-    }
-};
+  },
+  '100%': {
+    transform: 'rotateX(180deg) rotateY(360deg) rotateZ(360deg)'
+  }
 
-/**
- * @type {Object}
- */
-var leftRotateKeyframes = {
-    '0%': {
-        transform: 'rotateX(0deg) rotateY(0deg) rotateZ(0deg)'
-    },
-    '100%': {
-        transform: 'rotateX(360deg) rotateY(180deg) rotateZ(360deg)'
-    }
-};
+  /**
+   * @type {Object}
+   */
+};var leftRotateKeyframes = {
+  '0%': {
+    transform: 'rotateX(0deg) rotateY(0deg) rotateZ(0deg)'
+  },
+  '100%': {
+    transform: 'rotateX(360deg) rotateY(180deg) rotateZ(360deg)'
+  }
 
-/**
- * @type {String}
- */
-var rightRotateAnimationName = (0, _insertKeyframesRule2.default)(rightRotateKeyframes);
+  /**
+   * @type {String}
+   */
+};var rightRotateAnimationName = (0, _insertKeyframesRule2.default)(rightRotateKeyframes);
 
 /**
  * @type {String}
@@ -1740,136 +1744,138 @@ var rightRotateAnimationName = (0, _insertKeyframesRule2.default)(rightRotateKey
 var leftRotateAnimationName = (0, _insertKeyframesRule2.default)(leftRotateKeyframes);
 
 var propTypes = {
-    loading: _propTypes2.default.bool,
-    color: _propTypes2.default.string,
-    size: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
-    margin: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string])
+  loading: _propTypes2.default.bool,
+  color: _propTypes2.default.string,
+  size: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  margin: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  verticalAlign: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string])
 };
 
 var ptKeys = Object.keys(propTypes);
 
 var RingLoader = function (_Component) {
-    _inherits(RingLoader, _Component);
+  _inherits(RingLoader, _Component);
 
-    function RingLoader() {
-        var _ref;
+  function RingLoader() {
+    var _ref;
 
-        var _temp, _this, _ret;
+    var _temp, _this, _ret;
 
-        _classCallCheck(this, RingLoader);
+    _classCallCheck(this, RingLoader);
 
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-        }
-
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RingLoader.__proto__ || Object.getPrototypeOf(RingLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getCircleStyle = function (size) {
-            return {
-                width: size,
-                height: size,
-                border: size / 10 + 'px solid ' + _this.props.color,
-                opacity: 0.4,
-                borderRadius: '100%',
-                verticalAlign: _this.props.verticalAlign
-            };
-        }, _this.getAnimationStyle = function (i) {
-            var animation = [i == 1 ? rightRotateAnimationName : leftRotateAnimationName, '2s', '0s', 'infinite', 'linear'].join(' ');
-            var animationFillMode = 'forwards';
-            var perspective = '800px';
-
-            return {
-                perspective: perspective,
-                animation: animation,
-                animationFillMode: animationFillMode
-            };
-        }, _this.getStyle = function (i) {
-            var size = parseInt(_this.props.size);
-
-            if (i) {
-                return (0, _appendVendorPrefix2.default)({
-                    border: '0px solid transparent' // fix firefox/chrome/opera rendering
-                }, _this.getCircleStyle(size), _this.getAnimationStyle(i), {
-                    position: 'absolute',
-                    top: 0,
-                    left: 0
-                });
-            }
-
-            return {
-                width: size,
-                height: size,
-                position: 'relative',
-                border: '0px solid transparent' // fix firefox/chrome/opera rendering
-            };
-        }, _this.renderLoader = function (loading) {
-            if (loading) {
-                var props = Object.assign({}, _this.props);
-
-                if (propTypes && ptKeys) {
-                    var klen = ptKeys.length;
-                    for (var i = 0; i < klen; i++) {
-                        delete props[ptKeys[i]];
-                    }
-                }
-
-                return _react2.default.createElement(
-                    'div',
-                    props,
-                    _react2.default.createElement(
-                        'div',
-                        { style: _this.getStyle(0) },
-                        _react2.default.createElement('div', { style: _this.getStyle(1) }),
-                        _react2.default.createElement('div', { style: _this.getStyle(2) })
-                    )
-                );
-            }
-
-            return null;
-        }, _temp), _possibleConstructorReturn(_this, _ret);
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
     }
-    /**
-     * @type {Object}
-     */
 
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RingLoader.__proto__ || Object.getPrototypeOf(RingLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getCircleStyle = function (size) {
+      return {
+        width: size,
+        height: size,
+        border: size / 10 + 'px solid ' + _this.props.color,
+        opacity: 0.4,
+        borderRadius: '100%',
+        verticalAlign: _this.props.verticalAlign
+      };
+    }, _this.getAnimationStyle = function (i) {
+      var animation = [i | 0 === 1 ? rightRotateAnimationName : leftRotateAnimationName, '2s', '0s', 'infinite', 'linear'].join(' ');
 
-    /**
-     * @param {String} size
-     * @return {Object}
-     */
+      var animationFillMode = 'forwards';
+      var perspective = '800px';
 
+      return {
+        perspective: perspective,
+        animation: animation,
+        animationFillMode: animationFillMode
+      };
+    }, _this.getStyle = function (i) {
+      var size = parseInt(_this.props.size, 10);
 
-    /**
-     * @param  {Number} i
-     * @return {Object}
-     */
+      if (i) {
+        return (0, _appendVendorPrefix2.default)({
+          border: '0px solid transparent' // fix firefox/chrome/opera rendering
+        }, _this.getCircleStyle(size), _this.getAnimationStyle(i), {
+          position: 'absolute',
+          top: 0,
+          left: 0
+        });
+      }
 
+      return {
+        width: size,
+        height: size,
+        position: 'relative',
+        border: '0px solid transparent' // fix firefox/chrome/opera rendering
+      };
+    }, _this.renderLoader = function (loading) {
+      if (loading) {
+        var props = Object.assign({}, _this.props);
 
-    /**
-     * @param  {Number} i
-     * @return {Object}
-     */
-
-
-    /**
-     * @param  {Boolean} loading
-     * @return {ReactComponent || null}
-     */
-
-
-    _createClass(RingLoader, [{
-        key: 'render',
-        value: function render() {
-            return this.renderLoader(this.props.loading);
+        if (propTypes && ptKeys) {
+          var klen = ptKeys.length;
+          for (var i = 0; i < klen; i++) {
+            delete props[ptKeys[i]];
+          }
         }
-    }]);
 
-    return RingLoader;
+        return _react2.default.createElement(
+          'div',
+          props,
+          _react2.default.createElement(
+            'div',
+            { style: _this.getStyle(0) },
+            _react2.default.createElement('div', { style: _this.getStyle(1) }),
+            _react2.default.createElement('div', { style: _this.getStyle(2) })
+          )
+        );
+      }
+
+      return null;
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+  /**
+   * @type {Object}
+   */
+
+
+  /**
+   * @param {String} size
+   * @return {Object}
+   */
+
+
+  /**
+   * @param  {Number} i
+   * @return {Object}
+   */
+
+
+  /**
+   * @param  {Number} i
+   * @return {Object}
+   */
+
+
+  /**
+   * @param  {Boolean} loading
+   * @return {ReactComponent || null}
+   */
+
+
+  _createClass(RingLoader, [{
+    key: 'render',
+    value: function render() {
+      return this.renderLoader(this.props.loading);
+    }
+  }]);
+
+  return RingLoader;
 }(_react.Component);
 
 RingLoader.propTypes = propTypes;
 RingLoader.defaultProps = {
-    loading: true,
-    color: '#ffffff',
-    size: '60px' };
+  loading: true,
+  color: '#ffffff',
+  size: '60px' };
 exports.default = RingLoader;
 module.exports = exports['default'];
 
@@ -1877,7 +1883,7 @@ module.exports = exports['default'];
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -1915,48 +1921,46 @@ var riseAmount = 30;
  * @type {Object}
  */
 var keyframesEven = {
-    '0%': {
-        transform: 'scale(1.1)'
-    },
-    '25%': {
-        transform: 'translateY(-' + riseAmount + 'px)'
-    },
-    '50%': {
-        transform: 'scale(0.4)'
-    },
-    '75%': {
-        transform: 'translateY(' + riseAmount + 'px)'
-    },
-    '100%': {
-        transform: 'translateY(0) scale(1.0)'
-    }
-};
+  '0%': {
+    transform: 'scale(1.1)'
+  },
+  '25%': {
+    transform: 'translateY(-' + riseAmount + 'px)'
+  },
+  '50%': {
+    transform: 'scale(0.4)'
+  },
+  '75%': {
+    transform: 'translateY(' + riseAmount + 'px)'
+  },
+  '100%': {
+    transform: 'translateY(0) scale(1.0)'
+  }
 
-/**
- * @type {Object}
- */
-var keyframesOdd = {
-    '0%': {
-        transform: 'scale(0.4)'
-    },
-    '25': {
-        transform: 'translateY(' + riseAmount + 'px)'
-    },
-    '50%': {
-        transform: 'scale(1.1)'
-    },
-    '75%': {
-        transform: 'translateY(-' + riseAmount + 'px)'
-    },
-    '100%': {
-        transform: 'translateY(0) scale(0.75)'
-    }
-};
+  /**
+   * @type {Object}
+   */
+};var keyframesOdd = {
+  '0%': {
+    transform: 'scale(0.4)'
+  },
+  25: {
+    transform: 'translateY(' + riseAmount + 'px)'
+  },
+  '50%': {
+    transform: 'scale(1.1)'
+  },
+  '75%': {
+    transform: 'translateY(-' + riseAmount + 'px)'
+  },
+  '100%': {
+    transform: 'translateY(0) scale(0.75)'
+  }
 
-/**
- * @type {String}
- */
-var animationNameEven = (0, _insertKeyframesRule2.default)(keyframesEven);
+  /**
+   * @type {String}
+   */
+};var animationNameEven = (0, _insertKeyframesRule2.default)(keyframesEven);
 
 /**
  * @type {String}
@@ -1964,118 +1968,119 @@ var animationNameEven = (0, _insertKeyframesRule2.default)(keyframesEven);
 var animationNameOdd = (0, _insertKeyframesRule2.default)(keyframesOdd);
 
 var propTypes = {
-    loading: _propTypes2.default.bool,
-    color: _propTypes2.default.string,
-    size: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
-    margin: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string])
+  loading: _propTypes2.default.bool,
+  color: _propTypes2.default.string,
+  size: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  margin: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  verticalAlign: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string])
 };
 
 var ptKeys = Object.keys(propTypes);
 
 var RiseLoader = function (_Component) {
-    _inherits(RiseLoader, _Component);
+  _inherits(RiseLoader, _Component);
 
-    function RiseLoader() {
-        var _ref;
+  function RiseLoader() {
+    var _ref;
 
-        var _temp, _this, _ret;
+    var _temp, _this, _ret;
 
-        _classCallCheck(this, RiseLoader);
+    _classCallCheck(this, RiseLoader);
 
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-        }
-
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RiseLoader.__proto__ || Object.getPrototypeOf(RiseLoader)).call.apply(_ref, [this].concat(args))), _this), _this.propTypes = propTypes, _this.getBallStyle = function () {
-            return {
-                backgroundColor: _this.props.color,
-                width: _this.props.size,
-                height: _this.props.size,
-                margin: _this.props.margin,
-                borderRadius: '100%',
-                verticalAlign: _this.props.verticalAlign
-            };
-        }, _this.getAnimationStyle = function (i) {
-            var animation = [i % 2 == 0 ? animationNameEven : animationNameOdd, '1s', '0s', 'infinite', 'cubic-bezier(.15,.46,.9,.6)'].join(' ');
-            var animationFillMode = 'both';
-
-            return {
-                animation: animation,
-                animationFillMode: animationFillMode
-            };
-        }, _this.getStyle = function (i) {
-            return (0, _appendVendorPrefix2.default)(_this.getBallStyle(i), _this.getAnimationStyle(i), {
-                display: 'inline-block',
-                border: '0px solid transparent' // fix firefox/chrome/opera rendering
-            });
-        }, _this.renderLoader = function (loading) {
-            if (loading) {
-                var props = Object.assign({}, _this.props);
-
-                if (propTypes && ptKeys) {
-                    var klen = ptKeys.length;
-                    for (var i = 0; i < klen; i++) {
-                        delete props[ptKeys[i]];
-                    }
-                }
-
-                return _react2.default.createElement(
-                    'div',
-                    props,
-                    _react2.default.createElement('div', { style: _this.getStyle(1) }),
-                    _react2.default.createElement('div', { style: _this.getStyle(2) }),
-                    _react2.default.createElement('div', { style: _this.getStyle(3) }),
-                    _react2.default.createElement('div', { style: _this.getStyle(4) }),
-                    _react2.default.createElement('div', { style: _this.getStyle(5) })
-                );
-            }
-
-            return null;
-        }, _temp), _possibleConstructorReturn(_this, _ret);
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
     }
-    /**
-     * @type {Object}
-     */
 
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RiseLoader.__proto__ || Object.getPrototypeOf(RiseLoader)).call.apply(_ref, [this].concat(args))), _this), _this.propTypes = propTypes, _this.getBallStyle = function () {
+      return {
+        backgroundColor: _this.props.color,
+        width: _this.props.size,
+        height: _this.props.size,
+        margin: _this.props.margin,
+        borderRadius: '100%',
+        verticalAlign: _this.props.verticalAlign
+      };
+    }, _this.getAnimationStyle = function (i) {
+      var animation = [i % 2 === 0 ? animationNameEven : animationNameOdd, '1s', '0s', 'infinite', 'cubic-bezier(.15,.46,.9,.6)'].join(' ');
+      var animationFillMode = 'both';
 
-    /**
-     * @return {Object}
-     */
+      return {
+        animation: animation,
+        animationFillMode: animationFillMode
+      };
+    }, _this.getStyle = function (i) {
+      return (0, _appendVendorPrefix2.default)(_this.getBallStyle(i), _this.getAnimationStyle(i), {
+        display: 'inline-block',
+        border: '0px solid transparent' // fix firefox/chrome/opera rendering
+      });
+    }, _this.renderLoader = function (loading) {
+      if (loading) {
+        var props = Object.assign({}, _this.props);
 
-
-    /**
-     * @param  {Number} i
-     * @return {Object}
-     */
-
-
-    /**
-     * @param  {Number} i
-     * @return {Object}
-     */
-
-
-    /**
-     * @param  {Boolean} loading
-     * @return {ReactComponent || null}
-     */
-
-
-    _createClass(RiseLoader, [{
-        key: 'render',
-        value: function render() {
-            return this.renderLoader(this.props.loading);
+        if (propTypes && ptKeys) {
+          var klen = ptKeys.length;
+          for (var i = 0; i < klen; i++) {
+            delete props[ptKeys[i]];
+          }
         }
-    }]);
 
-    return RiseLoader;
+        return _react2.default.createElement(
+          'div',
+          props,
+          _react2.default.createElement('div', { style: _this.getStyle(1) }),
+          _react2.default.createElement('div', { style: _this.getStyle(2) }),
+          _react2.default.createElement('div', { style: _this.getStyle(3) }),
+          _react2.default.createElement('div', { style: _this.getStyle(4) }),
+          _react2.default.createElement('div', { style: _this.getStyle(5) })
+        );
+      }
+
+      return null;
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+  /**
+   * @type {Object}
+   */
+
+
+  /**
+   * @return {Object}
+   */
+
+
+  /**
+   * @param  {Number} i
+   * @return {Object}
+   */
+
+
+  /**
+   * @param  {Number} i
+   * @return {Object}
+   */
+
+
+  /**
+   * @param  {Boolean} loading
+   * @return {ReactComponent || null}
+   */
+
+
+  _createClass(RiseLoader, [{
+    key: 'render',
+    value: function render() {
+      return this.renderLoader(this.props.loading);
+    }
+  }]);
+
+  return RiseLoader;
 }(_react.Component);
 
 RiseLoader.defaultProps = {
-    loading: true,
-    color: '#ffffff',
-    size: '15px',
-    margin: '2px' };
+  loading: true,
+  color: '#ffffff',
+  size: '15px',
+  margin: '2px' };
 exports.default = RiseLoader;
 module.exports = exports['default'];
 
@@ -2083,7 +2088,7 @@ module.exports = exports['default'];
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -2116,147 +2121,147 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @type {Object}
  */
 var keyframes = {
-    '0%': {
-        transform: 'rotate(0deg)'
-    },
-    '50%': {
-        transform: 'rotate(180deg)'
-    },
-    '100%': {
-        transform: 'rotate(360deg)'
-    }
-};
+  '0%': {
+    transform: 'rotate(0deg)'
+  },
+  '50%': {
+    transform: 'rotate(180deg)'
+  },
+  '100%': {
+    transform: 'rotate(360deg)'
+  }
 
-/**
- * @type {String}
- */
-var animationName = (0, _insertKeyframesRule2.default)(keyframes);
+  /**
+   * @type {String}
+   */
+};var animationName = (0, _insertKeyframesRule2.default)(keyframes);
 
 var propTypes = {
-    loading: _propTypes2.default.bool,
-    color: _propTypes2.default.string,
-    size: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
-    margin: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string])
+  loading: _propTypes2.default.bool,
+  color: _propTypes2.default.string,
+  size: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  margin: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  verticalAlign: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string])
 };
 
 var ptKeys = Object.keys(propTypes);
 
 var RotateLoader = function (_Component) {
-    _inherits(RotateLoader, _Component);
+  _inherits(RotateLoader, _Component);
 
-    function RotateLoader() {
-        var _ref;
+  function RotateLoader() {
+    var _ref;
 
-        var _temp, _this, _ret;
+    var _temp, _this, _ret;
 
-        _classCallCheck(this, RotateLoader);
+    _classCallCheck(this, RotateLoader);
 
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-        }
-
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RotateLoader.__proto__ || Object.getPrototypeOf(RotateLoader)).call.apply(_ref, [this].concat(args))), _this), _this.propTypes = propTypes, _this.getBallStyle = function () {
-            return {
-                backgroundColor: _this.props.color,
-                width: _this.props.size,
-                height: _this.props.size,
-                margin: _this.props.margin,
-                borderRadius: '100%',
-                verticalAlign: _this.props.verticalAlign
-            };
-        }, _this.getAnimationStyle = function (i) {
-            var animation = [animationName, '1s', '0s', 'infinite', 'cubic-bezier(.7,-.13,.22,.86)'].join(' ');
-            var animationFillMode = 'both';
-
-            return {
-                animation: animation,
-                animationFillMode: animationFillMode
-            };
-        }, _this.getStyle = function (i) {
-            if (i) {
-                return (0, _appendVendorPrefix2.default)(_this.getBallStyle(i), {
-                    opacity: '0.8',
-                    position: 'absolute',
-                    top: 0,
-                    left: i % 2 ? -28 : 25,
-                    border: '0px solid transparent' // fix firefox/chrome/opera rendering
-                });
-            }
-
-            return (0, _appendVendorPrefix2.default)(_this.getBallStyle(i), _this.getAnimationStyle(i), {
-                display: 'inline-block',
-                position: 'relative',
-                border: '0px solid transparent' // fix firefox/chrome/opera rendering
-            });
-        }, _this.renderLoader = function (loading) {
-            if (loading) {
-                var props = Object.assign({}, _this.props);
-
-                if (propTypes && ptKeys) {
-                    var klen = ptKeys.length;
-                    for (var i = 0; i < klen; i++) {
-                        delete props[ptKeys[i]];
-                    }
-                }
-
-                return _react2.default.createElement(
-                    'div',
-                    props,
-                    _react2.default.createElement(
-                        'div',
-                        { style: _this.getStyle() },
-                        _react2.default.createElement('div', { style: _this.getStyle(1) }),
-                        _react2.default.createElement('div', { style: _this.getStyle(2) })
-                    )
-                );
-            }
-
-            return null;
-        }, _temp), _possibleConstructorReturn(_this, _ret);
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
     }
-    /**
-     * @type {Object}
-     */
 
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RotateLoader.__proto__ || Object.getPrototypeOf(RotateLoader)).call.apply(_ref, [this].concat(args))), _this), _this.propTypes = propTypes, _this.getBallStyle = function () {
+      return {
+        backgroundColor: _this.props.color,
+        width: _this.props.size,
+        height: _this.props.size,
+        margin: _this.props.margin,
+        borderRadius: '100%',
+        verticalAlign: _this.props.verticalAlign
+      };
+    }, _this.getAnimationStyle = function () {
+      var animation = [animationName, '1s', '0s', 'infinite', 'cubic-bezier(.7,-.13,.22,.86)'].join(' ');
+      var animationFillMode = 'both';
 
-    /**
-     * @return {Object}
-     */
+      return {
+        animation: animation,
+        animationFillMode: animationFillMode
+      };
+    }, _this.getStyle = function (i) {
+      if (i) {
+        return (0, _appendVendorPrefix2.default)(_this.getBallStyle(i), {
+          opacity: '0.8',
+          position: 'absolute',
+          top: 0,
+          left: i % 2 ? -28 : 25,
+          border: '0px solid transparent' // fix firefox/chrome/opera rendering
+        });
+      }
 
+      return (0, _appendVendorPrefix2.default)(_this.getBallStyle(i), _this.getAnimationStyle(i), {
+        display: 'inline-block',
+        position: 'relative',
+        border: '0px solid transparent' // fix firefox/chrome/opera rendering
+      });
+    }, _this.renderLoader = function (loading) {
+      if (loading) {
+        var props = Object.assign({}, _this.props);
 
-    /**
-     * @param  {Number} i
-     * @return {Object}
-     */
-
-
-    /**
-     * @param  {Number} i
-     * @return {Object}
-     */
-
-
-    /**
-     * @param  {Boolean} loading
-     * @return {ReactComponent || null}
-     */
-
-
-    _createClass(RotateLoader, [{
-        key: 'render',
-        value: function render() {
-            return this.renderLoader(this.props.loading);
+        if (propTypes && ptKeys) {
+          var klen = ptKeys.length;
+          for (var i = 0; i < klen; i++) {
+            delete props[ptKeys[i]];
+          }
         }
-    }]);
 
-    return RotateLoader;
+        return _react2.default.createElement(
+          'div',
+          props,
+          _react2.default.createElement(
+            'div',
+            { style: _this.getStyle() },
+            _react2.default.createElement('div', { style: _this.getStyle(1) }),
+            _react2.default.createElement('div', { style: _this.getStyle(2) })
+          )
+        );
+      }
+
+      return null;
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+  /**
+   * @type {Object}
+   */
+
+
+  /**
+   * @return {Object}
+   */
+
+
+  /**
+   * @param  {Number} i
+   * @return {Object}
+   */
+
+
+  /**
+   * @param  {Number} i
+   * @return {Object}
+   */
+
+
+  /**
+   * @param  {Boolean} loading
+   * @return {ReactComponent || null}
+   */
+
+
+  _createClass(RotateLoader, [{
+    key: 'render',
+    value: function render() {
+      return this.renderLoader(this.props.loading);
+    }
+  }]);
+
+  return RotateLoader;
 }(_react.Component);
 
 RotateLoader.defaultProps = {
-    loading: true,
-    color: '#ffffff',
-    size: '15px',
-    margin: '2px' };
+  loading: true,
+  color: '#ffffff',
+  size: '15px',
+  margin: '2px' };
 exports.default = RotateLoader;
 module.exports = exports['default'];
 
@@ -2264,7 +2269,7 @@ module.exports = exports['default'];
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -2297,140 +2302,140 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @type {Object}
  */
 var keyframes = {
-    '0%': {
-        transform: 'scaley(1.0)'
-    },
-    '50%': {
-        transform: 'scaley(0.4)'
-    },
-    '100%': {
-        transform: 'scaley(1.0)'
-    }
-};
+  '0%': {
+    transform: 'scaley(1.0)'
+  },
+  '50%': {
+    transform: 'scaley(0.4)'
+  },
+  '100%': {
+    transform: 'scaley(1.0)'
+  }
 
-/**
- * @type {String}
- */
-var animationName = (0, _insertKeyframesRule2.default)(keyframes);
+  /**
+   * @type {String}
+   */
+};var animationName = (0, _insertKeyframesRule2.default)(keyframes);
 
 var propTypes = {
-    loading: _propTypes2.default.bool,
-    color: _propTypes2.default.string,
-    height: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
-    width: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
-    margin: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
-    radius: _propTypes2.default.string
+  loading: _propTypes2.default.bool,
+  color: _propTypes2.default.string,
+  height: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  width: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  margin: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  radius: _propTypes2.default.string,
+  verticalAlign: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string])
 };
 
 var ptKeys = Object.keys(propTypes);
 
 var ScaleLoader = function (_Component) {
-    _inherits(ScaleLoader, _Component);
+  _inherits(ScaleLoader, _Component);
 
-    function ScaleLoader() {
-        var _ref;
+  function ScaleLoader() {
+    var _ref;
 
-        var _temp, _this, _ret;
+    var _temp, _this, _ret;
 
-        _classCallCheck(this, ScaleLoader);
+    _classCallCheck(this, ScaleLoader);
 
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-        }
-
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ScaleLoader.__proto__ || Object.getPrototypeOf(ScaleLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getLineStyle = function () {
-            return {
-                backgroundColor: _this.props.color,
-                height: _this.props.height,
-                width: _this.props.width,
-                margin: _this.props.margin,
-                borderRadius: _this.props.radius,
-                verticalAlign: _this.props.verticalAlign
-            };
-        }, _this.getAnimationStyle = function (i) {
-            var animation = [animationName, '1s', i * 0.1 + 's', 'infinite', 'cubic-bezier(.2,.68,.18,1.08)'].join(' ');
-            var animationFillMode = 'both';
-
-            return {
-                animation: animation,
-                animationFillMode: animationFillMode
-            };
-        }, _this.getStyle = function (i) {
-            return (0, _appendVendorPrefix2.default)(_this.getLineStyle(i), _this.getAnimationStyle(i), {
-                display: 'inline-block',
-                border: '0px solid transparent' // fix firefox/chrome/opera rendering
-            });
-        }, _this.renderLoader = function (loading) {
-            if (loading) {
-                var props = Object.assign({}, _this.props);
-
-                if (propTypes && ptKeys) {
-                    var klen = ptKeys.length;
-                    for (var i = 0; i < klen; i++) {
-                        delete props[ptKeys[i]];
-                    }
-                }
-
-                return _react2.default.createElement(
-                    'div',
-                    props,
-                    _react2.default.createElement('div', { style: _this.getStyle(1) }),
-                    _react2.default.createElement('div', { style: _this.getStyle(2) }),
-                    _react2.default.createElement('div', { style: _this.getStyle(3) }),
-                    _react2.default.createElement('div', { style: _this.getStyle(4) }),
-                    _react2.default.createElement('div', { style: _this.getStyle(5) })
-                );
-            }
-
-            return null;
-        }, _temp), _possibleConstructorReturn(_this, _ret);
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
     }
-    /**
-     * @type {Object}
-     */
 
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ScaleLoader.__proto__ || Object.getPrototypeOf(ScaleLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getLineStyle = function () {
+      return {
+        backgroundColor: _this.props.color,
+        height: _this.props.height,
+        width: _this.props.width,
+        margin: _this.props.margin,
+        borderRadius: _this.props.radius,
+        verticalAlign: _this.props.verticalAlign
+      };
+    }, _this.getAnimationStyle = function (i) {
+      var animation = [animationName, '1s', i * 0.1 + 's', 'infinite', 'cubic-bezier(.2,.68,.18,1.08)'].join(' ');
+      var animationFillMode = 'both';
 
-    /**
-     * @return {Object}
-     */
+      return {
+        animation: animation,
+        animationFillMode: animationFillMode
+      };
+    }, _this.getStyle = function (i) {
+      return (0, _appendVendorPrefix2.default)(_this.getLineStyle(i), _this.getAnimationStyle(i), {
+        display: 'inline-block',
+        border: '0px solid transparent' // fix firefox/chrome/opera rendering
+      });
+    }, _this.renderLoader = function (loading) {
+      if (loading) {
+        var props = Object.assign({}, _this.props);
 
-
-    /**
-     * @param  {Number} i
-     * @return {Object}
-     */
-
-
-    /**
-     * @param  {Number} i
-     * @return {Object}
-     */
-
-
-    /**
-     * @param  {Boolean} loading
-     * @return {ReactComponent || null}
-     */
-
-
-    _createClass(ScaleLoader, [{
-        key: 'render',
-        value: function render() {
-            return this.renderLoader(this.props.loading);
+        if (propTypes && ptKeys) {
+          var klen = ptKeys.length;
+          for (var i = 0; i < klen; i++) {
+            delete props[ptKeys[i]];
+          }
         }
-    }]);
 
-    return ScaleLoader;
+        return _react2.default.createElement(
+          'div',
+          props,
+          _react2.default.createElement('div', { style: _this.getStyle(1) }),
+          _react2.default.createElement('div', { style: _this.getStyle(2) }),
+          _react2.default.createElement('div', { style: _this.getStyle(3) }),
+          _react2.default.createElement('div', { style: _this.getStyle(4) }),
+          _react2.default.createElement('div', { style: _this.getStyle(5) })
+        );
+      }
+
+      return null;
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+  /**
+   * @type {Object}
+   */
+
+
+  /**
+   * @return {Object}
+   */
+
+
+  /**
+   * @param  {Number} i
+   * @return {Object}
+   */
+
+
+  /**
+   * @param  {Number} i
+   * @return {Object}
+   */
+
+
+  /**
+   * @param  {Boolean} loading
+   * @return {ReactComponent || null}
+   */
+
+
+  _createClass(ScaleLoader, [{
+    key: 'render',
+    value: function render() {
+      return this.renderLoader(this.props.loading);
+    }
+  }]);
+
+  return ScaleLoader;
 }(_react.Component);
 
 ScaleLoader.propTypes = propTypes;
 ScaleLoader.defaultProps = {
-    loading: true,
-    color: '#ffffff',
-    height: '35px',
-    width: '4px',
-    margin: '2px',
-    radius: '2px' };
+  loading: true,
+  color: '#fff',
+  height: '35px',
+  width: '4px',
+  margin: '2px',
+  radius: '2px' };
 exports.default = ScaleLoader;
 module.exports = exports['default'];
 
@@ -2438,7 +2443,7 @@ module.exports = exports['default'];
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -2471,134 +2476,134 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @type {Object}
  */
 var keyframes = {
-    '25%': {
-        transform: 'perspective(100px) rotateX(180deg) rotateY(0)'
-    },
-    '50%': {
-        transform: 'perspective(100px) rotateX(180deg) rotateY(180deg)'
-    },
-    '75%': {
-        transform: 'perspective(100px) rotateX(0) rotateY(180deg)'
-    },
-    '100%': {
-        transform: 'perspective(100px) rotateX(0) rotateY(0)'
-    }
-};
+  '25%': {
+    transform: 'perspective(100px) rotateX(180deg) rotateY(0)'
+  },
+  '50%': {
+    transform: 'perspective(100px) rotateX(180deg) rotateY(180deg)'
+  },
+  '75%': {
+    transform: 'perspective(100px) rotateX(0) rotateY(180deg)'
+  },
+  '100%': {
+    transform: 'perspective(100px) rotateX(0) rotateY(0)'
+  }
 
-/**
- * @type {String}
- */
-var animationName = (0, _insertKeyframesRule2.default)(keyframes);
+  /**
+   * @type {String}
+   */
+};var animationName = (0, _insertKeyframesRule2.default)(keyframes);
 
 var propTypes = {
-    loading: _propTypes2.default.bool,
-    color: _propTypes2.default.string,
-    size: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string])
+  loading: _propTypes2.default.bool,
+  color: _propTypes2.default.string,
+  size: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  verticalAlign: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string])
 };
 
 var ptKeys = Object.keys(propTypes);
 
 var SkewLoader = function (_Component) {
-    _inherits(SkewLoader, _Component);
+  _inherits(SkewLoader, _Component);
 
-    function SkewLoader() {
-        var _ref;
+  function SkewLoader() {
+    var _ref;
 
-        var _temp, _this, _ret;
+    var _temp, _this, _ret;
 
-        _classCallCheck(this, SkewLoader);
+    _classCallCheck(this, SkewLoader);
 
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-        }
-
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SkewLoader.__proto__ || Object.getPrototypeOf(SkewLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getSharpStyle = function () {
-            return {
-                width: 0,
-                height: 0,
-                borderLeft: _this.props.size + ' solid transparent',
-                borderRight: _this.props.size + ' solid transparent',
-                borderBottom: _this.props.size + ' solid ' + _this.props.color,
-                verticalAlign: _this.props.verticalAlign
-            };
-        }, _this.getAnimationStyle = function (i) {
-            var animation = [animationName, '3s', '0s', 'infinite', 'cubic-bezier(.09,.57,.49,.9)'].join(' ');
-            var animationFillMode = 'both';
-
-            return {
-                animation: animation,
-                animationFillMode: animationFillMode
-            };
-        }, _this.getStyle = function (i) {
-            return (0, _appendVendorPrefix2.default)({
-                border: '0px solid transparent' // fix firefox/chrome/opera rendering
-            }, _this.getSharpStyle(i), _this.getAnimationStyle(i), {
-                display: 'inline-block'
-            });
-        }, _this.renderLoader = function (loading) {
-            if (loading) {
-                var props = Object.assign({}, _this.props);
-
-                if (propTypes && ptKeys) {
-                    var klen = ptKeys.length;
-                    for (var i = 0; i < klen; i++) {
-                        delete props[ptKeys[i]];
-                    }
-                }
-
-                return _react2.default.createElement(
-                    'div',
-                    props,
-                    _react2.default.createElement('div', { style: _this.getStyle() })
-                );
-            };
-
-            return null;
-        }, _temp), _possibleConstructorReturn(_this, _ret);
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
     }
-    /**
-     * @type {Object}
-     */
 
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SkewLoader.__proto__ || Object.getPrototypeOf(SkewLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getSharpStyle = function () {
+      return {
+        width: 0,
+        height: 0,
+        borderLeft: _this.props.size + ' solid transparent',
+        borderRight: _this.props.size + ' solid transparent',
+        borderBottom: _this.props.size + ' solid ' + _this.props.color,
+        verticalAlign: _this.props.verticalAlign
+      };
+    }, _this.getAnimationStyle = function () {
+      var animation = [animationName, '3s', '0s', 'infinite', 'cubic-bezier(.09,.57,.49,.9)'].join(' ');
+      var animationFillMode = 'both';
 
-    /**
-     * @return {Object}
-     */
+      return {
+        animation: animation,
+        animationFillMode: animationFillMode
+      };
+    }, _this.getStyle = function (i) {
+      return (0, _appendVendorPrefix2.default)({
+        border: '0px solid transparent' // fix firefox/chrome/opera rendering
+      }, _this.getSharpStyle(i), _this.getAnimationStyle(i), {
+        display: 'inline-block'
+      });
+    }, _this.renderLoader = function (loading) {
+      if (loading) {
+        var props = Object.assign({}, _this.props);
 
-
-    /**
-     * @param  {Number} i
-     * @return {Object}
-     */
-
-
-    /**
-     * @param  {Number} i
-     * @return {Object}
-     */
-
-
-    /**
-     * @param  {Boolean} loading
-     * @return {ReactComponent || null}
-     */
-
-
-    _createClass(SkewLoader, [{
-        key: 'render',
-        value: function render() {
-            return this.renderLoader(this.props.loading);
+        if (propTypes && ptKeys) {
+          var klen = ptKeys.length;
+          for (var i = 0; i < klen; i++) {
+            delete props[ptKeys[i]];
+          }
         }
-    }]);
 
-    return SkewLoader;
+        return _react2.default.createElement(
+          'div',
+          props,
+          _react2.default.createElement('div', { style: _this.getStyle() })
+        );
+      }
+
+      return null;
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+  /**
+   * @type {Object}
+   */
+
+
+  /**
+   * @return {Object}
+   */
+
+
+  /**
+   * @param  {Number} i
+   * @return {Object}
+   */
+
+
+  /**
+   * @param  {Number} i
+   * @return {Object}
+   */
+
+
+  /**
+   * @param  {Boolean} loading
+   * @return {ReactComponent || null}
+   */
+
+
+  _createClass(SkewLoader, [{
+    key: 'render',
+    value: function render() {
+      return this.renderLoader(this.props.loading);
+    }
+  }]);
+
+  return SkewLoader;
 }(_react.Component);
 
 SkewLoader.propTypes = propTypes;
 SkewLoader.defaultProps = {
-    loading: true,
-    color: '#ffffff',
-    size: '20px' };
+  loading: true,
+  color: '#fff',
+  size: '20px' };
 exports.default = SkewLoader;
 module.exports = exports['default'];
 
@@ -2606,7 +2611,7 @@ module.exports = exports['default'];
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -2639,134 +2644,134 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @type {Object}
  */
 var keyframes = {
-    '25%': {
-        transform: 'rotateX(180deg) rotateY(0)'
-    },
-    '50%': {
-        transform: 'rotateX(180deg) rotateY(180deg)'
-    },
-    '75%': {
-        transform: 'rotateX(0) rotateY(180deg)'
-    },
-    '100%': {
-        transform: 'rotateX(0) rotateY(0)'
-    }
-};
+  '25%': {
+    transform: 'rotateX(180deg) rotateY(0)'
+  },
+  '50%': {
+    transform: 'rotateX(180deg) rotateY(180deg)'
+  },
+  '75%': {
+    transform: 'rotateX(0) rotateY(180deg)'
+  },
+  '100%': {
+    transform: 'rotateX(0) rotateY(0)'
+  }
 
-/**
- * @type {String}
- */
-var animationName = (0, _insertKeyframesRule2.default)(keyframes);
+  /**
+   * @type {String}
+   */
+};var animationName = (0, _insertKeyframesRule2.default)(keyframes);
 
 var propTypes = {
-    loading: _propTypes2.default.bool,
-    color: _propTypes2.default.string,
-    size: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
-    margin: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string])
+  loading: _propTypes2.default.bool,
+  color: _propTypes2.default.string,
+  size: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  margin: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  verticalAlign: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string])
 };
 
 var ptKeys = Object.keys(propTypes);
 
 var SquareLoader = function (_Component) {
-    _inherits(SquareLoader, _Component);
+  _inherits(SquareLoader, _Component);
 
-    function SquareLoader() {
-        var _ref;
+  function SquareLoader() {
+    var _ref;
 
-        var _temp, _this, _ret;
+    var _temp, _this, _ret;
 
-        _classCallCheck(this, SquareLoader);
+    _classCallCheck(this, SquareLoader);
 
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-        }
-
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SquareLoader.__proto__ || Object.getPrototypeOf(SquareLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getSquareStyle = function () {
-            return {
-                backgroundColor: _this.props.color,
-                width: _this.props.size,
-                height: _this.props.size,
-                verticalAlign: _this.props.verticalAlign
-            };
-        }, _this.getAnimationStyle = function (i) {
-            var animation = [animationName, '3s', '0s', 'infinite', 'cubic-bezier(.09,.57,.49,.9)'].join(' ');
-            var animationFillMode = 'both';
-            var perspective = '100px';
-
-            return {
-                perspective: perspective,
-                animation: animation,
-                animationFillMode: animationFillMode
-            };
-        }, _this.getStyle = function (i) {
-            return (0, _appendVendorPrefix2.default)(_this.getSquareStyle(i), _this.getAnimationStyle(i), {
-                display: 'inline-block',
-                border: '0px solid transparent' // fix firefox/chrome/opera rendering
-            });
-        }, _this.renderLoader = function (loading) {
-            if (loading) {
-                var props = Object.assign({}, _this.props);
-
-                if (propTypes && ptKeys) {
-                    var klen = ptKeys.length;
-                    for (var i = 0; i < klen; i++) {
-                        delete props[ptKeys[i]];
-                    }
-                }
-
-                return _react2.default.createElement(
-                    'div',
-                    props,
-                    _react2.default.createElement('div', { style: _this.getStyle() })
-                );
-            }
-
-            return null;
-        }, _temp), _possibleConstructorReturn(_this, _ret);
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
     }
-    /**
-     * @type {Object}
-     */
 
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SquareLoader.__proto__ || Object.getPrototypeOf(SquareLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getSquareStyle = function () {
+      return {
+        backgroundColor: _this.props.color,
+        width: _this.props.size,
+        height: _this.props.size,
+        verticalAlign: _this.props.verticalAlign
+      };
+    }, _this.getAnimationStyle = function () {
+      var animation = [animationName, '3s', '0s', 'infinite', 'cubic-bezier(.09,.57,.49,.9)'].join(' ');
+      var animationFillMode = 'both';
+      var perspective = '100px';
 
-    /**
-     * @return {Object}
-     */
+      return {
+        perspective: perspective,
+        animation: animation,
+        animationFillMode: animationFillMode
+      };
+    }, _this.getStyle = function (i) {
+      return (0, _appendVendorPrefix2.default)(_this.getSquareStyle(i), _this.getAnimationStyle(i), {
+        display: 'inline-block',
+        border: '0px solid transparent' // fix firefox/chrome/opera rendering
+      });
+    }, _this.renderLoader = function (loading) {
+      if (loading) {
+        var props = Object.assign({}, _this.props);
 
-
-    /**
-     * @param  {Number} i
-     * @return {Object}
-     */
-
-
-    /**
-     * @param  {Number} i
-     * @return {Object}
-     */
-
-
-    /**
-     * @param  {Boolean} loading
-     * @return {ReactComponent || null}
-     */
-
-
-    _createClass(SquareLoader, [{
-        key: 'render',
-        value: function render() {
-            return this.renderLoader(this.props.loading);
+        if (propTypes && ptKeys) {
+          var klen = ptKeys.length;
+          for (var i = 0; i < klen; i++) {
+            delete props[ptKeys[i]];
+          }
         }
-    }]);
 
-    return SquareLoader;
+        return _react2.default.createElement(
+          'div',
+          props,
+          _react2.default.createElement('div', { style: _this.getStyle() })
+        );
+      }
+
+      return null;
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+  /**
+   * @type {Object}
+   */
+
+
+  /**
+   * @return {Object}
+   */
+
+
+  /**
+   * @param  {Number} i
+   * @return {Object}
+   */
+
+
+  /**
+   * @param  {Number} i
+   * @return {Object}
+   */
+
+
+  /**
+   * @param  {Boolean} loading
+   * @return {ReactComponent || null}
+   */
+
+
+  _createClass(SquareLoader, [{
+    key: 'render',
+    value: function render() {
+      return this.renderLoader(this.props.loading);
+    }
+  }]);
+
+  return SquareLoader;
 }(_react.Component);
 
 SquareLoader.propTypes = propTypes;
 SquareLoader.defaultProps = {
-    loading: true,
-    color: '#ffffff',
-    size: '50px' };
+  loading: true,
+  color: '#ffffff',
+  size: '50px' };
 exports.default = SquareLoader;
 module.exports = exports['default'];
 
@@ -2774,7 +2779,7 @@ module.exports = exports['default'];
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -2807,134 +2812,134 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @type {Object}
  */
 var keyframes = {
-    '33%': {
-        transform: 'translateY(10px)'
-    },
-    '66%': {
-        transform: 'translateY(-10px)'
-    },
-    '100%': {
-        transform: 'translateY(0)'
-    }
-};
+  '33%': {
+    transform: 'translateY(10px)'
+  },
+  '66%': {
+    transform: 'translateY(-10px)'
+  },
+  '100%': {
+    transform: 'translateY(0)'
+  }
 
-/**
- * @type {String}
- */
-var animationName = (0, _insertKeyframesRule2.default)(keyframes);
+  /**
+   * @type {String}
+   */
+};var animationName = (0, _insertKeyframesRule2.default)(keyframes);
 
 var propTypes = {
-    loading: _propTypes2.default.bool,
-    color: _propTypes2.default.string,
-    size: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
-    margin: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string])
+  loading: _propTypes2.default.bool,
+  color: _propTypes2.default.string,
+  size: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  margin: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+  verticalAlign: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string])
 };
 
 var ptKeys = Object.keys(propTypes);
 
 var SyncLoader = function (_Component) {
-    _inherits(SyncLoader, _Component);
+  _inherits(SyncLoader, _Component);
 
-    function SyncLoader() {
-        var _ref;
+  function SyncLoader() {
+    var _ref;
 
-        var _temp, _this, _ret;
+    var _temp, _this, _ret;
 
-        _classCallCheck(this, SyncLoader);
+    _classCallCheck(this, SyncLoader);
 
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-        }
-
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SyncLoader.__proto__ || Object.getPrototypeOf(SyncLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getBallStyle = function () {
-            return {
-                backgroundColor: _this.props.color,
-                width: _this.props.size,
-                height: _this.props.size,
-                margin: _this.props.margin,
-                borderRadius: '100%',
-                verticalAlign: _this.props.verticalAlign
-            };
-        }, _this.getAnimationStyle = function (i) {
-            var animation = [animationName, '0.6s', i * 0.07 + 's', 'infinite', 'ease-in-out'].join(' ');
-            var animationFillMode = 'both';
-
-            return {
-                animation: animation,
-                animationFillMode: animationFillMode
-            };
-        }, _this.getStyle = function (i) {
-            return (0, _appendVendorPrefix2.default)(_this.getBallStyle(i), _this.getAnimationStyle(i), {
-                display: 'inline-block',
-                border: '0px solid transparent' // fix firefox/chrome/opera rendering
-            });
-        }, _this.renderLoader = function (loading) {
-            if (loading) {
-                var props = Object.assign({}, _this.props);
-
-                if (propTypes && ptKeys) {
-                    var klen = ptKeys.length;
-                    for (var i = 0; i < klen; i++) {
-                        delete props[ptKeys[i]];
-                    }
-                }
-
-                return _react2.default.createElement(
-                    'div',
-                    props,
-                    _react2.default.createElement('div', { style: _this.getStyle(1) }),
-                    _react2.default.createElement('div', { style: _this.getStyle(2) }),
-                    _react2.default.createElement('div', { style: _this.getStyle(3) })
-                );
-            };
-
-            return null;
-        }, _temp), _possibleConstructorReturn(_this, _ret);
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
     }
-    /**
-     * @type {Object}
-     */
 
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SyncLoader.__proto__ || Object.getPrototypeOf(SyncLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getBallStyle = function () {
+      return {
+        backgroundColor: _this.props.color,
+        width: _this.props.size,
+        height: _this.props.size,
+        margin: _this.props.margin,
+        borderRadius: '100%',
+        verticalAlign: _this.props.verticalAlign
+      };
+    }, _this.getAnimationStyle = function (i) {
+      var animation = [animationName, '0.6s', i * 0.07 + 's', 'infinite', 'ease-in-out'].join(' ');
+      var animationFillMode = 'both';
 
-    /**
-     * @return {Object}
-     */
+      return {
+        animation: animation,
+        animationFillMode: animationFillMode
+      };
+    }, _this.getStyle = function (i) {
+      return (0, _appendVendorPrefix2.default)(_this.getBallStyle(i), _this.getAnimationStyle(i), {
+        display: 'inline-block',
+        border: '0px solid transparent' // fix firefox/chrome/opera rendering
+      });
+    }, _this.renderLoader = function (loading) {
+      if (loading) {
+        var props = Object.assign({}, _this.props);
 
-
-    /**
-     * @param  {Number} i
-     * @return {Object}
-     */
-
-
-    /**
-     * @param  {Number} i
-     * @return {Object}
-     */
-
-
-    /**
-     * @param  {Boolean} loading
-     * @return {ReactComponent || null}
-     */
-
-
-    _createClass(SyncLoader, [{
-        key: 'render',
-        value: function render() {
-            return this.renderLoader(this.props.loading);
+        if (propTypes && ptKeys) {
+          var klen = ptKeys.length;
+          for (var i = 0; i < klen; i++) {
+            delete props[ptKeys[i]];
+          }
         }
-    }]);
 
-    return SyncLoader;
+        return _react2.default.createElement(
+          'div',
+          props,
+          _react2.default.createElement('div', { style: _this.getStyle(1) }),
+          _react2.default.createElement('div', { style: _this.getStyle(2) }),
+          _react2.default.createElement('div', { style: _this.getStyle(3) })
+        );
+      }
+
+      return null;
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+  /**
+   * @type {Object}
+   */
+
+
+  /**
+   * @return {Object}
+   */
+
+
+  /**
+   * @param  {Number} i
+   * @return {Object}
+   */
+
+
+  /**
+   * @param  {Number} i
+   * @return {Object}
+   */
+
+
+  /**
+   * @param  {Boolean} loading
+   * @return {ReactComponent || null}
+   */
+
+
+  _createClass(SyncLoader, [{
+    key: 'render',
+    value: function render() {
+      return this.renderLoader(this.props.loading);
+    }
+  }]);
+
+  return SyncLoader;
 }(_react.Component);
 
 SyncLoader.propTypes = propTypes;
 SyncLoader.defaultProps = {
-    loading: true,
-    color: '#ffffff',
-    size: '15px',
-    margin: '2px' };
+  loading: true,
+  color: '#ffffff',
+  size: '15px',
+  margin: '2px' };
 exports.default = SyncLoader;
 module.exports = exports['default'];
 
