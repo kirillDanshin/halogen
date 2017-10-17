@@ -62,7 +62,7 @@ export default class MoonLoader extends Component {
    * @return {Object}
    */
   getStyle = i => {
-    const size = this.props.size | 0
+    const size = parseInt(this.props.size, 10) | 0
     const moonSize = size / 7
 
     if (i === 1) {
