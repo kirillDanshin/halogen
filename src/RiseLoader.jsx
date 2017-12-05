@@ -74,7 +74,7 @@ export default class RiseLoader extends Component {
   /**
    * @type {Object}
    */
-  propTypes = propTypes;
+  static propTypes = propTypes;
 
   static defaultProps = {
     loading: true,

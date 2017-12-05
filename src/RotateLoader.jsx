@@ -34,10 +34,7 @@ const propTypes = {
 const ptKeys = Object.keys(propTypes)
 
 export default class RotateLoader extends Component {
-    /**
-     * @type {Object}
-     */
-  propTypes = propTypes;
+  static propTypes = propTypes;
 
   static defaultProps = {
     loading: true,
