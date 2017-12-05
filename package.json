@@ -1,6 +1,6 @@
 {
   "name": "halogenium",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "A collection of loading spinners with React.js based on halogen",
   "main": "lib/Halogenium.js",
   "contributors": [
@@ -68,7 +68,7 @@
     "watchify": "^3.9.0"
   },
   "scripts": {
-    "prepublish": "rm -rf ./build; mkdir ./build; babel ./src --out-dir ./lib --source-maps --presets es2015,react,stage-0,stage-1,stage-2,stage-3,es2017 --plugins babel-plugin-add-module-exports && browserify ./lib/Halogenium.js -o ./build/Halogenium.js --transform browserify-global-shim --standalone ReactPlace && uglifyjs ./build/Halogenium.js --compress --mangle --output ./build/Halogenium.min.js --source-map ./build/Halogenium.min.js.map",
+    "prepare": "rm -rf ./build; mkdir ./build; babel ./src --out-dir ./lib --source-maps --presets es2015,react,stage-0,stage-1,stage-2,stage-3,es2017 --plugins babel-plugin-add-module-exports && browserify ./lib/Halogenium.js -o ./build/Halogenium.js --transform browserify-global-shim --standalone ReactPlace && uglifyjs ./build/Halogenium.js --compress --mangle --output ./build/Halogenium.min.js --source-map ./build/Halogenium.min.js.map",
     "release": "gulp release",
     "lint": "eslint --cache --fix src --ext .js --ext .jsx"
   },

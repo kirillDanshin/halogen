@@ -1991,7 +1991,7 @@ var RiseLoader = function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RiseLoader.__proto__ || Object.getPrototypeOf(RiseLoader)).call.apply(_ref, [this].concat(args))), _this), _this.propTypes = propTypes, _this.getBallStyle = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RiseLoader.__proto__ || Object.getPrototypeOf(RiseLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getBallStyle = function () {
       return {
         backgroundColor: _this.props.color,
         width: _this.props.size,
@@ -2076,6 +2076,7 @@ var RiseLoader = function (_Component) {
   return RiseLoader;
 }(_react.Component);
 
+RiseLoader.propTypes = propTypes;
 RiseLoader.defaultProps = {
   loading: true,
   color: '#ffffff',
@@ -2160,7 +2161,7 @@ var RotateLoader = function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RotateLoader.__proto__ || Object.getPrototypeOf(RotateLoader)).call.apply(_ref, [this].concat(args))), _this), _this.propTypes = propTypes, _this.getBallStyle = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RotateLoader.__proto__ || Object.getPrototypeOf(RotateLoader)).call.apply(_ref, [this].concat(args))), _this), _this.getBallStyle = function () {
       return {
         backgroundColor: _this.props.color,
         width: _this.props.size,
@@ -2219,10 +2220,6 @@ var RotateLoader = function (_Component) {
       return null;
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
-  /**
-   * @type {Object}
-   */
-
 
   /**
    * @return {Object}
@@ -2257,6 +2254,7 @@ var RotateLoader = function (_Component) {
   return RotateLoader;
 }(_react.Component);
 
+RotateLoader.propTypes = propTypes;
 RotateLoader.defaultProps = {
   loading: true,
   color: '#ffffff',
