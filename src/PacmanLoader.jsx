@@ -74,7 +74,7 @@ export default class PacmanLoader extends Component {
   }
 
   getStyle = i => {
-    if (i | 0 === 1) {
+    if ((i | 0) === 1) {
       const s1 = `${this.props.size}px solid transparent`
       const s2 = `${this.props.size}px solid ${this.props.color}`
 
