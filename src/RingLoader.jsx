@@ -79,7 +79,7 @@ export default class RingLoader extends Component {
    */
   getAnimationStyle = i => {
     const animation = [
-      i | 0 === 1 ? rightRotateAnimationName : leftRotateAnimationName,
+      (i | 0) === 1 ? rightRotateAnimationName : leftRotateAnimationName,
       '2s', '0s', 'infinite', 'linear',
     ].join(' ')
 
