@@ -90,7 +90,7 @@ export default class DotLoader extends Component {
    * @return {Object}
    */
   getStyle = i => {
-    const size = this.props.size | 0
+    const size = parseInt(this.props.size) | 0
     const ballSize = size / 2
 
     if (i) {
