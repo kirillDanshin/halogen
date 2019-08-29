@@ -1,18 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import assign from 'domkit/appendVendorPrefix'
-import insertKeyframesRule from 'domkit/insertKeyframesRule'
-
-const keyframes = {
-  '0%, 100%': {
-    transform: 'scale(0)',
-  },
-  '50%': {
-    transform: 'scale(1.0)',
-  },
-}
-
-const animationName = insertKeyframesRule(keyframes)
+import styled, { keyframes } from 'styled-components'
 
 const propTypes = {
   loading: PropTypes.bool,
@@ -23,6 +11,40 @@ const propTypes = {
 
 const ptKeys = Object.keys(propTypes)
 
+const getSize = size => typeof size === 'number' ? `${size}px` : size
+
+const animation = keyframes`
+  0%, 100% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1.0);
+  }
+`
+
+const Wrapper = styled.div`
+  width: ${({ size }) => getSize(size)};
+  height: ${({ size }) => getSize(size)};
+  position: relative;
+  border: 0px solid transparent;
+`
+
+const Ball = styled.div`
+  background-color: ${({ color }) => color};
+  width: ${({ size }) => getSize(size)};
+  height: ${({ size }) => getSize(size)};
+  border-radius: 100%;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  vertical-align: ${({ verticalAlign }) => getSize(verticalAlign)};
+  animation: ${animation} 2s ${({ idx }) => (idx === 1 ? '1s' : '0s')} infinite ease-in-out;
+  animation-fill-mode: both;
+  border: 0px solid transparent;
+`
+
 export default class BounceLoader extends Component {
   static propTypes = propTypes;
 
@@ -32,65 +54,9 @@ export default class BounceLoader extends Component {
     size: '60px',
   }
 
-  getBallStyle = () => ({
-    backgroundColor: this.props.color,
-    width: this.props.size,
-    height: this.props.size,
-    borderRadius: '100%',
-    opacity: 0.6,
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    verticalAlign: this.props.verticalAlign,
-  })
-
-  /**
-   * @param  {Number} i
-   * @return {Object}
-   */
-  getAnimationStyle = i => {
-    const animation = [
-      animationName,
-      '2s',
-      i === 1 ? '1s' : '0s',
-      'infinite',
-      'ease-in-out',
-    ].join(' ')
-    const animationFillMode = 'both'
-
-    return {
-      animation,
-      animationFillMode,
-    }
-  }
-
-  /**
-   * @param  {Number} i
-   * @return {Object}
-   */
-  getStyle = i => {
-    if (i) {
-      return assign(
-        this.getBallStyle(i),
-        this.getAnimationStyle(i),
-        {
-          border: '0px solid transparent', // fix firefox/chrome/opera rendering
-        },
-      )
-    }
-
-    return assign(
-      {
-        width: this.props.size,
-        height: this.props.size,
-        position: 'relative',
-        border: '0px solid transparent', // fix firefox/chrome/opera rendering
-      },
-    )
-  }
-
   render() {
-    const { loading } = this.props
+    const { loading, size } = this.props
+
     if (loading) {
       const props = { ...this.props }
 
@@ -101,12 +67,17 @@ export default class BounceLoader extends Component {
         }
       }
 
+      const ballProps = ptKeys.reduce((acc, key) => (key === 'loading' ? acc : {
+        ...acc,
+        [key]: this.props[key],
+      }), {})
+
       return (
         <div {...props}>
-          <div style={this.getStyle()}>
-            <div style={this.getStyle(1)} />
-            <div style={this.getStyle(2)} />
-          </div>
+          <Wrapper size={size}>
+            <Ball {...ballProps} idx={1} />
+            <Ball {...ballProps} idx={2} />
+          </Wrapper>
         </div>
       )
     }

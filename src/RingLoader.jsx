@@ -1,42 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import assign from 'domkit/appendVendorPrefix'
-import insertKeyframesRule from 'domkit/insertKeyframesRule'
-
-/**
- * @type {Object}
- */
-const rightRotateKeyframes = {
-  '0%': {
-    transform: 'rotateX(0deg) rotateY(0deg) rotateZ(0deg)',
-
-  },
-  '100%': {
-    transform: 'rotateX(180deg) rotateY(360deg) rotateZ(360deg)',
-  },
-}
-
-/**
- * @type {Object}
- */
-const leftRotateKeyframes = {
-  '0%': {
-    transform: 'rotateX(0deg) rotateY(0deg) rotateZ(0deg)',
-  },
-  '100%': {
-    transform: 'rotateX(360deg) rotateY(180deg) rotateZ(360deg)',
-  },
-}
-
-/**
- * @type {String}
- */
-const rightRotateAnimationName = insertKeyframesRule(rightRotateKeyframes)
-
-/**
- * @type {String}
- */
-const leftRotateAnimationName = insertKeyframesRule(leftRotateKeyframes)
+import styled, { keyframes } from 'styled-components'
 
 const propTypes = {
   loading: PropTypes.bool,
@@ -47,6 +11,52 @@ const propTypes = {
 }
 
 const ptKeys = Object.keys(propTypes)
+
+const getNumberSize = size => parseInt(size, 10)
+const getSize = size => typeof size === 'number' ? `${size}px` : size
+
+const rightRotateAnimation = keyframes`
+  0% {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  }
+
+  100% {
+    transform: rotateX(180deg) rotateY(360deg) rotateZ(360deg);
+  }
+`
+
+const leftRotateAnimation = keyframes`
+  0% {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  }
+
+  100% {
+    transform: rotateX(360deg) rotateY(180deg) rotateZ(360deg);
+  }
+`
+
+const Wrapper = styled.div`
+  width: ${({ size }) => getSize(size)};
+  height: ${({ size }) => getSize(size)};
+  position: relative;
+  border: 0px solid transparent;
+`
+
+const Circle = styled.div`
+  border: 0px solid transparent;
+  width: ${({ size }) => getSize(size)};
+  height: ${({ size }) => getSize(size)};
+  border: ${({ size }) => getNumberSize(size) / 10}px solid ${({ color }) => color};
+  opacity: 0.4;
+  border-radius: 100%;
+  vertical-align: ${({ verticalAlign }) => getSize(verticalAlign)};
+  perspective: 800px;
+  animation: ${({ idx }) => idx === 1 ? rightRotateAnimation : leftRotateAnimation} 2s 0s infinite linear;
+  animation-fill-mode: forwards;
+  position: absolute;
+  top: 0;
+  left: 0;
+`
 
 export default class RingLoader extends Component {
   /**
@@ -60,74 +70,9 @@ export default class RingLoader extends Component {
     size: '60px',
   }
 
-  /**
-   * @param {String} size
-   * @return {Object}
-   */
-  getCircleStyle = size => ({
-    width: size,
-    height: size,
-    border: `${size / 10}px solid ${this.props.color}`,
-    opacity: 0.4,
-    borderRadius: '100%',
-    verticalAlign: this.props.verticalAlign,
-  })
+  render() {
+    const { loading, size } = this.props
 
-  /**
-   * @param  {Number} i
-   * @return {Object}
-   */
-  getAnimationStyle = i => {
-    const animation = [
-      (i | 0) === 1 ? rightRotateAnimationName : leftRotateAnimationName,
-      '2s', '0s', 'infinite', 'linear',
-    ].join(' ')
-
-    const animationFillMode = 'forwards'
-    const perspective = '800px'
-
-    return {
-      perspective,
-      animation,
-      animationFillMode,
-    }
-  }
-
-  /**
-   * @param  {Number} i
-   * @return {Object}
-   */
-  getStyle = i => {
-    const size = parseInt(this.props.size, 10)
-
-    if (i) {
-      return assign(
-        {
-          border: '0px solid transparent', // fix firefox/chrome/opera rendering
-        },
-        this.getCircleStyle(size),
-        this.getAnimationStyle(i),
-        {
-          position: 'absolute',
-          top: 0,
-          left: 0,
-        },
-      )
-    }
-
-    return {
-      width: size,
-      height: size,
-      position: 'relative',
-      border: '0px solid transparent', // fix firefox/chrome/opera rendering
-    }
-  }
-
-  /**
-   * @param  {Boolean} loading
-   * @return {ReactComponent || null}
-   */
-  renderLoader = loading => {
     if (loading) {
       const props = Object.assign({}, this.props)
 
@@ -138,20 +83,21 @@ export default class RingLoader extends Component {
         }
       }
 
+      const circleProps = ptKeys.reduce((acc, key) => (key === 'loading' ? acc : {
+        ...acc,
+        [key]: this.props[key],
+      }), {})
+
       return (
         <div {...props}>
-          <div style={this.getStyle(0)}>
-            <div style={this.getStyle(1)} />
-            <div style={this.getStyle(2)} />
-          </div>
+          <Wrapper size={size}>
+            <Circle {...circleProps} idx={1} />
+            <Circle {...circleProps} idx={2} />
+          </Wrapper>
         </div>
       )
     }
 
     return null
-  }
-
-  render() {
-    return this.renderLoader(this.props.loading)
   }
 }

@@ -1,30 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import assign from 'domkit/appendVendorPrefix'
-import insertKeyframesRule from 'domkit/insertKeyframesRule'
-
-/**
- * @type {Object}
- */
-const keyframes = {
-  '25%': {
-    transform: 'perspective(100px) rotateX(180deg) rotateY(0)',
-  },
-  '50%': {
-    transform: 'perspective(100px) rotateX(180deg) rotateY(180deg)',
-  },
-  '75%': {
-    transform: 'perspective(100px) rotateX(0) rotateY(180deg)',
-  },
-  '100%': {
-    transform: 'perspective(100px) rotateX(0) rotateY(0)',
-  },
-}
-
-/**
- * @type {String}
- */
-const animationName = insertKeyframesRule(keyframes)
+import styled, { keyframes } from 'styled-components'
 
 const propTypes = {
   loading: PropTypes.bool,
@@ -34,6 +10,39 @@ const propTypes = {
 }
 
 const ptKeys = Object.keys(propTypes)
+
+const getSize = size => typeof size === 'number' ? `${size}px` : size
+
+const animation = keyframes`
+  25% {
+    transform: perspective(100px) rotateX(180deg) rotateY(0);
+  }
+
+  50% {
+    transform: perspective(100px) rotateX(180deg) rotateY(180deg);
+  }
+
+  75% {
+    transform: perspective(100px) rotateX(0) rotateY(180deg);
+  }
+
+  100% {
+    transform: perspective(100px) rotateX(0) rotateY(0);
+  }
+`
+
+const Sharp = styled.div`
+  border: 0px solid transparent;
+  width: 0;
+  height: 0;
+  border-left: ${({ size }) => getSize(size)} solid transparent;
+  border-right: ${({ size }) => getSize(size)} solid transparent;
+  border-bottom: ${({ size }) => getSize(size)} solid ${({ color }) => color};
+  vertical-align: ${({ verticalAlign }) => getSize(verticalAlign)};
+  animation: ${animation} 3s 0s infinite cubic-bezier(.09,.57,.49,.9);
+  animation-fill-mode: both;
+  display: inline-block;
+`
 
 export default class SkewLoader extends Component {
   /**
@@ -47,52 +56,9 @@ export default class SkewLoader extends Component {
     size: '20px',
   }
 
-  /**
-   * @return {Object}
-   */
-  getSharpStyle = () => ({
-    width: 0,
-    height: 0,
-    borderLeft: `${this.props.size} solid transparent`,
-    borderRight: `${this.props.size} solid transparent`,
-    borderBottom: `${this.props.size} solid ${this.props.color}`,
-    verticalAlign: this.props.verticalAlign,
-  })
+  render() {
+    const { loading } = this.props
 
-  /**
-   * @param  {Number} i
-   * @return {Object}
-   */
-  getAnimationStyle = () => {
-    const animation = [ animationName, '3s', '0s', 'infinite', 'cubic-bezier(.09,.57,.49,.9)' ].join(' ')
-    const animationFillMode = 'both'
-
-    return {
-      animation,
-      animationFillMode,
-    }
-  }
-
-  /**
-   * @param  {Number} i
-   * @return {Object}
-   */
-  getStyle = i => assign(
-    {
-      border: '0px solid transparent', // fix firefox/chrome/opera rendering
-    },
-    this.getSharpStyle(i),
-    this.getAnimationStyle(i),
-    {
-      display: 'inline-block',
-    },
-  )
-
-  /**
-   * @param  {Boolean} loading
-   * @return {ReactComponent || null}
-   */
-  renderLoader = loading => {
     if (loading) {
       const props = Object.assign({}, this.props)
 
@@ -103,17 +69,18 @@ export default class SkewLoader extends Component {
         }
       }
 
+      const sharpProps = ptKeys.reduce((acc, key) => (key === 'loading' ? acc : {
+        ...acc,
+        [key]: this.props[key],
+      }), {})
+
       return (
         <div {...props}>
-          <div style={this.getStyle()} />
+          <Sharp {...sharpProps} />
         </div>
       )
     }
 
     return null
-  }
-
-  render() {
-    return this.renderLoader(this.props.loading)
   }
 }

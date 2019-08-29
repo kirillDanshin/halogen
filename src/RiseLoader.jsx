@@ -1,64 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import assign from 'domkit/appendVendorPrefix'
-import insertKeyframesRule from 'domkit/insertKeyframesRule'
+import styled, { keyframes } from 'styled-components'
 
 /**
  * @type {Number}
  */
 const riseAmount = 30
-
-/**
- * @type {Object}
- */
-const keyframesEven = {
-  '0%': {
-    transform: 'scale(1.1)',
-  },
-  '25%': {
-    transform: `translateY(-${riseAmount}px)`,
-  },
-  '50%': {
-    transform: 'scale(0.4)',
-  },
-  '75%': {
-    transform: `translateY(${riseAmount}px)`,
-  },
-  '100%': {
-    transform: 'translateY(0) scale(1.0)',
-  },
-}
-
-/**
- * @type {Object}
- */
-const keyframesOdd = {
-  '0%': {
-    transform: 'scale(0.4)',
-  },
-  25: {
-    transform: `translateY(${riseAmount}px)`,
-  },
-  '50%': {
-    transform: 'scale(1.1)',
-  },
-  '75%': {
-    transform: `translateY(-${riseAmount}px)`,
-  },
-  '100%': {
-    transform: 'translateY(0) scale(0.75)',
-  },
-}
-
-/**
- * @type {String}
- */
-const animationNameEven = insertKeyframesRule(keyframesEven)
-
-/**
- * @type {String}
- */
-const animationNameOdd = insertKeyframesRule(keyframesOdd)
 
 const propTypes = {
   loading: PropTypes.bool,
@@ -69,6 +16,65 @@ const propTypes = {
 }
 
 const ptKeys = Object.keys(propTypes)
+
+const getSize = size => typeof size === 'number' ? `${size}px` : size
+
+const animationEven = keyframes`
+  0% {
+    transform: scale(1.1);
+  }
+
+  25% {
+    transform: translateY(-${riseAmount}px);
+  }
+
+  50% {
+    transform: scale(0.4);
+  }
+
+  75% {
+    transform: translateY(${riseAmount}px);
+  }
+
+  100% {
+    transform: translateY(0) scale(1.0);
+  }
+`
+
+const animationOdd = keyframes`
+  0% {
+    transform: scale(0.4);
+  }
+
+  25% {
+    transform: translateY(${riseAmount}px);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  75% {
+    transform: translateY(-${riseAmount}px);
+  }
+
+  100% {
+    transform: translateY(0) scale(0.75);
+  }
+`
+
+const Ball = styled.div`
+  background-color: ${({ color }) => color};
+  width: ${({ size }) => getSize(size)};
+  height: ${({ size }) => getSize(size)};
+  margin: ${({ margin }) => getSize(margin)};
+  border-radius: 100%;
+  vertical-align: ${({ verticalAlign }) => getSize(verticalAlign)};
+  animation: ${({ idx }) => idx % 2 === 0 ? animationEven : animationOdd} 1s 0s infinite cubic-bezier(.15,.46,.9,.6);
+  animation-fill-mode: both;
+  display: inline-block;
+  border: 0px solid transparent;
+`
 
 export default class RiseLoader extends Component {
   /**
@@ -83,53 +89,9 @@ export default class RiseLoader extends Component {
     margin: '2px',
   }
 
-  /**
-   * @return {Object}
-   */
-  getBallStyle = () => ({
-    backgroundColor: this.props.color,
-    width: this.props.size,
-    height: this.props.size,
-    margin: this.props.margin,
-    borderRadius: '100%',
-    verticalAlign: this.props.verticalAlign,
-  })
+  render() {
+    const { loading } = this.props
 
-  /**
-   * @param  {Number} i
-   * @return {Object}
-   */
-  getAnimationStyle = i => {
-    const animation = [
-      i % 2 === 0 ? animationNameEven : animationNameOdd,
-      '1s', '0s', 'infinite', 'cubic-bezier(.15,.46,.9,.6)',
-    ].join(' ')
-    const animationFillMode = 'both'
-
-    return {
-      animation,
-      animationFillMode,
-    }
-  }
-
-  /**
-   * @param  {Number} i
-   * @return {Object}
-   */
-  getStyle = i => assign(
-    this.getBallStyle(i),
-    this.getAnimationStyle(i),
-    {
-      display: 'inline-block',
-      border: '0px solid transparent', // fix firefox/chrome/opera rendering
-    },
-  )
-
-  /**
-   * @param  {Boolean} loading
-   * @return {ReactComponent || null}
-   */
-  renderLoader = loading => {
     if (loading) {
       const props = Object.assign({}, this.props)
 
@@ -140,21 +102,22 @@ export default class RiseLoader extends Component {
         }
       }
 
+      const ballProps = ptKeys.reduce((acc, key) => (key === 'loading' ? acc : {
+        ...acc,
+        [key]: this.props[key],
+      }), {})
+
       return (
         <div {...props}>
-          <div style={this.getStyle(1)} />
-          <div style={this.getStyle(2)} />
-          <div style={this.getStyle(3)} />
-          <div style={this.getStyle(4)} />
-          <div style={this.getStyle(5)} />
+          {
+            Array.from({ length: 5 }).map((_, i) => (
+              <Ball key={i} {...ballProps} idx={i + 1} />
+            ))
+          }
         </div>
       )
     }
 
     return null
-  }
-
-  render() {
-    return this.renderLoader(this.props.loading)
   }
 }

@@ -1,23 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import assign from 'domkit/appendVendorPrefix'
-import insertKeyframesRule from 'domkit/insertKeyframesRule'
-
-/**
- * @type {Object}
- */
-const keyframes = {
-  '50%': {
-    transform: 'scale(0.75)',
-    opacity: 0.2,
-  },
-  '100%': {
-    transform: 'scale(1)',
-    opacity: 1,
-  },
-}
-
-const animationName = insertKeyframesRule(keyframes)
+import styled, { keyframes } from 'styled-components'
 
 const propTypes = {
   loading: PropTypes.bool,
@@ -29,6 +12,33 @@ const propTypes = {
 
 const ptKeys = Object.keys(propTypes)
 
+const getSize = size => typeof size === 'number' ? `${size}px` : size
+
+const animation = keyframes`
+  50% {
+    transform: scale(0.75);
+    opacity: 0.2;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+`
+
+const Ball = styled.div`
+  background-color: ${({ color }) => color};
+  width: ${({ size }) => getSize(size)};
+  height: ${({ size }) => getSize(size)};
+  margin: ${({ margin }) => getSize(margin)};
+  border-radius: 100%;
+  vertical-align: ${({ verticalAlign }) => getSize(verticalAlign)};
+  animation: ${animation} 0.7s ${({ idx }) => (idx % 2 ? 0 : 0.35)}s infinite linear;
+  animation-fill-mode: both;
+  display: inline-block;
+  border: 0px solid transparent;
+`
+
 export default class BeatLoader extends Component {
   static propTypes = propTypes;
 
@@ -38,53 +48,6 @@ export default class BeatLoader extends Component {
     size: '15px',
     margin: '2px',
   }
-
-  /**
-   * @return {Object}
-   */
-  getBallStyle = () => ({
-    backgroundColor: this.props.color,
-    width: this.props.size,
-    height: this.props.size,
-    margin: this.props.margin,
-    borderRadius: '100%',
-    verticalAlign: this.props.verticalAlign,
-  })
-
-  /**
-   * @param  {Number} i
-   * @return {Object}
-   */
-  getAnimationStyle = i => {
-    const animation = [
-      animationName,
-      '0.7s',
-      `${i % 2 ? 0 : 0.35}s`,
-      'infinite',
-      'linear',
-    ].join(' ')
-    const animationFillMode = 'both'
-
-    return {
-      animation,
-      animationFillMode,
-    }
-  }
-
-  /**
-   * @param  {Number} i
-   * @return {Object}
-   */
-  getStyle = i => (
-    assign(
-      this.getBallStyle(i),
-      this.getAnimationStyle(i),
-      {
-        display: 'inline-block',
-        border: '0px solid transparent', // fix firefox/chrome/opera rendering
-      },
-    )
-  )
 
   render() {
     const { loading } = this.props
@@ -99,11 +62,16 @@ export default class BeatLoader extends Component {
         }
       }
 
+      const ballProps = ptKeys.reduce((acc, key) => (key === 'loading' ? acc : {
+        ...acc,
+        [key]: this.props[key],
+      }), {})
+
       return (
         <div {...props}>
-          <div style={this.getStyle(1)} />
-          <div style={this.getStyle(2)} />
-          <div style={this.getStyle(3)} />
+          <Ball {...ballProps} idx={1} />
+          <Ball {...ballProps} idx={2} />
+          <Ball {...ballProps} idx={3} />
         </div>
       )
     }

@@ -1,12 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import assign from 'domkit/appendVendorPrefix'
-import insertKeyframesRule from 'domkit/insertKeyframesRule'
-
-/**
- * @type {Object}
- */
-const animations = {}
+import styled, { keyframes } from 'styled-components'
 
 const propTypes = {
   loading: PropTypes.bool,
@@ -17,6 +11,45 @@ const propTypes = {
 }
 
 const ptKeys = Object.keys(propTypes)
+
+const getNumberSize = size => parseInt(size, 10) | 0
+const getSize = size => typeof size === 'number' ? `${size}px` : size
+
+const getAnimation = size => keyframes`
+  75% {
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: translate(${-4 * getNumberSize(size)}px, ${-getNumberSize(size) / 4}px);
+  }
+`
+
+const Pacman = styled.div`
+  width: 0;
+  height: 0;
+  border-right: ${({ size }) => getSize(size)} solid transparent;
+  border-top: ${({ size }) => getSize(size)} solid ${({ color }) => color};
+  border-left: ${({ size }) => getSize(size)} solid ${({ color }) => color};
+  border-bottom: ${({ size }) => getSize(size)} solid ${({ color }) => color};
+  border-radius: ${({ size }) => getSize(size)};
+`
+
+const Ball = styled.div`
+  background-color: ${({ color }) => color};
+  margin: ${({ margin }) => getSize(margin)};
+  border-radius: 100%;
+  vertical-align: ${({ verticalAlign }) => getSize(verticalAlign)};
+  border: 0px solid transparent;
+  animation: ${({ size }) => getAnimation(size)} 1s ${({ idx }) => idx * 0.25}s infinite linear;
+  animation-fill-mode: both;
+  width: ${({ size }) => getNumberSize(size) / 2.5}px;
+  height: ${({ size }) => getNumberSize(size) / 2.5}px;
+  transform: translate(0, -${({ size }) => getNumberSize(size) / 5}px);
+  position: absolute;
+  top: ${({ size }) => getSize(size)};
+  left: ${({ size }) => getNumberSize(size) * 4}px;
+`
 
 export default class PacmanLoader extends Component {
   static propTypes = propTypes;
@@ -31,79 +64,9 @@ export default class PacmanLoader extends Component {
     margin: 2,
   }
 
-  /**
-   * @return {Object}
-   */
-  getBallStyle = () => ({
-    backgroundColor: this.props.color,
-    width: this.props.size,
-    height: this.props.size,
-    margin: this.props.margin,
-    borderRadius: '100%',
-    verticalAlign: this.props.verticalAlign,
-    border: '0px solid transparent', // fix firefox/chrome/opera rendering
-  })
+  render() {
+    const { loading, size, color } = this.props
 
-  /**
-   * @param  {Number} i
-   * @return {Object}
-   */
-  getAnimationStyle = i => {
-    const size = this.props.size
-    let animationName = animations[size]
-
-    if (!animationName) {
-      const keyframes = {
-        '75%': {
-          opacity: 0.7,
-        },
-        '100%': {
-          transform: `translate(${-4 * size}px, ${-size / 4}px)`,
-        },
-      }
-      animationName = animations[size] = insertKeyframesRule(keyframes)
-    }
-
-    const animation = [ animationName, '1s', `${i * 0.25}s`, 'infinite', 'linear' ].join(' ')
-    const animationFillMode = 'both'
-
-    return {
-      animation,
-      animationFillMode,
-    }
-  }
-
-  getStyle = i => {
-    if ((i | 0) === 1) {
-      const s1 = `${this.props.size}px solid transparent`
-      const s2 = `${this.props.size}px solid ${this.props.color}`
-
-      return {
-        width: 0,
-        height: 0,
-        borderRight: s1,
-        borderTop: s2,
-        borderLeft: s2,
-        borderBottom: s2,
-        borderRadius: this.props.size,
-      }
-    }
-
-    return assign(
-      this.getBallStyle(i),
-      this.getAnimationStyle(i),
-      {
-        width: 10,
-        height: 10,
-        transform: `translate(0, ${-this.props.size / 4}px)`,
-        position: 'absolute',
-        top: 25,
-        left: 100,
-      },
-    )
-  }
-
-  renderLoader = loading => {
     if (loading) {
       const style = {
         position: 'relative',
@@ -118,23 +81,24 @@ export default class PacmanLoader extends Component {
         }
       }
 
+      const ballProps = ptKeys.reduce((acc, key) => (key === 'loading' ? acc : {
+        ...acc,
+        [key]: this.props[key],
+      }), {})
+
       return (
         <div {...props}>
           <div style={style}>
-            <div style={this.getStyle(1)} />
-            <div style={this.getStyle(2)} />
-            <div style={this.getStyle(3)} />
-            <div style={this.getStyle(4)} />
-            <div style={this.getStyle(5)} />
+            <Pacman size={size} color={color} />
+            <Ball {...ballProps} idx={1} />
+            <Ball {...ballProps} idx={2} />
+            <Ball {...ballProps} idx={3} />
+            <Ball {...ballProps} idx={4} />
           </div>
         </div>
       )
     }
 
     return null
-  }
-
-  render() {
-    return this.renderLoader(this.props.loading)
   }
 }

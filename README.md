@@ -31,7 +31,7 @@ The easiest way to use `halogenium` is to install it from NPM and import it.
 You can also use the standalone build by including `dist/halogenium.js` in your page. If you use this, make sure you have already included React, and it is available as a global variable.
 
 ```
-npm install halogenium --save
+npm install styled-components halogenium --save
 ```
 
 ## Usage

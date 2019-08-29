@@ -1,48 +1,57 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import assign from 'domkit/appendVendorPrefix'
-import insertKeyframesRule from 'domkit/insertKeyframesRule'
-
-/**
- * @type {Object}
- */
-const rotateKeyframes = {
-  '100%': {
-    transform: 'rotate(360deg)',
-  },
-}
-
-/**
- * @type {Object}
- */
-const bounceKeyframes = {
-  '0%, 100%': {
-    transform: 'scale(0)',
-  },
-  '50%': {
-    transform: 'scale(1.0)',
-  },
-}
-
-/**
- * @type {String}
- */
-const rotateAnimationName = insertKeyframesRule(rotateKeyframes)
-
-/**
- * @type {String}
- */
-const bounceAnimationName = insertKeyframesRule(bounceKeyframes)
+import styled, { keyframes } from 'styled-components'
 
 const propTypes = {
   loading: PropTypes.bool,
   color: PropTypes.string,
   size: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-  margin: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
   verticalAlign: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
 }
 
 const ptKeys = Object.keys(propTypes)
+
+const rotateAnimation = keyframes`
+  100% {
+    transform: rotate(360deg);
+  }
+`
+
+const bounceAnimation = keyframes`
+  0%, 100% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1.0);
+  }
+`
+
+const getNumberSize = size => parseInt(size, 10) | 0
+const getSize = size => typeof size === 'number' ? `${size}px` : size
+
+const Wrapper = styled.div`
+  animation: ${rotateAnimation} 2s 0s infinite linear;
+  animation-fill-mode: forwards;
+  width: ${({ size }) => getNumberSize(size)}px;
+  height: ${({ size }) => getNumberSize(size)}px;
+  position: relative;
+  border: 0px solid transparent;
+`
+
+const Ball = styled.div`
+  background-color: ${({ color }) => color};
+  width: ${({ size }) => getNumberSize(size) / 2}px;
+  height: ${({ size }) => getNumberSize(size) / 2}px;
+  border-radius: 100%;
+  vertical-align: ${({ verticalAlign }) => getSize(verticalAlign)};
+  animation: ${bounceAnimation} 2s ${({ idx }) => (idx === 2 ? '-1s' : '0s')} infinite linear;
+  animation-fill-mode: forwards;
+  position: absolute;
+  top: ${({ idx }) => (idx % 2 ? '0' : 'auto')};
+  bottom: ${({ idx }) => (idx % 2 ? 'auto' : '0')};
+  border: 0px solid transparent;
+`
 
 export default class DotLoader extends Component {
   static propTypes = propTypes;
@@ -53,72 +62,8 @@ export default class DotLoader extends Component {
     size: '60px',
   }
 
-  /**
-   * @param  {String} size
-   * @return {Object}
-   */
-  getBallStyle = size => ({
-    backgroundColor: this.props.color,
-    width: size,
-    height: size,
-    borderRadius: '100%',
-    verticalAlign: this.props.verticalAlign,
-  })
-
-  /**
-   * @param  {Number} i
-   * @return {Object}
-   */
-  getAnimationStyle = i => {
-    const animation = [
-      i === 0 ? rotateAnimationName : bounceAnimationName,
-      '2s',
-      i === 2 ? '-1s' : '0s',
-      'infinite',
-      'linear',
-    ].join(' ')
-    const animationFillMode = 'forwards'
-
-    return {
-      animation,
-      animationFillMode,
-    }
-  }
-
-  /**
-   * @param  {Number} i
-   * @return {Object}
-   */
-  getStyle = i => {
-    const size = parseInt(this.props.size) | 0
-    const ballSize = size / 2
-
-    if (i) {
-      return assign(
-        this.getBallStyle(ballSize),
-        this.getAnimationStyle(i),
-        {
-          position: 'absolute',
-          top: i % 2 ? 0 : 'auto',
-          bottom: i % 2 ? 'auto' : 0,
-          border: '0px solid transparent', // fix firefox/chrome/opera rendering
-        },
-      )
-    }
-
-    return assign(
-      this.getAnimationStyle(i),
-      {
-        width: size,
-        height: size,
-        position: 'relative',
-        border: '0px solid transparent', // fix firefox/chrome/opera rendering
-      },
-    )
-  }
-
   render() {
-    const { loading } = this.props
+    const { loading, size } = this.props
 
     if (loading) {
       const props = { ...this.props }
@@ -130,12 +75,17 @@ export default class DotLoader extends Component {
         }
       }
 
+      const ballProps = ptKeys.reduce((acc, key) => (key === 'loading' ? acc : {
+        ...acc,
+        [key]: this.props[key],
+      }), {})
+
       return (
         <div {...props}>
-          <div style={this.getStyle(0)}>
-            <div style={this.getStyle(1)} />
-            <div style={this.getStyle(2)} />
-          </div>
+          <Wrapper size={size}>
+            <Ball {...ballProps} idx={1} />
+            <Ball {...ballProps} idx={2} />
+          </Wrapper>
         </div>
       )
     }

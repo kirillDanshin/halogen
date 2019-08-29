@@ -1,24 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import assign from 'domkit/appendVendorPrefix'
-import insertKeyframesRule from 'domkit/insertKeyframesRule'
-
-/**
- * @type {Object}
- */
-const keyframes = {
-  '50%': {
-    opacity: 0.3,
-  },
-  '100%': {
-    opacity: 1,
-  },
-}
-
-/**
- * @type {String}
- */
-const animationName = insertKeyframesRule(keyframes)
+import styled, { keyframes } from 'styled-components'
 
 const propTypes = {
   loading: PropTypes.bool,
@@ -32,6 +14,80 @@ const propTypes = {
 
 const ptKeys = Object.keys(propTypes)
 
+const radius = 20
+const quarter = (radius / 2) + (radius / 5.5)
+
+const lines = {
+  l1: {
+    top: radius,
+    left: 0,
+    transform: 'none',
+  },
+  l2: {
+    top: quarter,
+    left: quarter,
+    transform: 'rotate(-45deg)',
+  },
+  l3: {
+    top: 0,
+    left: radius,
+    transform: 'rotate(90deg)',
+  },
+  l4: {
+    top: -quarter,
+    left: quarter,
+    transform: 'rotate(45deg)',
+  },
+  l5: {
+    top: -radius,
+    left: 0,
+    transform: 'none',
+  },
+  l6: {
+    top: -quarter,
+    left: -quarter,
+    transform: 'rotate(-45deg)',
+  },
+  l7: {
+    top: 0,
+    left: -radius,
+    transform: 'rotate(90deg)',
+  },
+  l8: {
+    top: quarter,
+    left: -quarter,
+    transform: 'rotate(45deg)',
+  },
+}
+
+const animation = keyframes`
+  50% {
+    opacity: 0.3;
+  }
+
+  100% {
+    opacity: 1;
+  }
+`
+
+const getSize = size => typeof size === 'number' ? `${size}px` : size
+
+const Line = styled.div`
+  background-color: ${({ color }) => color};
+  height: ${({ height }) => getSize(height)};
+  width: ${({ width }) => getSize(width)};
+  margin: ${({ margin }) => getSize(margin)};
+  border-radius: ${({ radius }) => radius};
+  vertical-align: ${({ verticalAlign }) => getSize(verticalAlign)};
+  top: ${({ idx }) => lines[`l${idx}`].top}px;
+  left: ${({ idx }) => lines[`l${idx}`].left}px;
+  transform: ${({ idx }) => lines[`l${idx}`].transform};
+  animation: ${animation} 1.2s ${({ idx }) => (idx * 0.12)}s infinite ease-in-out;
+  animation-fill-mode: both;
+  position: absolute;
+  border: 0px solid transparent;
+`
+
 export default class FadeLoader extends Component {
   static propTypes = propTypes;
 
@@ -43,103 +99,6 @@ export default class FadeLoader extends Component {
     margin: '2px',
     radius: '2px',
   }
-
-  getLineStyle = () => ({
-    backgroundColor: this.props.color,
-    height: this.props.height,
-    width: this.props.width,
-    margin: this.props.margin,
-    borderRadius: this.props.radius,
-    verticalAlign: this.props.verticalAlign,
-  })
-
-  /**
-   * @param  {Number} i
-   * @return {Object}
-   */
-  getAnimationStyle = i => {
-    const animation = [
-      animationName,
-      '1.2s',
-      `${i * 0.12}s`,
-      'infinite',
-      'ease-in-out',
-    ].join(' ')
-    const animationFillMode = 'both'
-
-    return {
-      animation,
-      animationFillMode,
-    }
-  }
-
-  /**
-   * @param  {Number} i
-   * @return {Object}
-   */
-  getPosStyle = i => {
-    const radius = 20
-    const quarter = (radius / 2) + (radius / 5.5)
-
-    const lines = {
-      l1: {
-        top: radius,
-        left: 0,
-      },
-      l2: {
-        top: quarter,
-        left: quarter,
-        transform: 'rotate(-45deg)',
-      },
-      l3: {
-        top: 0,
-        left: radius,
-        transform: 'rotate(90deg)',
-      },
-      l4: {
-        top: -quarter,
-        left: quarter,
-        transform: 'rotate(45deg)',
-      },
-      l5: {
-        top: -radius,
-        left: 0,
-      },
-      l6: {
-        top: -quarter,
-        left: -quarter,
-        transform: 'rotate(-45deg)',
-      },
-      l7: {
-        top: 0,
-        left: -radius,
-        transform: 'rotate(90deg)',
-      },
-      l8: {
-        top: quarter,
-        left: -quarter,
-        transform: 'rotate(45deg)',
-      },
-    }
-
-    return lines[`l${i}`]
-  }
-
-  /**
-   * @param  {Number} i
-   * @return {Object}
-   */
-  getStyle = i => (
-    assign(
-      this.getLineStyle(i),
-      this.getPosStyle(i),
-      this.getAnimationStyle(i),
-      {
-        position: 'absolute',
-        border: '0px solid transparent', // fix firefox/chrome/opera rendering
-      },
-    )
-  )
 
   render() {
     const { loading } = this.props
@@ -159,17 +118,19 @@ export default class FadeLoader extends Component {
         }
       }
 
+      const lineProps = ptKeys.reduce((acc, key) => (key === 'loading' ? acc : {
+        ...acc,
+        [key]: this.props[key],
+      }), {})
+
       return (
         <div {...props}>
           <div style={style}>
-            <div style={this.getStyle(1)} />
-            <div style={this.getStyle(2)} />
-            <div style={this.getStyle(3)} />
-            <div style={this.getStyle(4)} />
-            <div style={this.getStyle(5)} />
-            <div style={this.getStyle(6)} />
-            <div style={this.getStyle(7)} />
-            <div style={this.getStyle(8)} />
+            {
+              Array.from({ length: 8 }).map((_, i) => (
+                <Line key={i} {...lineProps} idx={i + 1} />
+              ))
+            }
           </div>
         </div>
       )

@@ -1,27 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import assign from 'domkit/appendVendorPrefix'
-import insertKeyframesRule from 'domkit/insertKeyframesRule'
-
-/**
- * @type {Object}
- */
-const keyframes = {
-  '0%': {
-    transform: 'rotate(0deg) scale(1)',
-  },
-  '50%': {
-    transform: 'rotate(180deg) scale(0.8)',
-  },
-  '100%': {
-    transform: 'rotate(360deg) scale(1)',
-  },
-}
-
-/**
- * @type {String}
- */
-const animationName = insertKeyframesRule(keyframes)
+import styled, { keyframes } from 'styled-components'
 
 const propTypes = {
   loading: PropTypes.bool,
@@ -32,6 +11,36 @@ const propTypes = {
 
 const ptKeys = Object.keys(propTypes)
 
+const getSize = size => typeof size === 'number' ? `${size}px` : size
+
+const animation = keyframes`
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(180deg) scale(0.8);
+  }
+
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+`
+
+const Circle = styled.div`
+  width: ${({ size }) => getSize(size)};
+  height: ${({ size }) => getSize(size)};
+  border: 2px solid;
+  border-color: ${({ color }) => color};
+  border-bottom-color: transparent;
+  border-radius: 100%;
+  background: transparent !important;
+  vertical-align: ${({ verticalAlign }) => getSize(verticalAlign)};
+  animation: ${animation} 0.75s 0s infinite linear;
+  animation-fill-mode: both;
+  display: inline-block;
+`
+
 export default class ClipLoader extends Component {
   static propTypes = propTypes;
 
@@ -40,46 +49,6 @@ export default class ClipLoader extends Component {
     color: '#ffffff',
     size: '35px',
   }
-
-  getBallStyle = () => (
-    {
-      width: this.props.size,
-      height: this.props.size,
-      border: '2px solid',
-      borderColor: this.props.color,
-      borderBottomColor: 'transparent',
-      borderRadius: '100%',
-      background: 'transparent !important',
-      verticalAlign: this.props.verticalAlign,
-    }
-  )
-
-  getAnimationStyle = () => {
-    const animation = [ animationName, '0.75s', '0s', 'infinite', 'linear' ].join(' ')
-    const animationFillMode = 'both'
-
-    return {
-      animation,
-      animationFillMode,
-    }
-  }
-
-  /**
-   * @param  {Number} i
-   * @return {Object}
-   */
-  getStyle = i => (
-    assign(
-      {
-        border: '0px solid transparent', // fix firefox/chrome/opera rendering
-      },
-      this.getBallStyle(i),
-      this.getAnimationStyle(),
-      {
-        display: 'inline-block',
-      },
-    )
-  )
 
   render() {
     const { loading } = this.props
@@ -94,9 +63,14 @@ export default class ClipLoader extends Component {
         }
       }
 
+      const circleProps = ptKeys.reduce((acc, key) => (key === 'loading' ? acc : {
+        ...acc,
+        [key]: this.props[key],
+      }), {})
+
       return (
         <div {...props}>
-          <div style={this.getStyle()} />
+          <Circle {...circleProps} />
         </div>
       )
     }

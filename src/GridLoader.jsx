@@ -1,29 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import assign from 'domkit/appendVendorPrefix'
-import insertKeyframesRule from 'domkit/insertKeyframesRule'
-
-/**
- * @type {Object}
- */
-const keyframes = {
-  '0%': {
-    transform: 'scale(1)',
-  },
-  '50%': {
-    transform: 'scale(0.5)',
-    opacity: 0.7,
-  },
-  '100%': {
-    transform: 'scale(1)',
-    opacity: 1,
-  },
-}
-
-/**
- * @type {String}
- */
-const animationName = insertKeyframesRule(keyframes)
+import styled, { keyframes } from 'styled-components'
 
 /**
  * @param  {Number} top
@@ -43,6 +20,37 @@ const propTypes = {
 
 const ptKeys = Object.keys(propTypes)
 
+const getSize = size => typeof size === 'number' ? `${size}px` : size
+
+const animation = keyframes`
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.5);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+`
+
+const Ball = styled.div`
+  background-color: ${({ color }) => color};
+  width: ${({ size }) => getSize(size)};
+  height: ${({ size }) => getSize(size)};
+  margin: ${({ margin }) => getSize(margin)};
+  border-radius: 100%;
+  vertical-align: ${({ verticalAlign }) => getSize(verticalAlign)};
+  animation: ${animation} ${() => (random(100) / 100) + 0.6}s ${() => (random(100) / 100) - 0.2}s infinite ease;
+  animation-fill-mode: both;
+  display: inline-block;
+  border: 0px solid transparent;
+`
+
 export default class GridLoader extends Component {
   static propTypes = propTypes;
 
@@ -52,49 +60,6 @@ export default class GridLoader extends Component {
     size: '15px',
     margin: '2px',
   }
-
-  getBallStyle = () => ({
-    backgroundColor: this.props.color,
-    width: this.props.size,
-    height: this.props.size,
-    margin: this.props.margin,
-    borderRadius: '100%',
-    verticalAlign: this.props.verticalAlign,
-  })
-
-  getAnimationStyle = () => {
-    const animationDuration = `${(random(100) / 100) + 0.6}s`
-    const animationDelay = `${(random(100) / 100) - 0.2}s`
-
-    const animation = [
-      animationName,
-      animationDuration,
-      animationDelay,
-      'infinite',
-      'ease',
-    ].join(' ')
-    const animationFillMode = 'both'
-
-    return {
-      animation,
-      animationFillMode,
-    }
-  }
-
-  /**
-   * @param  {Number} i
-   * @return {Object}
-   */
-  getStyle = i => (
-    assign(
-      this.getBallStyle(i),
-      this.getAnimationStyle(i),
-      {
-        display: 'inline-block',
-        border: '0px solid transparent', // fix firefox/chrome/opera rendering
-      },
-    )
-  )
 
   render() {
     const { loading } = this.props
@@ -114,18 +79,19 @@ export default class GridLoader extends Component {
         }
       }
 
+      const ballProps = ptKeys.reduce((acc, key) => (key === 'loading' ? acc : {
+        ...acc,
+        [key]: this.props[key],
+      }), {})
+
       return (
         <div {...props}>
           <div style={style}>
-            <div style={this.getStyle(1)} />
-            <div style={this.getStyle(2)} />
-            <div style={this.getStyle(3)} />
-            <div style={this.getStyle(4)} />
-            <div style={this.getStyle(5)} />
-            <div style={this.getStyle(6)} />
-            <div style={this.getStyle(7)} />
-            <div style={this.getStyle(8)} />
-            <div style={this.getStyle(9)} />
+            {
+              Array.from({ length: 9 }).map((_, i) => (
+                <Ball key={i} {...ballProps} idx={i + 1} />
+              ))
+            }
           </div>
         </div>
       )

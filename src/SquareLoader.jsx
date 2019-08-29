@@ -1,30 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import assign from 'domkit/appendVendorPrefix'
-import insertKeyframesRule from 'domkit/insertKeyframesRule'
-
-/**
- * @type {Object}
- */
-const keyframes = {
-  '25%': {
-    transform: 'rotateX(180deg) rotateY(0)',
-  },
-  '50%': {
-    transform: 'rotateX(180deg) rotateY(180deg)',
-  },
-  '75%': {
-    transform: 'rotateX(0) rotateY(180deg)',
-  },
-  '100%': {
-    transform: 'rotateX(0) rotateY(0)',
-  },
-}
-
-/**
- * @type {String}
- */
-const animationName = insertKeyframesRule(keyframes)
+import styled, { keyframes } from 'styled-components'
 
 const propTypes = {
   loading: PropTypes.bool,
@@ -35,6 +11,38 @@ const propTypes = {
 }
 
 const ptKeys = Object.keys(propTypes)
+
+const getSize = size => typeof size === 'number' ? `${size}px` : size
+
+const animation = keyframes`
+  25% {
+    transform: rotateX(180deg) rotateY(0);
+  }
+
+  50% {
+    transform: rotateX(180deg) rotateY(180deg);
+  }
+
+  75% {
+    transform: rotateX(0) rotateY(180deg);
+  }
+
+  100% {
+    transform: rotateX(0) rotateY(0);
+  }
+`
+
+const Square = styled.div`
+  background-color: ${({ color }) => color};
+  width: ${({ size }) => getSize(size)};
+  height: ${({ size }) => getSize(size)};
+  vertical-align: ${({ verticalAlign }) => getSize(verticalAlign)};
+  perspective: 100px;
+  animation: ${animation} 3s 0s infinite cubic-bezier(.09,.57,.49,.9);
+  animation-fill-mode: both;
+  display: inline-block;
+  border: 0px solid transparent;
+`
 
 export default class SquareLoader extends Component {
     /**
@@ -48,50 +56,9 @@ export default class SquareLoader extends Component {
     size: '50px',
   }
 
-    /**
-     * @return {Object}
-     */
-  getSquareStyle = () => ({
-    backgroundColor: this.props.color,
-    width: this.props.size,
-    height: this.props.size,
-    verticalAlign: this.props.verticalAlign,
-  })
+  render() {
+    const { loading } = this.props
 
-    /**
-     * @param  {Number} i
-     * @return {Object}
-     */
-  getAnimationStyle = () => {
-    const animation = [ animationName, '3s', '0s', 'infinite', 'cubic-bezier(.09,.57,.49,.9)' ].join(' ')
-    const animationFillMode = 'both'
-    const perspective = '100px'
-
-    return {
-      perspective,
-      animation,
-      animationFillMode,
-    }
-  }
-
-    /**
-     * @param  {Number} i
-     * @return {Object}
-     */
-  getStyle = i => assign(
-        this.getSquareStyle(i),
-        this.getAnimationStyle(i),
-    {
-      display: 'inline-block',
-      border: '0px solid transparent', // fix firefox/chrome/opera rendering
-    },
-    )
-
-    /**
-     * @param  {Boolean} loading
-     * @return {ReactComponent || null}
-     */
-  renderLoader = loading => {
     if (loading) {
       const props = Object.assign({}, this.props)
 
@@ -102,17 +69,18 @@ export default class SquareLoader extends Component {
         }
       }
 
+      const squareProps = ptKeys.reduce((acc, key) => (key === 'loading' ? acc : {
+        ...acc,
+        [key]: this.props[key],
+      }), {})
+
       return (
         <div {...props}>
-          <div style={this.getStyle()} />
+          <Square {...squareProps} />
         </div>
       )
     }
 
     return null
-  }
-
-  render() {
-    return this.renderLoader(this.props.loading)
   }
 }

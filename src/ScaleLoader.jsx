@@ -1,27 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import assign from 'domkit/appendVendorPrefix'
-import insertKeyframesRule from 'domkit/insertKeyframesRule'
-
-/**
- * @type {Object}
- */
-const keyframes = {
-  '0%': {
-    transform: 'scaley(1.0)',
-  },
-  '50%': {
-    transform: 'scaley(0.4)',
-  },
-  '100%': {
-    transform: 'scaley(1.0)',
-  },
-}
-
-/**
- * @type {String}
- */
-const animationName = insertKeyframesRule(keyframes)
+import styled, { keyframes } from 'styled-components'
 
 const propTypes = {
   loading: PropTypes.bool,
@@ -34,6 +13,35 @@ const propTypes = {
 }
 
 const ptKeys = Object.keys(propTypes)
+
+const getSize = size => typeof size === 'number' ? `${size}px` : size
+
+const animation = keyframes`
+  0% {
+    transform: scaley(1.0);
+  }
+
+  50% {
+    transform: scaley(0.4);
+  }
+
+  100% {
+    transform: scaley(1.0);
+  }
+`
+
+const Line = styled.div`
+  background-color: ${({ color }) => color};
+  width: ${({ width }) => getSize(width)};
+  height: ${({ height }) => getSize(height)};
+  margin: ${({ margin }) => getSize(margin)};
+  border-radius: ${({ radius }) => getSize(radius)};
+  vertical-align: ${({ verticalAlign }) => getSize(verticalAlign)};
+  animation: ${animation} 1s ${({ idx }) => idx * 0.1}s infinite cubic-bezier(.2,.68,.18,1.08);
+  animation-fill-mode: both;
+  display: inline-block;
+  border: 0px solid transparent;
+`
 
 export default class ScaleLoader extends Component {
   /**
@@ -50,50 +58,9 @@ export default class ScaleLoader extends Component {
     radius: '2px',
   }
 
-  /**
-   * @return {Object}
-   */
-  getLineStyle = () => ({
-    backgroundColor: this.props.color,
-    height: this.props.height,
-    width: this.props.width,
-    margin: this.props.margin,
-    borderRadius: this.props.radius,
-    verticalAlign: this.props.verticalAlign,
-  })
+  render() {
+    const { loading } = this.props
 
-  /**
-   * @param  {Number} i
-   * @return {Object}
-   */
-  getAnimationStyle = i => {
-    const animation = [ animationName, '1s', `${i * 0.1}s`, 'infinite', 'cubic-bezier(.2,.68,.18,1.08)' ].join(' ')
-    const animationFillMode = 'both'
-
-    return {
-      animation,
-      animationFillMode,
-    }
-  }
-
-  /**
-   * @param  {Number} i
-   * @return {Object}
-   */
-  getStyle = i => assign(
-    this.getLineStyle(i),
-    this.getAnimationStyle(i),
-    {
-      display: 'inline-block',
-      border: '0px solid transparent', // fix firefox/chrome/opera rendering
-    },
-  );
-
-  /**
-   * @param  {Boolean} loading
-   * @return {ReactComponent || null}
-   */
-  renderLoader = loading => {
     if (loading) {
       const props = Object.assign({}, this.props)
 
@@ -104,21 +71,22 @@ export default class ScaleLoader extends Component {
         }
       }
 
+      const lineProps = ptKeys.reduce((acc, key) => (key === 'loading' ? acc : {
+        ...acc,
+        [key]: this.props[key],
+      }), {})
+
       return (
         <div {...props}>
-          <div style={this.getStyle(1)} />
-          <div style={this.getStyle(2)} />
-          <div style={this.getStyle(3)} />
-          <div style={this.getStyle(4)} />
-          <div style={this.getStyle(5)} />
+          {
+            Array.from({ length: 5 }).map((_, i) => (
+              <Line key={i} {...lineProps} idx={i + 1} />
+            ))
+          }
         </div>
       )
     }
 
     return null
-  }
-
-  render() {
-    return this.renderLoader(this.props.loading)
   }
 }

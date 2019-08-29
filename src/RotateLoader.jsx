@@ -1,27 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import assign from 'domkit/appendVendorPrefix'
-import insertKeyframesRule from 'domkit/insertKeyframesRule'
-
-/**
- * @type {Object}
- */
-const keyframes = {
-  '0%': {
-    transform: 'rotate(0deg)',
-  },
-  '50%': {
-    transform: 'rotate(180deg)',
-  },
-  '100%': {
-    transform: 'rotate(360deg)',
-  },
-}
-
-/**
- * @type {String}
- */
-const animationName = insertKeyframesRule(keyframes)
+import styled, { keyframes } from 'styled-components'
 
 const propTypes = {
   loading: PropTypes.bool,
@@ -33,6 +12,50 @@ const propTypes = {
 
 const ptKeys = Object.keys(propTypes)
 
+const getSize = size => typeof size === 'number' ? `${size}px` : size
+
+const animation = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+`
+
+const Wrapper = styled.div`
+  background-color: ${({ color }) => color};
+  width: ${({ size }) => getSize(size)};
+  height: ${({ size }) => getSize(size)};
+  margin: ${({ margin }) => getSize(margin)};
+  border-radius: 100%;
+  vertical-align: ${({ verticalAlign }) => getSize(verticalAlign)};
+  animation: ${animation} 1s 0s infinite cubic-bezier(.7,-.13,.22,.86);
+  animation-fill-mode: both;
+  display: inline-block;
+  position: relative;
+  border: 0px solid transparent;
+`
+
+const Ball = styled.div`
+  background-color: ${({ color }) => color};
+  width: ${({ size }) => getSize(size)};
+  height: ${({ size }) => getSize(size)};
+  margin: ${({ margin }) => getSize(margin)};
+  border-radius: 100%;
+  vertical-align: ${({ verticalAlign }) => getSize(verticalAlign)};
+  opacity: 0.8;
+  position: absolute;
+  top: 0;
+  left: ${({ idx }) => idx % 2 ? -28 : 25}px;
+  border: 0px solid transparent;
+`
+
 export default class RotateLoader extends Component {
   static propTypes = propTypes;
 
@@ -43,66 +66,9 @@ export default class RotateLoader extends Component {
     margin: '2px',
   }
 
-    /**
-     * @return {Object}
-     */
-  getBallStyle = () => ({
-    backgroundColor: this.props.color,
-    width: this.props.size,
-    height: this.props.size,
-    margin: this.props.margin,
-    borderRadius: '100%',
-    verticalAlign: this.props.verticalAlign,
-  })
+  render() {
+    const { loading } = this.props
 
-    /**
-     * @param  {Number} i
-     * @return {Object}
-     */
-  getAnimationStyle = () => {
-    const animation = [ animationName, '1s', '0s', 'infinite', 'cubic-bezier(.7,-.13,.22,.86)' ].join(' ')
-    const animationFillMode = 'both'
-
-    return {
-      animation,
-      animationFillMode,
-    }
-  }
-
-    /**
-     * @param  {Number} i
-     * @return {Object}
-     */
-  getStyle = i => {
-    if (i) {
-      return assign(
-                this.getBallStyle(i),
-        {
-          opacity: '0.8',
-          position: 'absolute',
-          top: 0,
-          left: i % 2 ? -28 : 25,
-          border: '0px solid transparent', // fix firefox/chrome/opera rendering
-        },
-            )
-    }
-
-    return assign(
-            this.getBallStyle(i),
-            this.getAnimationStyle(i),
-      {
-        display: 'inline-block',
-        position: 'relative',
-        border: '0px solid transparent', // fix firefox/chrome/opera rendering
-      },
-        )
-  }
-
-    /**
-     * @param  {Boolean} loading
-     * @return {ReactComponent || null}
-     */
-  renderLoader = loading => {
     if (loading) {
       const props = Object.assign({}, this.props)
 
@@ -113,20 +79,21 @@ export default class RotateLoader extends Component {
         }
       }
 
+      const componentsProps = ptKeys.reduce((acc, key) => (key === 'loading' ? acc : {
+        ...acc,
+        [key]: this.props[key],
+      }), {})
+
       return (
         <div {...props}>
-          <div style={this.getStyle()}>
-            <div style={this.getStyle(1)} />
-            <div style={this.getStyle(2)} />
-          </div>
+          <Wrapper {...componentsProps}>
+            <Ball {...componentsProps} idx={1} />
+            <Ball {...componentsProps} idx={2} />
+          </Wrapper>
         </div>
       )
     }
 
     return null
-  }
-
-  render() {
-    return this.renderLoader(this.props.loading)
   }
 }
